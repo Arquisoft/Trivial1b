@@ -4,4 +4,5 @@
 * Joaquín García
 * Jose Labra
 * Sergio Rodríguez
-* Maria
+* Adrián García Bueno
+* Maria Hernandez Martinez
