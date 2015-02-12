@@ -5,3 +5,4 @@
 * Jose Labra
 * Sergio Rodríguez
 * Adrián García Bueno
+* María José Sánchez Doria
