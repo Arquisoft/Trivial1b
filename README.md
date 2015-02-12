@@ -6,3 +6,4 @@
 * Sergio Rodríguez
 * Adrián García Bueno
 * María José Sánchez Doria
+* Cristian Pérez González
