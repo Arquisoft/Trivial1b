@@ -7,3 +7,4 @@
 * Adrián García Bueno
 * Maria Hernandez Martinez
 * María José Sánchez Doria
+* Cristian Pérez González
