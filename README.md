@@ -1,4 +1,4 @@
-# Trivial4b
+# Trivial1b
 ## Equipo formado por: 
 
 * Joaquín García
