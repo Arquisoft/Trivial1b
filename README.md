@@ -28,7 +28,7 @@
   </tr>
   <tr>
     <td>Cristian</td>
-    <td>González Pérez</td>
+    <td>Pérez González</td>
     <td>UO191154</td>
   </tr>
   <tr>
