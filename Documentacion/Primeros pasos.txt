@@ -18,3 +18,8 @@ g)	Crear los prototipos necesarios (implementar, diseñar y hacer pruebas)
 
 
 
+
+Hay que repartir tareas.
+
+
+
