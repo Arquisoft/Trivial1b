@@ -1,3 +1,24 @@
+/* Adrián García Bueno
+ * 18/02/2015
+ * 
+ * Versión 3
+ * Clase para el parseo de GIFT
+ * 
+ * Ejemplos de formatos soportados....
+ * Texto de la cuestión? { answers }
+ * Texto de la cuestión?
+ * { answers }
+ * ::Title:: texto de la cuestión 
+ * { a
+ *   n
+ *   s
+ *   w
+ *   e
+ *   r
+ *   s
+ * }
+ */
+
 package es.uniovi.asw.trivial.common.parser.impl;
 
 import java.util.ArrayList;
@@ -8,62 +29,64 @@ import es.uniovi.asw.trivial.common.model.Question;
 import es.uniovi.asw.trivial.common.parser.IParser;
 
 public class GiftParser implements IParser {
+	
 	private List<Question> questions = new ArrayList<Question>();
 	private int index = 0;
+	private boolean answerState = false;
+	private void recursiveParser(String line) {
+		line = line.trim();
+		if(line.isEmpty() || line.startsWith("//")) //Omitimos lineas vacias y comentarios
+			return;
+			
+		if(line.startsWith("::")){ //Inicio de pregunta con título
+			questions.add(index, new Question()); //Creamos la nueva pregunta!!
+			String title = line.split("::")[0]; //Obtenemos el título
+			questions.get(index).setTitle(title);
+			recursiveParser(line.split("::")[1]); //dejamos la linea como si no tuviera título
+		}else if(!answerState && !line.startsWith("{")){ //Texto!
+			if(line.contains("{")){ //Si contiene un { es que hay parte de una respuesta en la linea
+				recursiveParser(line.substring(0, line.indexOf("{")-1)); //Cogemos solo el texto de la pregunta y reparseamos
+				answerState = true; //Ahora vamos a la respuesta  de la pregunta y activamos el modo respuesta
+				recursiveParser(line.substring(line.indexOf("{"), line.length())); //parseamos el inicio de la respuesta.
+			}
+			questions.get(index).setQuestion(line);
+		}else if(line.startsWith("{")){
+			if(line.contains("}"))
+				recursiveParser(line.substring(1, line.indexOf("}")-1));//Obtenemos las respuestas en una linea
+			recursiveParser(line.substring(1, line.length())); //Si no hay caracter } o bien no hay nada despues de { o hay respuestas en todo caso reparseamos la linea
+		}else if(answerState && !line.contains("{") && !line.contains("}")){
+			if(line.startsWith("=")){
+				if(line.contains("~")){
+					String[] answers = line.split("~");
+					for(String answer : answers)
+						recursiveParser(answer);
+				}else{
+					String correct = line.substring(1, line.length());
+					questions.get(index).addTrueAnswer(new Answer(correct));
+				}
+			}else{ //Entonces es una respuesta incorrecta.
+				questions.get(index).addFalseAnswer(new Answer(line));
+			}
+		}else if(answerState && line.contains("}")){
+			if(line.startsWith("}")){ //Final de la pregunta, cambia el question y será null, nueva pregunta
+				answerState = false;
+				index++;
+				recursiveParser(line.substring(1, line.length()));
+			}else{
+				recursiveParser(line.substring(0, line.indexOf("}")-1));
+				recursiveParser(line.substring(line.indexOf("}"),line.length()));//Debería entrar por el final.
+			}
+		}
+	}
 	@Override
 	public List<Question> parser(String data) {
-		List<Question> questions = new ArrayList<Question>();
-		int index = 0;
-
-		for(String line : data.split("\n")){
-			line = line.trim();
-			if(line.startsWith("//") || line.equals(""))
-				continue;
-			if(line.startsWith("::")){
-				String[] str = line.split("::");
-				questions.add(index, new Question());
-				questions.get(index).setTitle(str[0]);
-				line = str[1];
-				if(line.endsWith("{")){
-					questions.get(index).setQuestion(line.replaceAll("{", ""));
-				}else if(line.endsWith("}")){
-					String lineAnswers = ((line.split("{"))[1]).replaceAll("}", "");
-					convertLineToAnswer(lineAnswers);
-					index++;
-				}else{
-					questions.get(index).setQuestion(line);
-				}
-			}else if(line.startsWith("{") && line.endsWith("}")){
-				line = line.substring(1, line.length()-1);
-				convertLineToAnswer(line);
-			}else if(line.startsWith("=") && line.endsWith("}")){
-				line = line.substring(0, line.length()-1);
-				convertLineToAnswer(line);
-				index++;
-			}
-			
+		for(String line : data.split("\n\r")){
+			recursiveParser(line);
 		}
 		return questions;
+		
 	}
 	
-	private void convertLineToAnswer(String line){
-		
-		String[] answers = line.split("~");
-		for(String thing : answers){
-			Answer answer = new Answer();
-			if(thing.startsWith("=")){
-				thing = thing.replaceFirst("=", "");
-				String[] things = thing.split("#");
-				answer.setResponse(things[0]);
-				answer.setText(things[1]);
-				questions.get(index).addTrueAnswer(answer);
-			}else{
-				String[] things = thing.split("#");
-				answer.setResponse(things[0]);
-				answer.setText(things[1]);
-				questions.get(index).addFalseAnswer(answer);
-			}
-		}
-	}
+	
 
 }

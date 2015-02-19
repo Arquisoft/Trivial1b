@@ -3,6 +3,9 @@ package es.uniovi.asw.trivial.common.model;
 public class Answer {
 	private String response;
 	private String text;
+	public Answer(String correct) {
+		// TODO Auto-generated constructor stub
+	}
 	public String getResponse() {
 		return response;
 	}
