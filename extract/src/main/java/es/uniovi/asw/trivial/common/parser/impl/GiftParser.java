@@ -51,6 +51,7 @@ public class GiftParser implements IParser {
 			}
 			questions.get(index).setQuestion(line);
 		}else if(line.startsWith("{")){
+			answerState = true; //Entramos en modo respuestas
 			if(line.contains("}"))
 				recursiveParser(line.substring(1, line.indexOf("}")-1));//Obtenemos las respuestas en una linea
 			recursiveParser(line.substring(1, line.length())); //Si no hay caracter } o bien no hay nada despues de { o hay respuestas en todo caso reparseamos la linea
