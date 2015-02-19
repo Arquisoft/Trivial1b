@@ -17,7 +17,8 @@ María	Hernández Martínez	UO229803
 
 
 María José	Sanchez Doria	UO232334
-
+Definir requisitos funcionales y requisitos no funcionales
+Identificación inicial de Stakeholders
 
 Samuel	Fernández Cabello	UO224927
 
