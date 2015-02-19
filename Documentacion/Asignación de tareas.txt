@@ -1,26 +1,25 @@
-Adri·n	GarcÌa Bueno	UO232346
+Adri√°n	Garc√≠a Bueno	UO232346
 
 
-Ana Isabel	Blanco Gonz·lez	UO227799
+Ana Isabel	Blanco Gonz√°lez	UO227799
 
 
-Benigno	Diez GutiÈrrez	UO227982
+Benigno	Diez Guti√©rrez	UO227982
 
 
 Borja	Caveda Cano	UO227648
 
 
-Cristian	PÈrez Gonz·lez	UO191154
+Cristian	P√©rez Gonz√°lez	UO191154
 
 
-MarÌa	Hern·ndez MartÌnez	UO229803
-
-
-MarÌa JosÈ	Sanchez Doria	UO232334
+Mar√≠a	Hern√°ndez Mart√≠nez	UO229803
 Definir requisitos funcionales y requisitos no funcionales
+
+Mar√≠a Jos√©	Sanchez Doria	UO232334
 Establecer Escenarios de calidad
 
-Samuel	Fern·ndez Cabello	UO224927
+Samuel	Fern√°ndez Cabello	UO224927
 
 
 Sergio	Berjano Salinas	UO212948
