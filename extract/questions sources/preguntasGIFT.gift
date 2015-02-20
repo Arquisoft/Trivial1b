@@ -1,0 +1,49 @@
+$CATEGORY: Informática
+!(true){~true =false}
+(Acrónimos) Significado de CGA (de las antiguas tarjetas gráficas){~control graphics automatic =color graphics adapter}
+(Acrónimos) Significado de EOF {~environment of fact =end of file}
+(Acrónimos) Significado de IRQ{~irational reader quality =interrupt request}
+(Algoritmia) ¿Cómo se conoce a los algoritmos que dividen el problema principal en subproblemas?{~backtracking =divide y venceras}
+Cuidado) ¿Con qué comando se sale del IRC?{~exit ~shutdown =/quit}
+(Ensamblador) Sacar datos de la pila (stack): ¿instrucción?{~push ~call =pop}
+(Hacking) Nombre que se da al código inyectado en un "buffer overflow"{~overflow code =shellcode}
+(Humor) ¿Cuál es la unidad de información más antigua?{~bit ~nibble =trilobites}
+(Jejeje) ¿Cuál es el plato preferido de los informáticos?{~pescado =patatas chips}
+(Jejeje) ¿Cuál es la patrona de los informáticos?{~santa bárbara =santa tecla}
+(Jejeje) Hay 10 clases de personas: las que saben binario y...{~las saben octal =las que no}
+(Jejeje) Tipo de ordenadores que se pueden encontrar en lugares acuáticos{~maquis ~XCV5000 =pcs}
+(Programación en C++) ¿Cómo se denomina a una clase de la que no se pueden crear objetos?{~genérica ~polimórfica =abstracta}
+(Programación en C++) ¿Cómo se denomina el constructor que se llama cuando se pasa un objeto a una función por valor?{~destructor ~override =constructor de copia}
+(Programación en C++) ¿Cómo se denomina la función que se llama al crear un objeto?{~instanciador ~object ~void =constructor}
+(Programación en C++) ¿Cómo se llama el puntero que apunta al objeto del cual la función en la que nos encontramos es miembro?{~struct =this}
+(Programación en C++) ¿Con qué cláusula se captura una excepción?{~try ~throw =catch}
+(Programación en C++) ¿Con qué cláusula se lanza una excepción?{~try =throw ~catch ~exception}
+(Programación en C++) ¿Cuáles son los operadores de memoria dinámica?{~dynamic y var ~var y T =new y delete}
+(Programación en C++) ¿Qué valores puede tomar el tipo 'bool'?{~null, true o false =true o false}
+(Programación en C++) Nombre de la biblioteca que sustituye a stdio.h{~System ~locale.h =iostream}
+(Una fácil) ¿Dónde guarda la memoria virtual los datos que no caben en memoria principal?{~cache =disco duro ~no los guarda ~memoria virtual}
+/home/kilen$... Esto es un ejemplo de...{~shell =prompt}
+¿A cuántos megahercios funcionaba la PlayStation 1?{~66 =33}
+¿A qué responde la letra R en un CD-R?{~refresh =recordable ~risk}
+¿Cómo se denomina comúnmente a un puerto TCP?{=socket ~port ~UDP}
+¿Cuál es el equivalente de "carpeta" en el entorno MS-DOS?{=directorio ~raiz ~equipo ~folder}
+¿Qué tecla debes pulsar en MS-DOS para repetir la última línea de comando que pusiste?{~f4 ~f1 ~f7 =f3}
+Año considerado el de nacimiento del correo electrónico {~1990 =1971 ~2003 ~1961}
+
+$CATEGORY: Medicina
+(Jejeje) Anestésico cerebral {=television ~frenadol ~dopamina}
+¿A quién se suele atribuir, incorrectamente, la frase: "Dejar de fumar es fácil. Yo lo he hecho miles de veces"? {~malboro ~liz taylor =mark twain}
+¿A qué tiene pánico el que padece hodofobia?{~lugares cerrados =viajar por carretera ~la velocidad}
+¿Cómo diferenciar un termómetro oral de uno anal?{~por la forma ~por el tamaño =por el sabor}
+¿Cómo se conoce también a la enfermedad de Hansen?{=lepra ~sarampión ~rabia}
+¿Cómo se llama la masa nerviosa contenida en el cráneo?{~pituitaria ~~hipofisis =encefalo}
+¿Cuál es el principio activo de la adrenalina?{=epinefrina ~escopolamina}
+¿Cuántas arterias salen del corazón?{~cuatro ~una =dos}
+¿Qué dedo de la mano tiene menos huesos?{~meñique ~anular =pulgar}
+¿Qué es el ciático en el cuerpo humano?{=nervio ~musculo}
+
+
+
+
+
+
