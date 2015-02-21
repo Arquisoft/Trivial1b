@@ -105,6 +105,15 @@
 			<timezone>2</timezone>
 			<properties />
 		</developer>
+		<developer>
+			<id>AdrianBueno</id>
+			<name>Adrián Bueno</name>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<timezone>2</timezone>
+			<properties />
+		</developer>
 	</developers>
 
 
