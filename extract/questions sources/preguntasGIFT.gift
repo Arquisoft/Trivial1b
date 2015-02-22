@@ -1,3 +1,65 @@
+$CATEGORY: Ciencia
+¿Quién inventó y desarrolló el ciclotrón?{
+~Dennis Gabor
+~Carl David Anderson
+=Ernest Orlando Lawrence
+~Edward Victor Appleton
+}
+¿Qué Premio Nobel recibió Victor Franz Hess?{
+~El Premio Nobel de Economía
+~El Premio Nobel de Química
+=El Premio Nobel de Física
+~El Premio Nobel de Medicina
+}
+¿Cómo se llaman los acúmulos de minerales, con forma de cono, originados en el suelo de las cuevas de caliza?{
+~Columnas
+~Estalactita
+=Estalagmita
+~Excéntricas
+}
+¿Qué demostró Iván Pávlov con sus experimentos realizados con perros?{
+=El condicionamiento clásico
+~El proceso de internalización
+~La existencia del subconsciente
+~El condicionamiento operante
+}
+¿Qué es la dulse?{
+~Un plato a base de estrellas de mar típico de China
+=Un alga roja comestible
+~La tinta que escupe el calamar como autodefensa
+~Un pescado crudo comestible típico de japón
+}
+¿Qué descubrió Wilhelm Conrad Röntgen?{
+~La radiación cósmica
+=Los rayos X
+~El neutrón
+~El argón
+}
+¿Qué psicólogo fue el primero en crear un laboratorio de psicología, elevando esta disciplina a ciencia?{
+~Freud
+~Skinner
+~Pávlov
+=Wundt
+}
+¿Cual es el mayor arrecife de coral del mundo?{
+~El Arrecife de Coral de Islas de la Bahía, en Honduras
+~La Barrera del Arrecife de Belice
+~El Banco Chinchorro en México
+=La Gran Barrera de Coral en el Mar del Coral
+}
+¿Qué astrónomo formuló la teoría heliocéntrica del Sistema Solar?{
+~Ptolomeo
+=Nicolás Copérnico
+~Leonardo da Vinci
+~Tales de Mileto
+}
+¿Cómo se llama el miedo irracional a las plantas?{
+~Astrafobia
+~Odontofobia
+=Botanofobia
+Demofobia
+}
+
 $CATEGORY: Informática
 !(true){~true =false}
 (Acrónimos) Significado de CGA (de las antiguas tarjetas gráficas){~control graphics automatic =color graphics adapter}
