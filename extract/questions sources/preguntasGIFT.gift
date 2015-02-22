@@ -53,11 +53,11 @@ $CATEGORY: Deportes
 ~Atleta argentino
 ~Corredor mexicano
 }
-¿Quien fundó el Real Madrid Club de Fútbol?{
-~Un marroquí
-~Un ecuatoriano
-~Un afgano
-=Un catalán
+¿En qué pais se corre la prueba ciclista Milán-San Remo?{
+=Italia
+~Francia
+~Suiza
+~Alemania
 }
 
 $CATEGORY: Ciencia
