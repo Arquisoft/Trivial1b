@@ -21,10 +21,7 @@ public class JSonSerializer implements ISerializer{
 		for(Question q: questions){
 			sb.append(questionSerializer(q));
 		}
-
-		sb.append("]}");
-		
-		
+		sb.append("]}");		
 		return sb.toString();
 	}
 	
@@ -37,6 +34,40 @@ public class JSonSerializer implements ISerializer{
 		return JSONrepresentation;
 	}
 	
+	/*
+	 * {"questions":[{
+  "title": "...",
+  "question": "....",
+  "falseAnswers": [
+    {
+      "response": ".....",
+      "text": "....."
+    },
+    {
+      "response": ".......",
+      "text": "......."
+    },
+    ....... resto de respuestas en la lista de falsas
+  ],
+  "trueAnswers": [
+    {
+      "response": ".......",
+      "text": "......"
+    },
+    {
+      "response": ".....",
+      "text": "....."
+    },
+    ...... resto de respuestas en la lista de verdaderas
+  ]
+	}{
+  "title": "Titulo pregunta 11",
+  "question": "Pregunta 11",
+  "falseAnswers": [
+  
+  ..... resto de formato de las preguntas, 
+	  
+	 */
 	
 
 }
