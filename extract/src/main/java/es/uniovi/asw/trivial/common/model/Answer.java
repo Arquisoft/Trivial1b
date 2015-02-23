@@ -1,8 +1,13 @@
-package es.uniovi.asw.trivial.common.model;
+package main.java.es.uniovi.asw.trivial.common.model;
 
 public class Answer {
 	private String response;
 	private String text;
+	private Integer ID;
+	
+	public Integer getID(){
+		return ID;
+	}
 	public Answer(String correct) {
 		// TODO Auto-generated constructor stub
 	}

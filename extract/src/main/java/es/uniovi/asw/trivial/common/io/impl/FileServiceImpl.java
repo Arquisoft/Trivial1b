@@ -3,17 +3,16 @@
  * Adrián García Bueno
  * Clase para proveer de una implementación de entrada y salida de lineas
  */
-package es.uniovi.asw.trivial.common.io.impl;
+package main.java.es.uniovi.asw.trivial.common.io.impl;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-import es.uniovi.asw.trivial.common.io.FileService;
+import main.java.es.uniovi.asw.trivial.common.io.FileService;
 
 public class FileServiceImpl implements FileService {
 

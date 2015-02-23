@@ -1,7 +1,5 @@
-package es.uniovi.asw.trivial.convertidor;
+package main.java.es.uniovi.asw.trivial.convertidor;
 
-import es.uniovi.asw.trivial.common.io.FileService;
-import es.uniovi.asw.trivial.common.parser.ParserService;
 
 public class Convertidor {
 

@@ -1,4 +1,4 @@
-package es.uniovi.asw.trivial.common.io;
+package main.java.es.uniovi.asw.trivial.common.io;
 
 import java.util.List;
 

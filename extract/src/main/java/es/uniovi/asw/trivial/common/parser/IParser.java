@@ -1,8 +1,8 @@
-package es.uniovi.asw.trivial.common.parser;
+package main.java.es.uniovi.asw.trivial.common.parser;
 
 import java.util.List;
 
-import es.uniovi.asw.trivial.common.model.Question;
+import main.java.es.uniovi.asw.trivial.common.model.Question;
 
 public interface IParser {
 	

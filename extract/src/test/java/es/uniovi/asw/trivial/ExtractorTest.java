@@ -1,10 +1,10 @@
-package es.uniovi.asw.trivial;
+package test.java.es.uniovi.asw.trivial;
 
 import static org.assertj.core.api.Assertions.*;
 
-import org.junit.Test;
+import main.java.es.uniovi.asw.trivial.Extractor;
 
-import es.uniovi.asw.trivial.Extractor;
+import org.junit.Test;
 
 public class ExtractorTest {
 	

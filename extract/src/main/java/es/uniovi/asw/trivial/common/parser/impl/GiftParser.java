@@ -19,14 +19,14 @@
  * }
  */
 
-package es.uniovi.asw.trivial.common.parser.impl;
+package main.java.es.uniovi.asw.trivial.common.parser.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import es.uniovi.asw.trivial.common.model.Answer;
-import es.uniovi.asw.trivial.common.model.Question;
-import es.uniovi.asw.trivial.common.parser.IParser;
+import main.java.es.uniovi.asw.trivial.common.model.Answer;
+import main.java.es.uniovi.asw.trivial.common.model.Question;
+import main.java.es.uniovi.asw.trivial.common.parser.IParser;
 
 public class GiftParser implements IParser {
 	
