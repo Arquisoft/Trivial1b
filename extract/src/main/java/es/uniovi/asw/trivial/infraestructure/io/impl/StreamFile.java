@@ -1,23 +1,17 @@
-/*
- * 18/02/2015
- * Adrián García Bueno
- * Clase para proveer de una implementación de entrada y salida de lineas
- */
-package main.java.es.uniovi.asw.trivial.common.io.impl;
+package es.uniovi.asw.trivial.infraestructure.io.impl;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
 
-import main.java.es.uniovi.asw.trivial.common.io.FileService;
+import es.uniovi.asw.trivial.infraestructure.io.Stream;
 
-public class FileServiceImpl implements FileService {
-
+public class StreamFile implements Stream {
+	
 	@Override
-	public String readFile(String path) {
+	public String read(String path) {
 		StringBuffer data = new StringBuffer();
 		BufferedReader reader = null;
 		try {
@@ -40,14 +34,11 @@ public class FileServiceImpl implements FileService {
 	}
 
 	@Override
-	public void writeFile(String path, List<String> list) {
+	public void write(String path, String data) {
 		BufferedWriter writer = null;
 		try {
 			writer = new BufferedWriter(new FileWriter(path));
-			for(String line : list){
-				writer.newLine();
-				writer.write(line);
-			}
+			writer.write(data);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

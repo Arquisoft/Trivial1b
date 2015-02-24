@@ -1,16 +1,11 @@
-package main.java.es.uniovi.asw.trivial.common.model;
+package es.uniovi.asw.trivial.infraestructure.model;
 
 public class Answer {
 	private String response;
 	private String text;
-	private Integer ID;
+	private boolean correct;
 	
-	public Integer getID(){
-		return ID;
-	}
-	public Answer(String correct) {
-		// TODO Auto-generated constructor stub
-	}
+
 	public String getResponse() {
 		return response;
 	}
@@ -22,6 +17,12 @@ public class Answer {
 	}
 	public void setText(String text) {
 		this.text = text;
+	}
+	public boolean isCorrect() {
+		return correct;
+	}
+	public void setCorrect(boolean correct) {
+		this.correct = correct;
 	}
 	
 	

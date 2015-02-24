@@ -19,16 +19,18 @@
  * }
  */
 
-package main.java.es.uniovi.asw.trivial.common.parser.impl;
+package es.uniovi.asw.trivial.extractor.services.parser.imp;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.es.uniovi.asw.trivial.common.model.Answer;
-import main.java.es.uniovi.asw.trivial.common.model.Question;
-import main.java.es.uniovi.asw.trivial.common.parser.IParser;
+import es.uniovi.asw.trivial.extractor.services.parser.Parser;
+import es.uniovi.asw.trivial.infraestructure.model.Answer;
+import es.uniovi.asw.trivial.infraestructure.model.Question;
 
-public class GiftParser implements IParser {
+
+
+public class GiftParser implements Parser {
 	
 	private List<Question> questions = new ArrayList<Question>();
 	private int index = 0;
@@ -63,10 +65,16 @@ public class GiftParser implements IParser {
 						recursiveParser(answer);
 				}else{
 					String correct = line.substring(1, line.length());
-					questions.get(index).addTrueAnswer(new Answer(correct));
+					Answer correctAnswer = new Answer();
+					correctAnswer.setCorrect(true);
+					correctAnswer.setResponse(correct);
+					questions.get(index).addAnswer(correctAnswer);
 				}
 			}else{ //Entonces es una respuesta incorrecta.
-				questions.get(index).addFalseAnswer(new Answer(line));
+				Answer incorrectAnswer = new Answer();
+				incorrectAnswer.setCorrect(false);
+				incorrectAnswer.setResponse(line);
+				questions.get(index).addAnswer(incorrectAnswer);
 			}
 		}else if(answerState && line.contains("}")){
 			if(line.startsWith("}")){ //Final de la pregunta, cambia el question y será null, nueva pregunta
