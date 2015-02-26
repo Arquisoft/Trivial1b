@@ -13,15 +13,18 @@ public class ParserSystemManager {
 	private Stream stream = FactoryService.getIoService().getStreamFile();
 	private Parser parser = FactoryService.getParserService().getGiftParser();
 	private Serializer serializer = FactoryService.getSerializerService().getSerializerJson();
+	//Add defaultFiles
+	private String pathInputFile = "./inputQuest";
+	private String pathOutputFile = "./outputQuest";
+	private String formatInputFile = ".GIFT";
+	private String formatOutputFile = ".json";
+	
 	public static void main(String[] args) {
-		new ParserSystemManager();
+		new ParserSystemManager(args);
 	}
-	public ParserSystemManager() {
-		String pathInputFile = "";
-		String pathOutputFile = "";
-		String formatInputFile = "";
-		String formatOutputFile = "";
+	public ParserSystemManager(String[] args) {
 		
+		inicializateConf(args);
 		Log.info("Inicio lectura fichero formato: "+formatInputFile);
 		String data = stream.read(pathInputFile);
 		Log.info("Lectura completada!");
@@ -32,6 +35,21 @@ public class ParserSystemManager {
 		String jsonData = serializer.serialize(questions);
 		stream.write(pathOutputFile, jsonData);
 		
+	}
+	
+	private void inicializateConf(String[] args){
+		if(!args[0].equals("")){
+			this.pathInputFile = args[0];
+		}
+		if(!args[1].equals("")){
+			this.pathOutputFile = args[1];
+		}
+		if(!args[2].equals("")){
+			this.formatInputFile = args[2];
+		}
+		if(!args[2].equals("")){
+			this.formatOutputFile = args[3];
+		}
 	}
 
 }
