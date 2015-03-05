@@ -29,15 +29,22 @@ import es.uniovi.asw.trivial.infraestructure.model.Answer;
 import es.uniovi.asw.trivial.infraestructure.model.Question;
 
 
-
+/**
+ * Esta clase implementa un Parseador Gift
+ * @author Adrián
+ *
+ */
 public class GiftParser implements Parser {
 	
 	private List<Question> questions = new ArrayList<Question>();
 	private int index = 0;
 	private boolean answerState = false;
+	/*
+	 * Método de la muerte
+	 */
 	private void recursiveParser(String line) {
-		line = line.trim();
-		if(line.isEmpty() || line.startsWith("//")) //Omitimos lineas vacias y comentarios
+		line = line.trim();		//Quitamos los espacios sobrantes de la linea
+		if(line.isEmpty() || line.startsWith("//") || line.startsWith("$")) //Omitimos lineas vacias y comentarios
 			return;
 			
 		if(line.startsWith("::")){ //Inicio de pregunta con título
@@ -51,18 +58,18 @@ public class GiftParser implements Parser {
 				answerState = true; //Ahora vamos a la respuesta  de la pregunta y activamos el modo respuesta
 				recursiveParser(line.substring(line.indexOf("{"), line.length())); //parseamos el inicio de la respuesta.
 			}
-			questions.get(index).setQuestion(line);
-		}else if(line.startsWith("{")){
+			questions.get(index).setQuestion(line); //Añadimos la pregunta al objeto pregunta
+		}else if(line.startsWith("{")){ //Si empieaa por  {
 			answerState = true; //Entramos en modo respuestas
-			if(line.contains("}"))
+			if(line.contains("}")) //Si contiene {
 				recursiveParser(line.substring(1, line.indexOf("}")-1));//Obtenemos las respuestas en una linea
 			recursiveParser(line.substring(1, line.length())); //Si no hay caracter } o bien no hay nada despues de { o hay respuestas en todo caso reparseamos la linea
 		}else if(answerState && !line.contains("{") && !line.contains("}")){
-			if(line.startsWith("=")){
-				if(line.contains("~")){
-					String[] answers = line.split("~");
-					for(String answer : answers)
-						recursiveParser(answer);
+			if(line.startsWith("=")){ //
+				if(line.contains("~")){ //
+					String[] answers = line.split("~");//
+					for(String answer : answers) // Recorremos respuestas
+						recursiveParser(answer);// Reparseamos
 				}else{
 					String correct = line.substring(1, line.length());
 					Answer correctAnswer = new Answer();

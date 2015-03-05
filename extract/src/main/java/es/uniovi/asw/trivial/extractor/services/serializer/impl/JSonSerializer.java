@@ -6,13 +6,18 @@ import es.uniovi.asw.trivial.extractor.services.serializer.Serializer;
 import es.uniovi.asw.trivial.infraestructure.model.Answer;
 import es.uniovi.asw.trivial.infraestructure.model.Question;
 
-
-
-
+/**
+ * 
+ * @author Adrián
+ *
+ */
 public class JSonSerializer implements Serializer{
 
 	List<Question> questions;
-	
+	/*
+	 * (non-Javadoc)
+	 * @see es.uniovi.asw.trivial.extractor.services.serializer.Serializer#serialize(java.util.List)
+	 */
 	@Override
 	public String serialize(List<Question> questions) {
 		StringBuilder jsonStr = new StringBuilder();
@@ -44,6 +49,7 @@ public class JSonSerializer implements Serializer{
 			jsonStr.deleteCharAt(jsonStr.length()-1);
 			jsonStr.append("],");
 			jsonStr.append("\"answersTrue\": [ \""+answerTrue.getResponse()+"\"]}");
+			jsonStr.append("\n");
 		}
 		return jsonStr.toString();
 	}

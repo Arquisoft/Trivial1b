@@ -3,7 +3,11 @@ package es.uniovi.asw.trivial.infraestructure.model;
 import java.util.LinkedList;
 import java.util.List;
 
-
+/**
+ * 
+ * @author Adrián
+ *
+ */
 public class Question {
 	private String title;
 	private String question;

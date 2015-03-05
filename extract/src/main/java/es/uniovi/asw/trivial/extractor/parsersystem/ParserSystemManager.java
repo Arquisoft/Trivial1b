@@ -23,32 +23,37 @@ public class ParserSystemManager {
 		new ParserSystemManager(args);
 	}
 	public ParserSystemManager(String[] args) {
+		inicializateConf(args);												//Inicializamos los parámetros.
+		Log.info("Inicio lectura fichero formato: "+formatInputFile);		// Sentencia Log
+		String data = stream.read(pathInputFile);							//Usamos el strem proporcionado por la factorie para leer el fichero.
+		Log.info("Lectura completada!");									// Sentencia Log
+		Log.info("Inicio de procesado de parser");							// Sentencia Log
+		List<Question> questions = parser.parser(data);						// Obtenemos una lista de Cuestiones con sus respuestas al ejecutar el parser.
+		Log.info("Parseado completado!");									// Sentencia Log					
+		Log.info("Inicio serialización a "+formatOutputFile);				// Sentencia Log
+		String jsonData = serializer.serialize(questions);					//Serializamos la lista de cuestiones y lo convertimose en un super string json
+		Log.info("Se han serializado las preguntas");						// Sentencia Log
+		Log.info("Grabando preguntas en fichero "+pathOutputFile);			// Sentencia Log
+		stream.write(pathOutputFile, jsonData);								//Y cómo es lógito y natural lo escribimos en un fichero, D:
+		Log.info("El proceso de conversión a terminado");					// Sentencia Log
 		
-		inicializateConf(args);
-		Log.info("Inicio lectura fichero formato: "+formatInputFile);
-		String data = stream.read(pathInputFile);
-		Log.info("Lectura completada!");
-		Log.info("Inicio de procesado de parser");
-		List<Question> questions = parser.parser(data);
-		Log.info("Parseado completado!");//etc
-		Log.info("Inicio serialización a "+formatOutputFile);
-		String jsonData = serializer.serialize(questions);
-		stream.write(pathOutputFile, jsonData);
-		
+	}
+	private String argumentProcess(String arg,String var){					
+		if(arg.split("=").length != 2)										//Dividimos por = si esto da u número de string distinto de 2 es incorreto el path
+			throw new IllegalArgumentException(var+" argument is incorrect");//Lanzamos excepción
+		return arg.split("=")[1].trim();									//En caso correcto devolvemos la segunda parte de la división.
 	}
 	
 	private void inicializateConf(String[] args){
-		if(!args[0].equals("")){
-			this.pathInputFile = args[0];
-		}
-		if(!args[1].equals("")){
-			this.pathOutputFile = args[1];
-		}
-		if(!args[2].equals("")){
-			this.formatInputFile = args[2];
-		}
-		if(!args[2].equals("")){
-			this.formatOutputFile = args[3];
+		for(String arg : args){												// Para cada parámetro
+			if(arg.startsWith("inputFile")|| arg.startsWith("-if"))			//Si empieza por las palabras clave...
+				pathInputFile = argumentProcess(arg, "inputFile");			//Procesamos el argumento y lo asignamos a la variable correspondiente
+			if(arg.startsWith("outputFile")|| arg.startsWith("-of"))
+				pathOutputFile = argumentProcess(arg, "outputFile");
+			if(arg.startsWith("formatInput")|| arg.startsWith("-fi"))
+				formatInputFile = argumentProcess(arg, "formatInput");
+			if(arg.startsWith("formatOutput") || arg.startsWith("-fo") )
+				formatOutputFile = argumentProcess(arg, "formatOutput");
 		}
 	}
 

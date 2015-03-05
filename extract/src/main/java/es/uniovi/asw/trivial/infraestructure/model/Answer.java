@@ -1,5 +1,9 @@
 package es.uniovi.asw.trivial.infraestructure.model;
-
+/**
+ * 
+ * @author Adrián
+ *
+ */
 public class Answer {
 	private String response;
 	private String text;

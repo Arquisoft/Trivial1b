@@ -7,7 +7,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import es.uniovi.asw.trivial.infraestructure.io.Stream;
-
+import es.uniovi.asw.trivial.infraestructure.log.Log;
+/**
+ * Esta clase se encarga de implementar la especificación que proporciona el servicio de entrada salida.
+ * @author Adrián
+ *
+ */
 public class StreamFile implements Stream {
 	
 	@Override
@@ -21,13 +26,13 @@ public class StreamFile implements Stream {
 				data.append(line);
 			}
 		}catch (IOException e) {
-			//Logger
+			Log.error("Se ha producido un error de entrada/salida");
 		} finally{
 			if(reader != null)
 				try {
 					reader.close();
 				} catch (IOException e) {
-					//Logger
+					Log.error("Se ha producido un error de entrada/salida");
 				}
 		}
 		return data.toString();
@@ -40,14 +45,13 @@ public class StreamFile implements Stream {
 			writer = new BufferedWriter(new FileWriter(path));
 			writer.write(data);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.error("Se ha producido un error de entrada/salida");
 		} finally {
 			if(writer != null)
 			try {
 				writer.close();
 			} catch (IOException e) {
-				//Logger
+				Log.error("Se ha producido un error de entrada/salida");
 			}
 		}
 		

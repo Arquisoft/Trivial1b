@@ -4,7 +4,11 @@ import java.util.List;
 
 import es.uniovi.asw.trivial.extractor.services.parser.Parser;
 import es.uniovi.asw.trivial.infraestructure.model.Question;
-
+/**
+ * 
+ * @author Adrián
+ *
+ */
 public class XmlParser implements Parser {
 
 	@Override
