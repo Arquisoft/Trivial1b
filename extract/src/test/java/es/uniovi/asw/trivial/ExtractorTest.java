@@ -1,6 +1,7 @@
 package es.uniovi.asw.trivial;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import junit.framework.Assert;
 
 import org.junit.Test;
 
@@ -21,5 +22,7 @@ public class ExtractorTest {
 	public void parserGift(){
 		new ParserSystemManager(new String[] {"-if=X:/ASW/Trivial1b/extract/src/main/resources/preguntasGIFT" ,"-fi=GIFT"});
 	}
+	
+	
 
 }
