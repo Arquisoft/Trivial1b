@@ -36,19 +36,22 @@ public class JSonSerializer implements Serializer{
 				jsonStr.append("\"\"");
 			jsonStr.append(",");
 			jsonStr.append("\"answersFalse\": [");
-			Answer answerTrue = null;
+			String response = "";
 			for(Answer answer : question.getAnswers()){
-				if(answer.isCorrect())
-					answerTrue = answer;
-				else if(answer.getResponse() != null){
+				
+				if(answer.isCorrect()){
+					System.out.println(answer.getResponse());
+					response = answer.getResponse();
+				}else if(answer.getResponse() != null){
 					jsonStr.append("\""+answer.getResponse()+"\"");
 					jsonStr.append(",");
 				}
 					
 			}
+
 			jsonStr.deleteCharAt(jsonStr.length()-1);
 			jsonStr.append("],");
-			jsonStr.append("\"answersTrue\": [ \""+answerTrue.getResponse()+"\"]}");
+			jsonStr.append("\"answersTrue\": [ \""+response+"\"]}");
 			jsonStr.append("\n");
 		}
 		return jsonStr.toString();

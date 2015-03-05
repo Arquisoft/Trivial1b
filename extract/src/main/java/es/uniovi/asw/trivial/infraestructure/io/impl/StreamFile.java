@@ -24,14 +24,17 @@ public class StreamFile implements Stream {
 			while(reader.ready()){
 				String line = reader.readLine();
 				data.append(line);
+				data.append("\n");
 			}
 		}catch (IOException e) {
+			e.printStackTrace();
 			Log.error("Se ha producido un error de entrada/salida");
 		} finally{
 			if(reader != null)
 				try {
 					reader.close();
 				} catch (IOException e) {
+					e.printStackTrace();
 					Log.error("Se ha producido un error de entrada/salida");
 				}
 		}
@@ -45,12 +48,14 @@ public class StreamFile implements Stream {
 			writer = new BufferedWriter(new FileWriter(path));
 			writer.write(data);
 		} catch (IOException e) {
+			e.printStackTrace();
 			Log.error("Se ha producido un error de entrada/salida");
 		} finally {
 			if(writer != null)
 			try {
 				writer.close();
 			} catch (IOException e) {
+				e.printStackTrace();
 				Log.error("Se ha producido un error de entrada/salida");
 			}
 		}

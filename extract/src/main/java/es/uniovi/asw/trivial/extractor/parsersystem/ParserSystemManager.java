@@ -7,6 +7,7 @@ import es.uniovi.asw.trivial.extractor.services.serializer.Serializer;
 import es.uniovi.asw.trivial.infraestructure.factories.FactoryService;
 import es.uniovi.asw.trivial.infraestructure.io.Stream;
 import es.uniovi.asw.trivial.infraestructure.log.Log;
+import es.uniovi.asw.trivial.infraestructure.log.LogLevel;
 import es.uniovi.asw.trivial.infraestructure.model.Question;
 
 public class ParserSystemManager {
@@ -14,22 +15,23 @@ public class ParserSystemManager {
 	private Parser parser = FactoryService.getParserService().getGiftParser();
 	private Serializer serializer = FactoryService.getSerializerService().getSerializerJson();
 	//Add defaultFiles
-	private String pathInputFile = "./inputQuest";
+	private String pathInputFile = "X:/ASW/Trivial1b/extract/src/main/resources/preguntasGIFT";//new String[] {"-if=X:/ASW/Trivial1b/extract/src/main/resources/preguntasGIFT" ,"-fi=GIFT"}
 	private String pathOutputFile = "./outputQuest";
 	private String formatInputFile = ".GIFT";
 	private String formatOutputFile = ".json";
 	
 	public static void main(String[] args) {
+		Log.setLogLevel(LogLevel.ALL);
 		new ParserSystemManager(args);
 	}
 	public ParserSystemManager(String[] args) {
 		inicializateConf(args);												//Inicializamos los parámetros.
 		Log.info("Inicio lectura fichero formato: "+formatInputFile);		// Sentencia Log
 		String data = stream.read(pathInputFile);							//Usamos el strem proporcionado por la factorie para leer el fichero.
-		Log.info("Lectura completada!");									// Sentencia Log
+		Log.info("Lectura completada! Caracteres leidos: "+data.length());									// Sentencia Log
 		Log.info("Inicio de procesado de parser");							// Sentencia Log
 		List<Question> questions = parser.parser(data);						// Obtenemos una lista de Cuestiones con sus respuestas al ejecutar el parser.
-		Log.info("Parseado completado!");									// Sentencia Log					
+		Log.info("Parseado completado! número: "+questions.size());									// Sentencia Log					
 		Log.info("Inicio serialización a "+formatOutputFile);				// Sentencia Log
 		String jsonData = serializer.serialize(questions);					//Serializamos la lista de cuestiones y lo convertimose en un super string json
 		Log.info("Se han serializado las preguntas");						// Sentencia Log

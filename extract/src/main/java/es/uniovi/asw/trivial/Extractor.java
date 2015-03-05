@@ -7,8 +7,9 @@ public class Extractor {
 	public void usage() {
 		
 	}
-	public void run(String[] args) {
+	public int run(String[] args) {
 		new ParserSystemManager(args);;
+		return 0;
 	}
 	
 	public static void main(String[] args) {

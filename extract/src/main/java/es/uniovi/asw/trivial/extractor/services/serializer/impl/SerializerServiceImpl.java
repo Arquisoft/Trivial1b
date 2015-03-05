@@ -13,6 +13,6 @@ public class SerializerServiceImpl implements SerializerService {
 	 * @see es.uniovi.asw.trivial.extractor.services.serializer.SerializerService#getSerializerJson()
 	 */
 	public Serializer getSerializerJson(){
-		return null;
+		return new JSonSerializer();
 	}
 }
