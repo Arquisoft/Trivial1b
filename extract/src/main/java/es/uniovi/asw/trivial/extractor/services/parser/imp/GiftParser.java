@@ -24,8 +24,6 @@ package es.uniovi.asw.trivial.extractor.services.parser.imp;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.jetty.util.log.Log;
-
 import es.uniovi.asw.trivial.extractor.services.parser.Parser;
 import es.uniovi.asw.trivial.infraestructure.model.Answer;
 import es.uniovi.asw.trivial.infraestructure.model.Question;
@@ -110,7 +108,7 @@ public class GiftParser implements Parser {
 	@Override
 	public List<Question> parser(String data) {
 		for(String line : data.split("\n")){
-			Log.info("Entrando en recursive Parser questions: "+ data.split("\n").length);
+			//Log.info("Entrando en recursive Parser questions: "+ data.split("\n").length);
 			//System.out.print(line);
 			recursiveParser(line);
 		}

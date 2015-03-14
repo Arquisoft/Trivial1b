@@ -1,13 +1,10 @@
 package es.uniovi.asw.trivial;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import junit.framework.Assert;
 
 import org.junit.Test;
 
 import es.uniovi.asw.trivial.extractor.parsersystem.ParserSystemManager;
-import es.uniovi.asw.trivial.infraestructure.factories.FactoryService;
-import es.uniovi.asw.trivial.infraestructure.io.Stream;
 
 public class ExtractorTest {
 	

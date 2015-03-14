@@ -1,15 +1,8 @@
 package es.uniovi.asw.trivial.extractor.saversystem;
 
-import java.util.List;
-
-import es.uniovi.asw.trivial.extractor.services.parser.ParserService;
-import es.uniovi.asw.trivial.extractor.services.serializer.Serializer;
-import es.uniovi.asw.trivial.infraestructure.factories.FactoryService;
-import es.uniovi.asw.trivial.infraestructure.io.Stream;
-import es.uniovi.asw.trivial.infraestructure.model.Question;
-import gherkin.lexer.Pa;
 
 public class SaverSystemManager {
+/*
 	private Stream stream = FactoryService.getIoService().getStreamFile();
 	private ParserService serviceParser = FactoryService.getParserService();
 	private Serializer serializer = FactoryService.getSerializerService().getSerializerJson();
@@ -51,5 +44,5 @@ public class SaverSystemManager {
 				formatOutputFile = argumentProcess(arg, "formatOutput");
 		}
 	}
-
+*/
 }
