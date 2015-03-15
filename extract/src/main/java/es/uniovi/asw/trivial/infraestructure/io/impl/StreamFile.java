@@ -6,15 +6,16 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import es.uniovi.asw.trivial.infraestructure.factories.FactoryService;
 import es.uniovi.asw.trivial.infraestructure.io.Stream;
-import es.uniovi.asw.trivial.infraestructure.log.Log;
+import es.uniovi.asw.trivial.infraestructure.log.impl.Logger;
 /**
  * Esta clase se encarga de implementar la especificación que proporciona el servicio de entrada salida.
  * @author Adrián
  *
  */
 public class StreamFile implements Stream {
-	
+	private Logger log = FactoryService.getLogService();
 	@Override
 	public String read(String path) {
 		StringBuffer data = new StringBuffer();
@@ -28,14 +29,14 @@ public class StreamFile implements Stream {
 			}
 		}catch (IOException e) {
 			e.printStackTrace();
-			Log.error("Se ha producido un error de entrada/salida");
+			log.error("Se ha producido un error de entrada/salida");
 		} finally{
 			if(reader != null)
 				try {
 					reader.close();
 				} catch (IOException e) {
 					e.printStackTrace();
-					Log.error("Se ha producido un error de entrada/salida");
+					log.error("Se ha producido un error de entrada/salida");
 				}
 		}
 		return data.toString();
@@ -49,14 +50,14 @@ public class StreamFile implements Stream {
 			writer.write(data);
 		} catch (IOException e) {
 			e.printStackTrace();
-			Log.error("Se ha producido un error de entrada/salida");
+			log.error("Se ha producido un error de entrada/salida");
 		} finally {
 			if(writer != null)
 			try {
 				writer.close();
 			} catch (IOException e) {
 				e.printStackTrace();
-				Log.error("Se ha producido un error de entrada/salida");
+				log.error("Se ha producido un error de entrada/salida");
 			}
 		}
 		

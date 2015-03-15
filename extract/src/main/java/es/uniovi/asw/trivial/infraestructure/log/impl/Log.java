@@ -1,6 +1,6 @@
-package es.uniovi.asw.trivial.infraestructure.log;
+package es.uniovi.asw.trivial.infraestructure.log.impl;
 
-import es.uniovi.asw.trivial.infraestructure.log.adapter.ConsoleLogger;
+import es.uniovi.asw.trivial.infraestructure.log.impl.adapter.ConsoleLogger;
 
 
 

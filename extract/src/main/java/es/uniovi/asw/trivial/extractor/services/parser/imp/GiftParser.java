@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.uniovi.asw.trivial.extractor.services.parser.Parser;
+import es.uniovi.asw.trivial.infraestructure.factories.FactoryService;
+import es.uniovi.asw.trivial.infraestructure.log.impl.Logger;
 import es.uniovi.asw.trivial.infraestructure.model.Answer;
 import es.uniovi.asw.trivial.infraestructure.model.Question;
 
@@ -35,7 +37,7 @@ import es.uniovi.asw.trivial.infraestructure.model.Question;
  *
  */
 public class GiftParser implements Parser {
-	
+	private Logger log = FactoryService.getLogService();
 	private List<Question> questions = new ArrayList<Question>();
 	private int index = 0;
 	private boolean answerState = false;
@@ -107,8 +109,8 @@ public class GiftParser implements Parser {
 	}
 	@Override
 	public List<Question> parser(String data) {
+		log.info("Entrando en parser Gift");
 		for(String line : data.split("\n")){
-			//Log.info("Entrando en recursive Parser questions: "+ data.split("\n").length);
 			//System.out.print(line);
 			recursiveParser(line);
 		}

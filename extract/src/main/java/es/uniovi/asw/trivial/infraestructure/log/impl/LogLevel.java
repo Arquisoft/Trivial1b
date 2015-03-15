@@ -1,4 +1,4 @@
-package es.uniovi.asw.trivial.infraestructure.log;
+package es.uniovi.asw.trivial.infraestructure.log.impl;
 
 public class LogLevel {
 	

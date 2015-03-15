@@ -7,17 +7,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import es.uniovi.asw.trivial.extractor.services.parser.Parser;
-import es.uniovi.asw.trivial.infraestructure.log.Log;
+import es.uniovi.asw.trivial.infraestructure.factories.FactoryService;
+import es.uniovi.asw.trivial.infraestructure.log.impl.Logger;
 import es.uniovi.asw.trivial.infraestructure.model.Answer;
 import es.uniovi.asw.trivial.infraestructure.model.Question;
 
 public class JsonParser implements Parser {
-
-	
-	
+	private Logger log = FactoryService.getLogService();
 	@Override
 	public List<Question> parser(String data) {
-		// TODO Auto-generated method stub
+		log.info("Entrando en Parser Json");
 		List<Question> questions = new ArrayList<Question>();
 		try {
 			String[] lines = data.split("\n");
@@ -42,7 +41,7 @@ public class JsonParser implements Parser {
 				questions.add(quest);
 			}
 		} catch (JSONException e) {
-			Log.error("Error con el objeto JSONObject");
+			log.error("Error con el objeto JSONObject");
 		}
 		return questions;
 		

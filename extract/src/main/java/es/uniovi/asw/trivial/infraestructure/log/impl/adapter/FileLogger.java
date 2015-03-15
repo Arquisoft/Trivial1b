@@ -1,10 +1,10 @@
-package es.uniovi.asw.trivial.infraestructure.log.adapter;
+package es.uniovi.asw.trivial.infraestructure.log.impl.adapter;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
-import es.uniovi.asw.trivial.infraestructure.log.Logger;
+import es.uniovi.asw.trivial.infraestructure.log.impl.Logger;
 
 public class FileLogger extends BaseLogger implements Logger {
 

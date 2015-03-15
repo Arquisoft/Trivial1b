@@ -2,18 +2,13 @@ package es.uniovi.asw.trivial.extractor.parsersystem;
 
 import java.util.List;
 
-import es.uniovi.asw.trivial.extractor.services.parser.Parser;
-import es.uniovi.asw.trivial.extractor.services.serializer.Serializer;
 import es.uniovi.asw.trivial.infraestructure.factories.FactoryService;
-import es.uniovi.asw.trivial.infraestructure.io.Stream;
-import es.uniovi.asw.trivial.infraestructure.log.Log;
-import es.uniovi.asw.trivial.infraestructure.log.LogLevel;
+import es.uniovi.asw.trivial.infraestructure.log.impl.LogLevel;
+import es.uniovi.asw.trivial.infraestructure.log.impl.Logger;
 import es.uniovi.asw.trivial.infraestructure.model.Question;
 
 public class ParserSystemManager {
-	private Stream stream = FactoryService.getIoService().getStreamFile();
-	private Parser parser = FactoryService.getParserService().getGiftParser();
-	private Serializer serializer = FactoryService.getSerializerService().getSerializerJson();
+	private Logger log = FactoryService.getLogService();
 	//Add defaultFiles
 	private String pathInputFile = "X:/ASW/Trivial1b/extract/src/main/resources/preguntasGIFT";//new String[] {"-if=X:/ASW/Trivial1b/extract/src/main/resources/preguntasGIFT" ,"-fi=GIFT"}
 	private String pathOutputFile = "./outputQuest";
@@ -21,25 +16,19 @@ public class ParserSystemManager {
 	private String formatOutputFile = ".json";
 	
 	public static void main(String[] args) {
-		Log.setLogLevel(LogLevel.ALL);
 		new ParserSystemManager(args);
 	}
 	public ParserSystemManager(String[] args) {
-		inicializateConf(args);												//Inicializamos los parámetros.
-		Log.info("Inicio lectura fichero formato: "+formatInputFile);		// Sentencia Log
-		String data = stream.read(pathInputFile);							//Usamos el strem proporcionado por la factorie para leer el fichero.
-		Log.info("Lectura completada! Caracteres leidos: "+data.length());									// Sentencia Log
-		Log.info("Inicio de procesado de parser");							// Sentencia Log
-		List<Question> questions = parser.parser(data);						// Obtenemos una lista de Cuestiones con sus respuestas al ejecutar el parser.
-		Log.info("Parseado completado! número: "+questions.size());									// Sentencia Log					
-		Log.info("Inicio serialización a "+formatOutputFile);				// Sentencia Log
-		String jsonData = serializer.serialize(questions);					//Serializamos la lista de cuestiones y lo convertimose en un super string json
-		Log.info("Se han serializado las preguntas");						// Sentencia Log
-		Log.info("Grabando preguntas en fichero "+pathOutputFile);			// Sentencia Log
-		stream.write(pathOutputFile, jsonData);								//Y cómo es lógito y natural lo escribimos en un fichero, D:
-		Log.info("El proceso de conversión a terminado");					// Sentencia Log
+		log.setLogLevel(LogLevel.ALL);										//Situamos el log level a todos los mensajes.
 		
+		inicializateConf(args);												//Inicializamos parametros
+		
+		List<Question> questions =											//Preparamos preguntas. 
+				new ParserFile(pathInputFile, formatInputFile)				//Creamos parseador
+				.getQuestions();											//Obtenemos preguntas.
+		new SerializerFile(pathOutputFile,formatOutputFile,questions);		//Serializamos preguntas
 	}
+	
 	private String argumentProcess(String arg,String var){					
 		if(arg.split("=").length != 2)										//Dividimos por = si esto da u número de string distinto de 2 es incorreto el path
 			throw new IllegalArgumentException(var+" argument is incorrect");//Lanzamos excepción

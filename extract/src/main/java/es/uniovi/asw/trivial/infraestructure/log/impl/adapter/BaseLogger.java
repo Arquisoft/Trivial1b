@@ -1,11 +1,11 @@
-package es.uniovi.asw.trivial.infraestructure.log.adapter;
+package es.uniovi.asw.trivial.infraestructure.log.impl.adapter;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import es.uniovi.asw.trivial.infraestructure.log.LogLevel;
+import es.uniovi.asw.trivial.infraestructure.log.impl.LogLevel;
 
 public abstract class BaseLogger {
 	private int logLevel = LogLevel.WARN;
