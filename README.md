@@ -1,4 +1,5 @@
 # Trivial1b
+[![Build Status](https://travis-ci.org/Arquisoft/Trivial1b.svg?branch=master)](https://travis-ci.org/Arquisoft/Trivial1b)
 ## Equipo formado por: 
 <table>
   <tr>
