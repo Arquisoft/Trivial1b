@@ -17,7 +17,7 @@ public class ExtractorTest {
 	  }
 	@Test
 	public void parserGift(){
-		new ParserSystemManager(new String[] {"-if=X:/ASW/Trivial1b/extract/src/main/resources/preguntasGIFT" ,"-fi=GIFT"});
+		new ParserSystemManager(new String[] {"-if=//src/main/resources/preguntasGIFT" ,"-fi=GIFT"});
 	}
 	
 	

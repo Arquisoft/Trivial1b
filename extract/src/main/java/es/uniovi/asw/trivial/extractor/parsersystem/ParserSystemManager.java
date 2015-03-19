@@ -10,7 +10,7 @@ import es.uniovi.asw.trivial.infraestructure.model.Question;
 public class ParserSystemManager {
 	private Logger log = FactoryService.getLogService();
 	//Add defaultFiles
-	private String pathInputFile = "X:/ASW/Trivial1b/extract/src/main/resources/preguntasGIFT";//new String[] {"-if=X:/ASW/Trivial1b/extract/src/main/resources/preguntasGIFT" ,"-fi=GIFT"}
+	private String pathInputFile = "./src/main/resources/preguntasGIFT";//new String[] {"-if=X:/ASW/Trivial1b/extract/src/main/resources/preguntasGIFT" ,"-fi=GIFT"}
 	private String pathOutputFile = "./outputQuest";
 	private String formatInputFile = ".GIFT";
 	private String formatOutputFile = ".json";
