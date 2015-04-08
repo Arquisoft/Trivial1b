@@ -5,6 +5,7 @@ package es.uniovi.asw.trivial.infraestructure.model;
  *
  */
 public class Answer {
+	
 	private String response;
 	private String text;
 	private boolean correct;

@@ -14,6 +14,20 @@ public class Question {
 	private List<Answer> answers = new LinkedList<Answer>();
 
 	
+	
+	public Question(String title, String question, List<Answer> answers) {
+
+		this.title = title;
+		this.question = question;
+		this.answers = answers;
+	}
+	
+	
+	public Question() {
+		
+	}
+
+
 	public String getTitle() {
 		return title;
 	}
