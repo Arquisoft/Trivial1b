@@ -273,9 +273,18 @@ public class VentanaPrincipal extends JFrame {
 				int j = Integer.parseInt(bt.getActionCommand().split("-")[1]);
 				if(i==4 && j==0 || i==4 && j==8) {
 					lbDado.setText(String.valueOf(partida.lanzarDado()));
+				} else {
+					crearPregunta();
 				}
 			}
 		});
+	}
+
+	public void crearPregunta() {
+		DialogPregunta dP = new DialogPregunta(this);
+		dP.setLocationRelativeTo(this);
+		dP.sacarPregunta();
+		dP.setVisible(true);
 	}
 
 	private JPanel getPnTablero() {

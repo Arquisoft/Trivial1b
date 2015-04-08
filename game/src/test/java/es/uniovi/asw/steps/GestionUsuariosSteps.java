@@ -2,7 +2,7 @@ package es.uniovi.asw.steps;
 
 import java.util.List;
 
-import es.uniovi.asw.game.model.UserDb;
+import es.uniovi.asw.game.persistence.UserDb;
 import cucumber.api.java.es.*;
 import static org.assertj.core.api.Assertions.*;
 

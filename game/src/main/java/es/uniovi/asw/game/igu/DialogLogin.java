@@ -20,7 +20,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-import es.uniovi.asw.game.model.UserDb;
+import es.uniovi.asw.game.persistence.UserDb;
 
 public class DialogLogin extends JDialog {
 

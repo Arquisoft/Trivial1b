@@ -3,13 +3,63 @@
  */
 package es.uniovi.asw.game.model;
 
-/**
- * @author Labra
- *
- */
+
 public class User {
-  private final String name;
-  private String password;
+	  public boolean isPrivileged() {
+		return privileged;
+	}
+
+	public void setPrivileged(boolean privileged) {
+		this.privileged = privileged;
+	}
+
+	public int getnRightQuestions() {
+		return nRightQuestions;
+	}
+
+	public void setnRightQuestions(int nRightQuestions) {
+		this.nRightQuestions = nRightQuestions;
+	}
+
+	public int getnWrongQuestions() {
+		return nWrongQuestions;
+	}
+
+	public void setnWrongQuestions(int nWrongQuestions) {
+		this.nWrongQuestions = nWrongQuestions;
+	}
+
+	public int getnWonGames() {
+		return nWonGames;
+	}
+
+	public void setnWonGames(int nWonGames) {
+		this.nWonGames = nWonGames;
+	}
+
+	public int getnLostGames() {
+		return nLostGames;
+	}
+
+	public void setnLostGames(int nLostGames) {
+		this.nLostGames = nLostGames;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	private final String name;
+	  private String password;
+	  private boolean privileged;
+	  private int nRightQuestions;
+	  private int nWrongQuestions;
+	  private int nWonGames;
+	  private int nLostGames;
   
   public User(String name, String password) {
 	super();

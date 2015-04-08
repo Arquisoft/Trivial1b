@@ -11,6 +11,13 @@ public class Answer {
 	private boolean correct;
 	
 
+	public Answer(String response, boolean correct) {
+		this.response = response;
+		this.correct = correct;
+	}
+	public Answer() {
+		// TODO Auto-generated constructor stub
+	}
 	public String getResponse() {
 		return response;
 	}

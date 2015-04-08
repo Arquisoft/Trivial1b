@@ -2,7 +2,7 @@ package es.uniovi.asw.steps;
 
 import java.util.List;
 
-import es.uniovi.asw.game.model.UserDb;
+import es.uniovi.asw.game.persistence.UserDb;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
