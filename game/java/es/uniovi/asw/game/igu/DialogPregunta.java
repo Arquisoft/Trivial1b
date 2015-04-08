@@ -23,11 +23,6 @@ import es.uniovi.asw.trivial.infraestructure.model.Question;
 
 public class DialogPregunta extends JDialog {
 
-	/**
-	 * 
-	 */
-
-	
 	private List<JButton> botones = new ArrayList<JButton>();
 	
 	private static final long serialVersionUID = 1L;
@@ -35,6 +30,8 @@ public class DialogPregunta extends JDialog {
 	private JPanel panelCentral;
 	private JLabel labelQuestion;
 	private VentanaPrincipal vp;
+	private JPanel panelNorte;
+	private JLabel labelTitulo;
 
 	/**
 	 * Launch the application.
@@ -64,7 +61,7 @@ public class DialogPregunta extends JDialog {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		contentPane.add(getLabelQuestion(), BorderLayout.NORTH);
+		contentPane.add(getPanelNorte(), BorderLayout.NORTH);
 		contentPane.add(getPanelCentral(), BorderLayout.CENTER);
 		setModal(true);
 	}
@@ -80,6 +77,7 @@ public class DialogPregunta extends JDialog {
 	private JLabel getLabelQuestion() {
 		if (labelQuestion == null) {
 			labelQuestion = new JLabel();
+			labelQuestion.setBounds(0, 25, 424, 25);
 			labelQuestion.setHorizontalAlignment(SwingConstants.CENTER);
 			labelQuestion.setPreferredSize(new Dimension(0, 50));
 		}
@@ -88,7 +86,9 @@ public class DialogPregunta extends JDialog {
 	
 	public void sacarPregunta()  {
 		Question q = vp.getPartida().sacarPregunta();
+		q.setUsed(true);
 		labelQuestion.setText(q.getQuestion());
+		labelTitulo.setText(q.getCategoria());
 		mostrarRespuestas(q);
 	}
 	
@@ -127,7 +127,7 @@ public class DialogPregunta extends JDialog {
 	
 	private void comprobarRespuesta(boolean isCorrect, JLabel label) {
 		if(isCorrect) {
-//			System.out.println("Respuesta correcta");O
+//			System.out.println("Respuesta correcta");
 			label.setIcon(new ImageIcon(getClass().getResource("/tick.png")));
 //			JOptionPane.showMessageDialog(null, "Respuesta Correcta");
 		}
@@ -147,4 +147,21 @@ public class DialogPregunta extends JDialog {
 	}
 	
 	
+	private JPanel getPanelNorte() {
+		if (panelNorte == null) {
+			panelNorte = new JPanel();
+			panelNorte.setPreferredSize(new Dimension(10, 50));
+			panelNorte.setLayout(null);
+			panelNorte.add(getLabelQuestion());
+			panelNorte.add(getLabelTitulo());
+		}
+		return panelNorte;
+	}
+	private JLabel getLabelTitulo() {
+		if (labelTitulo == null) {
+			labelTitulo = new JLabel();
+			labelTitulo.setBounds(0, 0, 179, 25);
+		}
+		return labelTitulo;
+	}
 }

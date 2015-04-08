@@ -20,12 +20,12 @@ public class Partida {
 	}
 
 	private void crearPreguntaPrueba() {
-		List<Answer> answers = new ArrayList<Answer>();
-		Answer a1 = new Answer("Madrid", true);
-		Answer a2 = new Answer("Barcelona", false);
-		answers.add(a1);
-		answers.add(a2);
-		preguntas.addQuestion("GEOGRAFIA", "¿Capital de España?", answers);
+//		List<Answer> answers = new ArrayList<Answer>();
+//		Answer a1 = new Answer("Madrid", true);
+//		Answer a2 = new Answer("Barcelona", false);
+//		answers.add(a1);
+//		answers.add(a2);
+//		preguntas.addQuestion("GEOGRAFIA", "¿Capital de España?", answers);
 	}
 
 	public List<User> getUsuarios() {
@@ -42,7 +42,7 @@ public class Partida {
 	}
 
 	public Question sacarPregunta() {
-		return preguntas.lookup("GEOGRAFIA");
+		return preguntas.lookup("Ciencia");
 
 	}
 }

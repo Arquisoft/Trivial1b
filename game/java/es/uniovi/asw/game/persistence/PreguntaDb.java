@@ -10,7 +10,7 @@ import es.uniovi.asw.trivial.infraestructure.model.Question;
 
 public class PreguntaDb {
 
-	private SortedMap<String, Question> table = new TreeMap<String, Question>();
+	private SortedMap<String, List<Question>> table = new TreeMap<String, List<Question>>();
 
 	public PreguntaDb() {
 
@@ -24,6 +24,7 @@ public class PreguntaDb {
 	}
 
 	private void crearPreguntasLiteratura() {
+		ArrayList<Question> preguntas = new ArrayList<Question>();
 		Question q;
 		List<Answer> respuestas;
 		Answer a;
@@ -57,9 +58,8 @@ public class PreguntaDb {
 		respuestas.add(a);
 
 		q.setAnswers(respuestas);
-
-		addQuestion(q);
 		
+		preguntas.add(q);
 		
 		// Pregunta
 		q = new Question();
@@ -92,10 +92,13 @@ public class PreguntaDb {
 
 		q.setAnswers(respuestas);
 
-		addQuestion(q);
+		preguntas.add(q);
+		
+		addQuestion(q, preguntas);
 	}
 
 	private void crearPreguntasHistoria() {
+		ArrayList<Question> preguntas = new ArrayList<Question>();
 		Question q;
 		List<Answer> respuestas;
 		Answer a;
@@ -109,13 +112,13 @@ public class PreguntaDb {
 		// Respuesta verdadera
 		a = new Answer();
 		a.setCorrect(true);
-		a.setResponse("japon");
+		a.setResponse("Japón");
 		respuestas.add(a);
 
 		// Respuestas falsas
 		a = new Answer();
 		a.setCorrect(false);
-		a.setResponse("china ");
+		a.setResponse("China");
 		respuestas.add(a);
 
 		a = new Answer();
@@ -130,7 +133,7 @@ public class PreguntaDb {
 
 		q.setAnswers(respuestas);
 
-		addQuestion(q);
+		preguntas.add(q);
 		
 		
 		// Pregunta
@@ -164,10 +167,12 @@ public class PreguntaDb {
 
 		q.setAnswers(respuestas);
 
-		addQuestion(q);
+		preguntas.add(q);
+		addQuestion(q, preguntas);
 	}
 
 	private void crearPreguntasGeografia() {
+		ArrayList<Question> preguntas = new ArrayList<Question>();
 		Question q;
 		List<Answer> respuestas;
 		Answer a;
@@ -202,7 +207,7 @@ public class PreguntaDb {
 
 		q.setAnswers(respuestas);
 
-		addQuestion(q);
+		preguntas.add(q);
 		
 		
 		// Pregunta
@@ -236,11 +241,13 @@ public class PreguntaDb {
 
 		q.setAnswers(respuestas);
 
-		addQuestion(q);
+		preguntas.add(q);
+		addQuestion(q, preguntas);
 	
 	}
 
 	private void crearPreguntasDeportes() {
+		ArrayList<Question> preguntas = new ArrayList<Question>();
 		Question q;
 		List<Answer> respuestas;
 		Answer a;
@@ -275,7 +282,7 @@ public class PreguntaDb {
 
 		q.setAnswers(respuestas);
 
-		addQuestion(q);
+		preguntas.add(q);
 
 		// Pregunta
 		q = new Question();
@@ -308,10 +315,12 @@ public class PreguntaDb {
 
 		q.setAnswers(respuestas);
 
-		addQuestion(q);
+		preguntas.add(q);
+		addQuestion(q, preguntas);
 	}
 
 	private void crearPreguntasEntretenimiento() {
+		ArrayList<Question> preguntas = new ArrayList<Question>();
 		Question q;
 		List<Answer> respuestas;
 		Answer a;
@@ -346,7 +355,7 @@ public class PreguntaDb {
 
 		q.setAnswers(respuestas);
 
-		addQuestion(q);
+		preguntas.add(q);
 
 		// Pregunta
 		q = new Question();
@@ -378,9 +387,14 @@ public class PreguntaDb {
 		respuestas.add(a);
 
 		q.setAnswers(respuestas);
+		
+		preguntas.add(q);
+		addQuestion(q, preguntas);
+		
 	}
 
 	private void crearPreguntasCiencia() {
+		ArrayList<Question> preguntas = new ArrayList<Question>();
 		// Pregunta 1
 		Question q = new Question();
 		q.setCategoria("Ciencia");
@@ -411,7 +425,7 @@ public class PreguntaDb {
 		respuestas.add(a);
 
 		q.setAnswers(respuestas);
-		addQuestion(q);
+		preguntas.add(q);
 
 		// Pregunta 2
 		q = new Question();
@@ -443,23 +457,37 @@ public class PreguntaDb {
 		respuestas.add(a);
 
 		q.setAnswers(respuestas);
-		addQuestion(q);
+		
+		preguntas.add(q);
+		addQuestion(q, preguntas);
 	}
 
-	public void addQuestion(String title, String question, List<Answer> answers) {
-		table.put(title, new Question(question, answers));
-	}
+//	public void addQuestion(String title, String question, List<Answer> answers) {
+//		table.put(title, new Question(question, answers));
+//	}
 
-	private void addQuestion(Question q) {
-		table.put(q.getTitle(), q);
+	private void addQuestion(Question q, ArrayList<Question> lista) {
+		table.put(q.getCategoria(), lista);
 	}
 
 	public Integer size() {
 		return table.size();
 	}
 
-	public Question lookup(String title) {
-		return table.get(title);
+	public Question lookup(String category) {
+		List<Question> preguntas = table.get(category);
+		
+		for(Question q: preguntas)
+			if(!q.isUsed())
+				return q;
+		
+		resetearRespuestas(preguntas);
+		return lookup(category);
+	}
+	
+	public void resetearRespuestas(List<Question> preguntas) {
+		for(Question q: preguntas)
+			q.setUsed(false);
 	}
 
 }
