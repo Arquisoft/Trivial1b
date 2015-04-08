@@ -9,9 +9,10 @@
     <packaging>pom</packaging>
     <version>1.0</version>
     <name>Trivial1b</name>
-
+    
     <modules>
         <module>extract</module>
+        <module>game</module>
 <!-- Other modules should be added here: <module>...</module> -->
     </modules>
 
