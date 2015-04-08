@@ -24,13 +24,147 @@ public class PreguntaDb {
 	}
 
 	private void crearPreguntasLiteratura() {
-		// TODO generar preguntas literatura
+		Question q;
+		List<Answer> respuestas;
+		Answer a;
+		// Pregunta
+		q = new Question();
+		q.setCategoria("Literatura");
+		q.setTitle("El Señor de los Anillos");
+		q.setQuestion("¿Cuál fue el último cumpleaños que celebró Bilbo Bolsón en Bolsón Cerrado?");
+		q.setUsed(false);
+		respuestas = new ArrayList<Answer>();
+		// Respuesta verdadera
+		a = new Answer();
+		a.setCorrect(true);
+		a.setResponse("centesimodecimoprimero");
+		respuestas.add(a);
 
+		// Respuestas falsas
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("centesimodecimosegundo ");
+		respuestas.add(a);
+
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("octagesimo");
+		respuestas.add(a);
+
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("nonagesimo");
+		respuestas.add(a);
+
+		q.setAnswers(respuestas);
+
+		addQuestion(q);
+		
+		
+		// Pregunta
+		q = new Question();
+		q.setCategoria("Literatura");
+		q.setTitle("Siglo XIII");
+		q.setQuestion("Autor: 'Crónica general' (Sobre el pasado del hombre)");
+		q.setUsed(false);
+		respuestas = new ArrayList<Answer>();
+		// Respuesta verdadera
+		a = new Answer();
+		a.setCorrect(true);
+		a.setResponse("alfonso x el sabio");
+		respuestas.add(a);
+
+		// Respuestas falsas
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("Anonimo");
+		respuestas.add(a);
+
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("Arturo Pérez-Reverte");
+		respuestas.add(a);
+
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("Machado");
+		respuestas.add(a);
+
+		q.setAnswers(respuestas);
+
+		addQuestion(q);
 	}
 
 	private void crearPreguntasHistoria() {
-		// TODO generar preguntas historia
+		Question q;
+		List<Answer> respuestas;
+		Answer a;
+		// Pregunta
+		q = new Question();
+		q.setCategoria("Historia");
+		q.setTitle("II Guerra Mundial");
+		q.setQuestion("Potencias del Eje: Alemania, Italia y...");
+		q.setUsed(false);
+		respuestas = new ArrayList<Answer>();
+		// Respuesta verdadera
+		a = new Answer();
+		a.setCorrect(true);
+		a.setResponse("japon");
+		respuestas.add(a);
 
+		// Respuestas falsas
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("china ");
+		respuestas.add(a);
+
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("España");
+		respuestas.add(a);
+
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("Portugal");
+		respuestas.add(a);
+
+		q.setAnswers(respuestas);
+
+		addQuestion(q);
+		
+		
+		// Pregunta
+		q = new Question();
+		q.setCategoria("Historia");
+		q.setTitle("Historia antigua");
+		q.setQuestion("¿A dónde fueron deportados los judíos tras la conquista de Jerusalén por Nabucodonosor?");
+		q.setUsed(false);
+		respuestas = new ArrayList<Answer>();
+		// Respuesta verdadera
+		a = new Answer();
+		a.setCorrect(true);
+		a.setResponse("babilonia");
+		respuestas.add(a);
+
+		// Respuestas falsas
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("Israel");
+		respuestas.add(a);
+
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("Grecia");
+		respuestas.add(a);
+
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("Egipto");
+		respuestas.add(a);
+
+		q.setAnswers(respuestas);
+
+		addQuestion(q);
 	}
 
 	private void crearPreguntasGeografia() {
