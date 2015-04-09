@@ -20,7 +20,6 @@ public class PreguntaDb {
 		crearPreguntasGeografia();
 		crearPreguntasHistoria();
 		crearPreguntasLiteratura();
-
 	}
 
 	private void crearPreguntasLiteratura() {
@@ -476,7 +475,6 @@ public class PreguntaDb {
 
 	public Question lookup(String category) {
 		List<Question> preguntas = table.get(category);
-		
 		for(Question q: preguntas)
 			if(!q.isUsed())
 				return q;

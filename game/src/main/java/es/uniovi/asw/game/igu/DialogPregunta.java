@@ -39,18 +39,18 @@ public class DialogPregunta extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DialogPregunta frame = new DialogPregunta(null);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					DialogPregunta frame = new DialogPregunta(null);
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
@@ -79,8 +79,9 @@ public class DialogPregunta extends JDialog {
 		return panelCentral;
 	}
 
-	public void sacarPregunta() {
-		Question q = vp.getPartida().sacarPregunta();
+	public void sacarPregunta(int i, int j) {
+		//TODO COMPROBAR QUE NO ES LA FINAL!!! category == final
+		Question q = vp.getPartida().sacarPregunta(i, j);
 		q.setUsed(true);
 		textAreaQuestion.setText(q.getQuestion());
 		labelCategoria.setText(q.getCategoria().toUpperCase());
@@ -131,10 +132,15 @@ public class DialogPregunta extends JDialog {
 		if (isCorrect) {
 			// System.out.println("Respuesta correcta");
 			label.setIcon(new ImageIcon(getClass().getResource("/tick.png")));
+			//sigue el mismo jugador, no cambia nada			
 			// JOptionPane.showMessageDialog(null, "Respuesta Correcta");
+			vp.comprobarQueSeaQuesito();
 		} else {
 			// System.out.println("Respuesta incorrecta");
 			label.setIcon(new ImageIcon(getClass().getResource("/cross.png")));
+			
+			//cambiamos el jugador cuando la respuesta es incorrecta
+			vp.getPartida().getSiguienteJugador();
 			// JOptionPane.showMessageDialog(null, "Respuesta Incorrecta");
 		}
 

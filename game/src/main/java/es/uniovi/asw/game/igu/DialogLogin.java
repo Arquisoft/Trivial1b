@@ -85,8 +85,8 @@ public class DialogLogin extends JDialog {
 	public DialogLogin(VentanaPrincipal vp) {
 
 		this.vp = vp;
-//		usuariodb.addUser("aninabg", "seguridad");
-//		usuariodb.addUser("samolo", "secure");
+		usuariodb.addUser("aninabg", "seguridad");
+		usuariodb.addUser("samolo", "secure");
 		setBounds(100, 100, 581, 421);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -144,7 +144,7 @@ public class DialogLogin extends JDialog {
 				public void actionPerformed(ActionEvent arg0) {
 					jugadores = (Integer) spJugadores.getValue();
 					cl.show(contentPanel, "pnLogin");
-					
+					vp.setJugadores(jugadores);
 				}
 			});
 		}
@@ -251,11 +251,9 @@ public class DialogLogin extends JDialog {
 					String password = String.valueOf(pfPassword.getPassword());
 					
 					//Si existe en la tabla 
-					//TODO modificar por código real bbdd
 					if(usuariodb.login(name, password)) {
 						vp.getPartida().getUsuarios().add(usuariodb.lookup(name));
 						contador++;
-						System.out.println(name);
 						pnUsuario.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 1, true), "Usuario " + (contador+1), TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 
 						pnUsuario.revalidate();
@@ -266,7 +264,7 @@ public class DialogLogin extends JDialog {
 						limpiarLogin();
 						cl.show(contentPanel, "pnLogin");
 					} else {
-						vp.cargarJugadores();
+						vp.inicializarJugadores();
 						dispose();
 					}
 				

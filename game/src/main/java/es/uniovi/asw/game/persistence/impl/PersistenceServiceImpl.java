@@ -1,4 +1,4 @@
-package es.uniovi.asw.trivial.persistence.impl;
+package es.uniovi.asw.game.persistence.impl;
 
 import java.util.ArrayList;
 import java.util.HashSet;
