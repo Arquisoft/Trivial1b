@@ -249,8 +249,21 @@ public class PersistenceServiceImpl implements PersistenceService {
 	}
 
 	@Override
-	public boolean deleteUsuario(String usuario) {
-		// TODO Auto-generated method stub
+	public boolean deleteUsuario(String login) {
+		
+		DBObject cursor = findByLogin(login);
+		if(cursor==null){
+			return false; //usuario a borrar no existe en BD
+		}
+		
+		BasicDBObject document = new BasicDBObject();
+		document.put("login", login);
+		collUser.remove(document);
+		
+		cursor = findByLogin(login);
+		if(cursor==null){
+			return true; //usuario a borrar no existe en BD
+		}
 		return false;
 	}
 
