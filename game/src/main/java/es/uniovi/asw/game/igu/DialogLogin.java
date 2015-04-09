@@ -85,8 +85,8 @@ public class DialogLogin extends JDialog {
 	public DialogLogin(VentanaPrincipal vp) {
 
 		this.vp = vp;
-		usuariodb.addUser("aninabg", "seguridad");
-		usuariodb.addUser("samolo", "secure");
+//		usuariodb.addUser("aninabg", "seguridad");
+//		usuariodb.addUser("samolo", "secure");
 		setBounds(100, 100, 581, 421);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -208,7 +208,7 @@ public class DialogLogin extends JDialog {
 	private JPanel getPnUsuario() {
 		if (pnUsuario == null) {
 			pnUsuario = new JPanel();
-			pnUsuario.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 1, true), "Usuario " + (contador+1), TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+			pnUsuario.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 1, true), "Usuario 1", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			pnUsuario.setBounds(199, 61, 167, 91);
 			pnUsuario.setLayout(null);
 			pnUsuario.add(getTxUsuario());
@@ -256,6 +256,8 @@ public class DialogLogin extends JDialog {
 						vp.getPartida().getUsuarios().add(usuariodb.lookup(name));
 						contador++;
 						System.out.println(name);
+						pnUsuario.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 1, true), "Usuario " + (contador+1), TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+
 						pnUsuario.revalidate();
 						pnUsuario.repaint();
 					}

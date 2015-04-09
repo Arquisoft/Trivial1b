@@ -8,6 +8,12 @@ import es.uniovi.asw.game.model.User;
 public class UserDb {
 
 	private SortedMap<String, User> table = new TreeMap<String, User>();
+	
+	public UserDb() {
+		String[] nombres = { "aaa", "bbb", "ccc", "ddd" };
+		for(int i=0; i<nombres.length;i++)
+			addUser(nombres[i], i+"");
+	}
 
 	public void addUser(String name, String password) {
 		table.put(name, new User(name, password));
