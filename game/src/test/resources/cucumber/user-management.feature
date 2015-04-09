@@ -5,7 +5,7 @@ Scenario: Create first user
 
     Given there are no users
     When I create a user "Pepe" with password "Pepe12"
-    Then The number of users is 1
+    Then The number of users is 5
 
 Scenario: Check that a user exists
 	Given a list of users:
