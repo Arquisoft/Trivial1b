@@ -4,18 +4,12 @@
 package es.uniovi.asw.game.model;
 
 public class User {
-	private final String name;
-
+	private String name;
 	private String password;
-
 	private boolean privileged;
-
 	private int nRightQuestions;
-
 	private int nWrongQuestions;
-
 	private int nWonGames;
-
 	private int nLostGames;
 
 	public User(String name, String password) {
@@ -56,12 +50,15 @@ public class User {
 	public int getnWonGames() {
 		return nWonGames;
 	}
+
 	public int getnWrongQuestions() {
 		return nWrongQuestions;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -69,12 +66,15 @@ public class User {
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
+
 	public boolean isPrivileged() {
 		return privileged;
 	}
+
 	public void setnLostGames(int nLostGames) {
 		this.nLostGames = nLostGames;
 	}
+
 	public void setnRightQuestions(int nRightQuestions) {
 		this.nRightQuestions = nRightQuestions;
 	}
