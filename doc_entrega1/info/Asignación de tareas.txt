@@ -1,0 +1,25 @@
+Adrián	García Bueno	UO232346
+
+
+Ana Isabel	Blanco González	UO227799
+Establecer Atributos de calidad
+
+Benigno	Diez Gutiérrez	UO227982
+Crear diagrama de paquetes
+
+Borja	Caveda Cano	UO227648
+Identificación inicial de Stakeholders
+
+Cristian	Pérez González	UO191154¡
+Crear Diagrama de componentes
+
+María	Hernández Martínez	UO229803
+Definir requisitos funcionales y requisitos no funcionales
+
+María José	Sanchez Doria	UO232334
+Establecer Escenarios de calidad
+
+Samuel	Fernández Cabello	UO224927
+Establecer trazabilidad entre stakeholders y escenarios de calidad
+
+Sergio	Berjano Salinas	UO212948
