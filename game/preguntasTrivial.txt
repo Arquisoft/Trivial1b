@@ -28,7 +28,6 @@
 {'category':'Espectaculos','title': 'Televisión','text': '¿A qué serie pertenece Piccolo?','answersFalse': ['Oliver y Benji'],'answersTrue': ['Dragon Ball Z'],'answersFalse': ['Padre de Familia'],'answersFalse': ['Los Simpson']}
 {'category':'Ciencia','title': 'Ciencia','text': '¿A qué era geológica pertenece el Jurásico?','answersFalse': ['Paleozoica'],'answersTrue': ['Mesozoica'],'answersFalse': ['Cerozoica'],'answersFalse': ['Proterozoica']}
 {'category':'Historia','title': 'Historia','text': '¿A qué hijo suyo ejecutó Leovigildo?','answersFalse': ['Lucero'],'answersTrue': ['Hermenegildo'],'answersFalse': ['Jose'],'answersFalse': ['Sebastian']}
-
 {'category':'Deportes','title': 'Futbol','text': '¿A qué jugador del Madrid partió por la mitad el genio Romario con su regate de cola de vaca?','answersFalse': ['Fernando Hierro'],'answersFalse': ['Antonio Camacho'],'answersTrue': ['Rafael Alkorta'],'answersFalse': ['Manolo Sanchís']}
 {'category':'Geografía','title': 'Geografía','text': '¿A qué estado norteamericano pertenece la ciudad de Amarillo?','answersFalse': ['Florida'],'answersFalse': ['California'],'answersTrue': ['Texas'],'answersFalse': ['Arizona']}
 {'category':'Arte y Literatura','title': 'Arte y Literatura','text': '¿A qué generación literaria perteneció Valle-Inclán? ','answersFalse': ['Generacion del 27'],'answersFalse': ['Generacion del 38'],'answersTrue': ['Generacion del 98'],'answersFalse': ['Generacion del 50']}
