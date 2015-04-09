@@ -24,7 +24,7 @@ public class MongoConnection {
 
 	public static final String nombreBD = "trivial1B";
 
-	private static final String fichero = "./preguntas.txt";
+	private static final String fichero = "./preguntasTrivial.txt";
 	
 	 
 
@@ -66,6 +66,7 @@ public class MongoConnection {
 		return db;
 	}
 
+	@SuppressWarnings("resource")
 	private static void loadBD() {
 		String s = new String();
 		
