@@ -19,19 +19,22 @@ import javax.swing.border.EmptyBorder;
 
 import es.uniovi.asw.trivial.infraestructure.model.Answer;
 import es.uniovi.asw.trivial.infraestructure.model.Question;
-
+import java.awt.Font;
+import javax.swing.JTextArea;
+import java.awt.Color;
 
 public class DialogPregunta extends JDialog {
 
 	private List<JButton> botones = new ArrayList<JButton>();
-	
+
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel panelCentral;
-	private JLabel labelQuestion;
 	private VentanaPrincipal vp;
 	private JPanel panelNorte;
+	private JLabel labelCategoria;
 	private JLabel labelTitulo;
+	private JTextArea textAreaQuestion;
 
 	/**
 	 * Launch the application.
@@ -55,9 +58,10 @@ public class DialogPregunta extends JDialog {
 	public DialogPregunta(VentanaPrincipal vp) {
 		this.vp = vp;
 		setTitle("Pregunta");
-				
-		setBounds(100, 100, 450, 300);
+
+		setBounds(100, 100, 450, 325);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
@@ -69,99 +73,126 @@ public class DialogPregunta extends JDialog {
 	private JPanel getPanelCentral() {
 		if (panelCentral == null) {
 			panelCentral = new JPanel();
+			panelCentral.setBackground(Color.WHITE);
 			panelCentral.setLayout(new GridLayout(0, 1, 0, 0));
 		}
 		return panelCentral;
 	}
 
-	private JLabel getLabelQuestion() {
-		if (labelQuestion == null) {
-			labelQuestion = new JLabel();
-			labelQuestion.setBounds(0, 25, 424, 25);
-			labelQuestion.setHorizontalAlignment(SwingConstants.CENTER);
-			labelQuestion.setPreferredSize(new Dimension(0, 50));
-		}
-		return labelQuestion;
-	}
-	
-	public void sacarPregunta()  {
+	public void sacarPregunta() {
 		Question q = vp.getPartida().sacarPregunta();
 		q.setUsed(true);
-		labelQuestion.setText(q.getQuestion());
-		labelTitulo.setText(q.getCategoria());
+		textAreaQuestion.setText(q.getQuestion());
+		labelCategoria.setText(q.getCategoria().toUpperCase());
+		labelTitulo.setText(q.getTitle().toUpperCase());
 		mostrarRespuestas(q);
 	}
-	
-	private void mostrarRespuestas(Question question)  {
-		for(Answer a: question.getAnswers()) 
+
+	private void mostrarRespuestas(Question question) {
+		for (Answer a : question.getAnswers())
 			crearComponentesRespuesta(a.getResponse(), a.isCorrect());
-		
+
 	}
-	
+
 	private void crearComponentesRespuesta(String respuesta, boolean isCorrect) {
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
 		panel.setLayout(new BorderLayout());
+		
 		JButton boton = new JButton();
+		boton.setBackground(Color.WHITE);
 		boton.setText(respuesta);
 		boton.setPreferredSize(new Dimension(300, 30));
+		
 		JLabel label = new JLabel();
-		
-		botones.add(boton);
-		
+		label.setOpaque(true);
+		label.setBackground(Color.WHITE);
+
 		panel.add(boton, BorderLayout.WEST);
 		panel.add(label, BorderLayout.EAST);
 		panelCentral.add(panel);
-		
+
+		botones.add(boton);
+
 		asociarEvento(boton, isCorrect, label);
-		
-		
+
 	}
 
-	private void asociarEvento(JButton boton, final boolean isCorrect, final JLabel label) {
+	private void asociarEvento(JButton boton, final boolean isCorrect,
+			final JLabel label) {
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				comprobarRespuesta(isCorrect, label);
 			}
 		});
 	}
-	
+
 	private void comprobarRespuesta(boolean isCorrect, JLabel label) {
-		if(isCorrect) {
-//			System.out.println("Respuesta correcta");
+		if (isCorrect) {
+			// System.out.println("Respuesta correcta");
 			label.setIcon(new ImageIcon(getClass().getResource("/tick.png")));
-//			JOptionPane.showMessageDialog(null, "Respuesta Correcta");
-		}
-		else {
-//			System.out.println("Respuesta incorrecta");
+			// JOptionPane.showMessageDialog(null, "Respuesta Correcta");
+		} else {
+			// System.out.println("Respuesta incorrecta");
 			label.setIcon(new ImageIcon(getClass().getResource("/cross.png")));
-//			JOptionPane.showMessageDialog(null, "Respuesta Incorrecta");
+			// JOptionPane.showMessageDialog(null, "Respuesta Incorrecta");
 		}
-		
+
 		desactivar();
-		
+
 	}
-	
+
 	private void desactivar() {
-		for(JButton b: botones)
+		for (JButton b : botones)
 			b.setEnabled(false);
 	}
-	
-	
+
 	private JPanel getPanelNorte() {
 		if (panelNorte == null) {
 			panelNorte = new JPanel();
-			panelNorte.setPreferredSize(new Dimension(10, 50));
+			panelNorte.setBackground(Color.WHITE);
+			panelNorte.setPreferredSize(new Dimension(10, 100));
 			panelNorte.setLayout(null);
-			panelNorte.add(getLabelQuestion());
+			panelNorte.add(getLabelCategoria());
 			panelNorte.add(getLabelTitulo());
+			panelNorte.add(getTextAreaQuestion());
 		}
 		return panelNorte;
 	}
+
+	private JLabel getLabelCategoria() {
+		if (labelCategoria == null) {
+			labelCategoria = new JLabel();
+			labelCategoria.setBackground(Color.WHITE);
+			labelCategoria.setOpaque(true);
+			labelCategoria.setFont(new Font("Sylfaen", Font.BOLD | Font.ITALIC, 12));
+			labelCategoria.setHorizontalAlignment(SwingConstants.CENTER);
+			labelCategoria.setBounds(0, 0, 210, 40);
+		}
+		return labelCategoria;
+	}
+
 	private JLabel getLabelTitulo() {
 		if (labelTitulo == null) {
 			labelTitulo = new JLabel();
-			labelTitulo.setBounds(0, 0, 179, 25);
+			labelTitulo.setBackground(Color.WHITE);
+			labelTitulo.setOpaque(true);
+			labelTitulo.setFont(new Font("Sylfaen", Font.BOLD | Font.ITALIC, 12));
+			labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+			labelTitulo.setBounds(214, 0, 210, 40);
 		}
 		return labelTitulo;
+	}
+
+	private JTextArea getTextAreaQuestion() {
+		if (textAreaQuestion == null) {
+			textAreaQuestion = new JTextArea();
+			textAreaQuestion.setFont(new Font("Sylfaen", Font.PLAIN, 14));
+			textAreaQuestion.setLineWrap(true);
+			textAreaQuestion.setWrapStyleWord(true);
+			textAreaQuestion.setEditable(false);
+			textAreaQuestion.setBounds(0, 40, 424, 60);
+		}
+		return textAreaQuestion;
 	}
 }
