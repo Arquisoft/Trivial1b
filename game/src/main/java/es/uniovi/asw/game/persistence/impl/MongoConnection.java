@@ -22,7 +22,7 @@ public class MongoConnection {
 
 	private static DBCollection coll;
 
-	public static final String nombreBD = "trivial1B";
+	private static final String nombreBD = "trivial1B";
 
 	private static final String fichero = "./preguntasTrivial.txt";
 	
@@ -84,11 +84,6 @@ public class MongoConnection {
 				
 				coll.insert(doc);
 			}
-			
-
-				
-
-				
 			
 		} catch (FileNotFoundException e) {
 			log.error("Ruta de fichero no encontrada");

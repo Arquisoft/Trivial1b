@@ -4,6 +4,11 @@ import java.util.List;
 
 import es.uniovi.asw.trivial.infraestructure.model.Question;
 
+/**
+ * Interfaz para definir los metodos disponibles de la base de datos
+ * @author María José Sanchez Doria
+ *
+ */
 public interface PersistenceService {
 
 	public List<Question> getQuestionsCategory(String category);
