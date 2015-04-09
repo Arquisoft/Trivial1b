@@ -19,5 +19,7 @@ public interface PersistenceService {
 	public boolean updateUsuarioPartidasGanadas(String login, int matchSuccess);
 
 	public boolean updateUsuarioPartidasPerdidas(String login, int matchFailed);
+	
+	public boolean deleteUsuario(String usuario);
 
 }

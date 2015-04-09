@@ -248,4 +248,10 @@ public class PersistenceServiceImpl implements PersistenceService {
 		return cursor;
 	}
 
+	@Override
+	public boolean deleteUsuario(String usuario) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
