@@ -15,6 +15,13 @@ import com.mongodb.util.JSON;
 import es.uniovi.asw.trivial.infraestructure.factories.FactoryService;
 import es.uniovi.asw.trivial.infraestructure.log.impl.Logger;
 
+/**
+ * Clase que establece la conexion con la base de datos y se encarga de inicilizar
+ * la BD de preguntas, implementa patron singleton y para su uso basta con instanciar
+ * la clase PersisteceServiceImpl
+ * @author María José Sanchez Doria
+ *
+ */
 public class MongoConnection {
 	private static MongoClient conn;
 

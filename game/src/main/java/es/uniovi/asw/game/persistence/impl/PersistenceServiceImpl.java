@@ -12,6 +12,12 @@ import es.uniovi.asw.game.persistence.PersistenceService;
 import es.uniovi.asw.trivial.infraestructure.model.Answer;
 import es.uniovi.asw.trivial.infraestructure.model.Question;
 
+/**
+ * Clase con las consultas posibles a las dos base de datos que maneja la aplicación
+ * collQuestions y collUser
+ * @author María José Sanchez Doria
+ *
+ */
 public class PersistenceServiceImpl implements PersistenceService {
 
 	private DBCollection collQuestions;
