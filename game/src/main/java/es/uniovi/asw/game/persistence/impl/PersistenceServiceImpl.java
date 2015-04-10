@@ -1,7 +1,6 @@
 package es.uniovi.asw.game.persistence.impl;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
@@ -31,19 +30,20 @@ public class PersistenceServiceImpl implements PersistenceService {
 	}
 
 	@Override
-	public List<Question> getQuestionsCategory(String category) {
-		List<Question> list = new ArrayList<Question>();
+	public ArrayList<Question> getQuestionsCategory(String category) {
+		ArrayList<Question> list = new ArrayList<Question>();
 		Question q = new Question();
 		Answer a = new Answer();
 		DBObject cursor;
 		Object obj;
+		Integer in=0;
 
 		BasicDBObject filtro = new BasicDBObject();
 
 		filtro.put("category", category);
 		DBCursor cur = collQuestions.find(filtro);
 		while (cur.hasNext()) {
-
+			q.setCategoria(category);
 			cursor = cur.next();
 			obj = cursor.get("title");
 			q.setTitle(obj.toString());
@@ -53,24 +53,29 @@ public class PersistenceServiceImpl implements PersistenceService {
 			q.setQuestion(obj.toString());
 
 			obj = cursor.get("answersFalse");
-
+			System.out.println(obj.toString());
 			String diaArray[] = obj.toString().split(",");
+			
 			for (String s : diaArray) {
 				a.setResponse(s);
-				a.setCorrect(false);
+				a.setCorrect(false);				
 				q.addAnswer(a);
 			}
+			
 
 			obj = cursor.get("answersTrue");
+			
 			diaArray = obj.toString().split(",");
 			for (String s : diaArray) {
 				a.setResponse(s);
 				a.setCorrect(true);
 				q.addAnswer(a);
+				
+				
 			}
+			in++;
 
 			list.add(q);
-
 		}
 
 		// HashSet<Question> hs = new HashSet<Question>();

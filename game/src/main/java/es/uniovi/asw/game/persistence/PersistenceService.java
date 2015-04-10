@@ -1,6 +1,6 @@
 package es.uniovi.asw.game.persistence;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import es.uniovi.asw.trivial.infraestructure.model.Question;
 
@@ -11,7 +11,7 @@ import es.uniovi.asw.trivial.infraestructure.model.Question;
  */
 public interface PersistenceService {
 
-	public List<Question> getQuestionsCategory(String category);
+	public ArrayList<Question> getQuestionsCategory(String category);
 
 	public boolean saveUsuario(String login, String passwd, int privilegiado,
 			int questionSuccess, int questionsFailed, int matchSuccess,
