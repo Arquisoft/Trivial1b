@@ -1,6 +1,6 @@
 {'category':'Deportes','title': 'ACB','text': 'Apodos Andrés Montes: Apodo de Alberto Herreros','answersFalse': ['Alberto yoska Herreros','Alberto Hache Herreros','Alberto Magic Herreros'],'answersTrue': ['Alberto Caviar Herreros']}
 {'category':'Geografía','title': 'Geografía','text': '¿A cuántos kilómetros de Madrid se encuentra la ciudad de Móstoles?','answersFalse': ['22','35','130'],'answersTrue': ['18']}
-{'category':'Arte y Literatura','title': 'El Señor de los Anillos','text': '¿Cuál fue el último cumpleaños que celebró Bilbo Bolsón en Bolsón Cerrado?','answersTrue': ['centesimodecimoprimero',],'answersFalse': ['centesimo','vigesimosegundo','centesimodecimotercero']}
+{'category':'Arte y Literatura','title': 'El Señor de los Anillos','text': '¿Cuál fue el último cumpleaños que celebró Bilbo Bolsón en Bolsón Cerrado?','answersTrue': ['centesimodecimoprimero'],'answersFalse': ['centesimo','vigesimosegundo','centesimodecimotercero']}
 {'category':'Espectaculos','title': 'Anuncios','text': '¿Qué papel "es mucho papel"?','answersFalse': ['din A4','Foxy','ocb'],'answersTrue': ['Scottex']}
 {'category':'Ciencia','title': 'Electrónica','text': 'Un circuito boost es un...','answersFalse': ['circuito en paralelo','receptor','anillo generador'],'answersTrue': ['elevador']}
 {'category':'Historia','title': 'II Guerra Mundial','text': 'Potencias del Eje: Alemania, Italia y','answersFalse': ['Francia','España','Rusia'],'answersTrue': ['Japón']}
@@ -49,12 +49,12 @@
 {'category':'Deportes','title': 'Rugby','text': '¿A qué selección de rugby se les llama Springboks?','answersTrue': ['Sudafrica'],'answersFalse': ['Italia','Nueva Zelanda','Australia']}
 {'category':'Geografía','title': 'Geografía','text': '¿A qué país está asociada la isla de Curazao?','answersFalse': ['Brazil','Portugal','Indonesia'],'answersTrue': ['Holanda']}
 {'category':'Arte y Literatura','title': 'Arte y Literatura','text': '¿A qué poeta disparó Verlaine en Bruselas?','answersFalse': ['Pablo Neruda','Lope de Vega','Luis de Gongora'],'answersTrue': ['Arthur Rimbaud']}
-{'category':'Espectaculos','title': 'Televisión','text': '¿Cómo se apellidan los dos agentes del FBI en 'Expediente X'?','answersFalse': ['Thelma y Louis','Kate y Richard','Mortadelo y Filemón'],'answersTrue': ['Mulder y Scully']}
+{'category':'Espectaculos','title': 'Televisión','text': '¿Cómo se apellidan los dos agentes del FBI en Expediente X?','answersFalse': ['Thelma y Louis','Kate y Richard','Mortadelo y Filemón'],'answersTrue': ['Mulder y Scully']}
 {'category':'Ciencia','title': 'Ciencia','text': '¿A qué planeta tenemos que ir para visitar la luna Miranda?','answersFalse': ['Neptuno','Venus','Mercurio'],'answersTrue': ['Urano']}
 {'category':'Historia','title': 'Historia','text': '¿A quién se conoció como "el Canciller de Hierro"?','answersFalse': ['Guillermo I de Alemania','Robert von Puttkamer','Paul von Lettow-Vorbeck'],'answersTrue': ['Otto von Bismarck']}
 {'category':'Deportes','title': 'Tenis','text': '¿A qué tenista derrotó Albert Costa en la final de Roland Garros 2002?','answersFalse': ['Tommy Robledo','Roger Federer','Rafel Nadal'],'answersTrue': ['Juan Carlos Ferrero']}
 {'category':'Geografía','title': 'Geografía','text': '¿A qué país pertenece Cayo Hueso?','answersFalse': ['Brazil','Japon','India'],'answersTrue': ['EEUU']}
-{'category':'Arte y Literatura','title': 'Arte y Literatura','text': '¿A qué se refieren en la novela 'El amante de Lady Chatterley' cuando hablan de la Perra-diosa?','answersFalse': ['Amor','Fama','Suerte'],'answersTrue': ['Exito']}
+{'category':'Arte y Literatura','title': 'Arte y Literatura','text': '¿A qué se refieren en la novela El amante de Lady Chatterley cuando hablan de la Perra-diosa?','answersFalse': ['Amor','Fama','Suerte'],'answersTrue': ['Exito']}
 {'category':'Espectaculos','title': 'Televisión','text': '¿Cómo se conoce en español a Tweety?','answersFalse': ['Silvestre','Bart Simpson','Correcaminos'],'answersTrue': ['Piolin']}
 {'category':'Ciencia','title': 'Ciencia','text': '¿A quién debemos el invento de la holografía?','answersFalse': ['Eliodoro Cronwell','Edison','Albert Einstein'],'answersTrue': ['Dennis Gabor']}
 {'category':'Historia','title': 'Historia','text': '¿A quién sucedió Tiberio?','answersFalse': ['Caligula','Cesar Augusto','Neron'],'answersTrue': ['Octavio Augusto']}
