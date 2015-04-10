@@ -124,22 +124,22 @@ public class DialogLogin extends JDialog {
 	private JLabel getLbTituloSpinner() {
 		if (lbTituloSpinner == null) {
 			lbTituloSpinner = new JLabel("Seleccione el n\u00FAmero de jugadores:");
-			lbTituloSpinner.setBounds(210, 25, 170, 28);
+			lbTituloSpinner.setBounds(193, 77, 261, 28);
 		}
 		return lbTituloSpinner;
 	}
 	private JSpinner getSpJugadores() {
 		if (spJugadores == null) {
 			spJugadores = new JSpinner();
-			spJugadores.setBounds(274, 71, 43, 28);
+			spJugadores.setBounds(203, 117, 43, 28);
 			spJugadores.setModel(new SpinnerNumberModel(1, 1, 6, 1));
 		}
 		return spJugadores;
 	}
 	private JButton getBtnConfirmar() {
 		if (btnConfirmar == null) {
-			btnConfirmar = new JButton("Confirmar");
-			btnConfirmar.setBounds(244, 120, 108, 31);
+			btnConfirmar = new JButton("Iniciar Sesi\u00F3n");
+			btnConfirmar.setBounds(256, 116, 129, 31);
 			btnConfirmar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					jugadores = (Integer) spJugadores.getValue();
@@ -158,7 +158,7 @@ public class DialogLogin extends JDialog {
 					cl.show(contentPanel, "pnRegistro");
 				}
 			});
-			btnRegistrarse.setBounds(117, 39, 117, 32);
+			btnRegistrarse.setBounds(101, 39, 153, 82);
 		}
 		return btnRegistrarse;
 	}
@@ -209,7 +209,7 @@ public class DialogLogin extends JDialog {
 		if (pnUsuario == null) {
 			pnUsuario = new JPanel();
 			pnUsuario.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 1, true), "Usuario 1", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-			pnUsuario.setBounds(199, 61, 167, 91);
+			pnUsuario.setBounds(195, 25, 167, 91);
 			pnUsuario.setLayout(null);
 			pnUsuario.add(getTxUsuario());
 		}
@@ -219,7 +219,7 @@ public class DialogLogin extends JDialog {
 		if (pnPassword == null) {
 			pnPassword = new JPanel();
 			pnPassword.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 1, true), "Contrase\u00F1a:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			pnPassword.setBounds(199, 163, 167, 91);
+			pnPassword.setBounds(195, 127, 167, 91);
 			pnPassword.setLayout(null);
 			pnPassword.add(getPfPassword());
 		}
@@ -270,7 +270,7 @@ public class DialogLogin extends JDialog {
 				
 				}
 			});
-			btConfirmarLogin.setBounds(437, 258, 89, 23);
+			btConfirmarLogin.setBounds(287, 247, 107, 23);
 		}
 		return btConfirmarLogin;
 	}
@@ -306,15 +306,15 @@ public class DialogLogin extends JDialog {
 	}
 	private JLabel getLbUsuarioRegistro() {
 		if (lbUsuarioRegistro == null) {
-			lbUsuarioRegistro = new JLabel("Usuario");
-			lbUsuarioRegistro.setBounds(209, 71, 36, 14);
+			lbUsuarioRegistro = new JLabel("Usuario:");
+			lbUsuarioRegistro.setBounds(184, 71, 55, 14);
 		}
 		return lbUsuarioRegistro;
 	}
 	private JTextField getTxUsuarioRegistro() {
 		if (txUsuarioRegistro == null) {
 			txUsuarioRegistro = new JTextField();
-			txUsuarioRegistro.setBounds(255, 71, 131, 20);
+			txUsuarioRegistro.setBounds(249, 68, 131, 20);
 			txUsuarioRegistro.setColumns(10);
 		}
 		return txUsuarioRegistro;
@@ -322,28 +322,28 @@ public class DialogLogin extends JDialog {
 	private JLabel getLbContraseniaRegistro() {
 		if (lbContraseniaRegistro == null) {
 			lbContraseniaRegistro = new JLabel("Contrase\u00F1a:");
-			lbContraseniaRegistro.setBounds(185, 121, 60, 14);
+			lbContraseniaRegistro.setBounds(166, 121, 89, 14);
 		}
 		return lbContraseniaRegistro;
 	}
 	private JPasswordField getPfContraseniaRegistro() {
 		if (pfContraseniaRegistro == null) {
 			pfContraseniaRegistro = new JPasswordField();
-			pfContraseniaRegistro.setBounds(255, 121, 131, 20);
+			pfContraseniaRegistro.setBounds(249, 118, 131, 20);
 		}
 		return pfContraseniaRegistro;
 	}
 	private JLabel getLbContraseniaRegistro2() {
 		if (lbContraseniaRegistro2 == null) {
 			lbContraseniaRegistro2 = new JLabel("Repita su contrase\u00F1a:");
-			lbContraseniaRegistro2.setBounds(139, 169, 106, 14);
+			lbContraseniaRegistro2.setBounds(114, 169, 131, 14);
 		}
 		return lbContraseniaRegistro2;
 	}
 	private JPasswordField getPfContraseniaRegistro2() {
 		if (pfContraseniaRegistro2 == null) {
 			pfContraseniaRegistro2 = new JPasswordField();
-			pfContraseniaRegistro2.setBounds(255, 166, 131, 20);
+			pfContraseniaRegistro2.setBounds(249, 163, 131, 20);
 		}
 		return pfContraseniaRegistro2;
 	}
@@ -366,7 +366,7 @@ public class DialogLogin extends JDialog {
 				}
 
 			});
-			btRegistrarse.setBounds(306, 220, 89, 23);
+			btRegistrarse.setBounds(306, 220, 106, 23);
 		}
 		return btRegistrarse;
 	}
@@ -396,32 +396,32 @@ public class DialogLogin extends JDialog {
 	}
 	private JButton getBtCancelar() {
 		if (btCancelar == null) {
-			btCancelar = new JButton("Cancelar");
+			btCancelar = new JButton("Salir");
 			btCancelar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					System.exit(0);
 				}
 			});
-			btCancelar.setBounds(326, 39, 117, 32);
+			btCancelar.setBounds(317, 39, 153, 82);
 		}
 		return btCancelar;
 	}
 	private JButton getBtCancelarRegistro() {
 		if (btCancelarRegistro == null) {
-			btCancelarRegistro = new JButton("Cancelar");
+			btCancelarRegistro = new JButton("Volver Atr\u00E1s");
 			btCancelarRegistro.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					limpiarRegistro();
 					cl.show(contentPanel, "pnPrincipal");
 				}
 			});
-			btCancelarRegistro.setBounds(169, 220, 89, 23);
+			btCancelarRegistro.setBounds(156, 220, 115, 23);
 		}
 		return btCancelarRegistro;
 	}
 	private JButton getBtCancelarLogin() {
 		if (btCancelarLogin == null) {
-			btCancelarLogin = new JButton("Cancelar");
+			btCancelarLogin = new JButton("Volver Atr\u00E1s");
 			btCancelarLogin.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					limpiarLogin();
@@ -431,7 +431,7 @@ public class DialogLogin extends JDialog {
 					cl.show(contentPanel, "pnPrincipal");
 				}
 			});
-			btCancelarLogin.setBounds(338, 258, 89, 23);
+			btCancelarLogin.setBounds(160, 247, 117, 23);
 		}
 		return btCancelarLogin;
 	}
