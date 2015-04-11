@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +20,11 @@ import javax.swing.border.EmptyBorder;
 
 import es.uniovi.asw.trivial.infraestructure.model.Answer;
 import es.uniovi.asw.trivial.infraestructure.model.Question;
+
 import java.awt.Font;
+
 import javax.swing.JTextArea;
+
 import java.awt.Color;
 
 public class DialogPregunta extends JDialog {
@@ -124,8 +128,23 @@ public class DialogPregunta extends JDialog {
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				comprobarRespuesta(isCorrect, label);
+				cerrarTrasXTiempo(); //no aparece el tick de respuesta correcta, comentar esto sino se soluciona
 			}
 		});
+	}
+	
+	private void cerrarTrasXTiempo() {
+		long t1 = System.currentTimeMillis();
+		long t2 =0;
+		long tiempo = 0;
+		while(tiempo <5000){
+			t2 = System.currentTimeMillis();
+			tiempo = t2-t1;
+		}
+			
+		if(tiempo==5000){
+			this.processWindowEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+		}
 	}
 
 	private void comprobarRespuesta(boolean isCorrect, JLabel label) {
