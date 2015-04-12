@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JSpinner;
@@ -21,6 +22,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import es.uniovi.asw.game.persistence.UserDb;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -289,6 +291,9 @@ public class DialogLogin extends JDialog {
 
 			pnUsuario.revalidate();
 			pnUsuario.repaint();
+		}else{
+			txUsuario.requestFocusInWindow();
+			JOptionPane.showMessageDialog(null, "La combinacion de usuario y contraseña no es correcta.");
 		}
 		
 		if(contador!=jugadores) {
@@ -421,7 +426,8 @@ public class DialogLogin extends JDialog {
 			limpiarRegistro();
 			cl.show(contentPanel, "pnPrincipal");
 		} else {
-			System.out.println("Las contraseñas no coinciden");
+			txUsuarioRegistro.requestFocusInWindow();
+			JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
 		}
 	}
 
