@@ -27,7 +27,8 @@ public class PersistenceServiceImpl implements PersistenceService {
 
 	public PersistenceServiceImpl() {
 
-		collQuestions = MongoConnection.getInstance().getCollection();
+		collQuestions = (MongoConnection.getInstance().getDB())
+				.getCollection(MongoConnection.nameCollectionQuestion);
 		collUser = (MongoConnection.getInstance().getDB())
 				.getCollection(MongoConnection.nameCollectionUser);
 
