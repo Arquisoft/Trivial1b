@@ -9,7 +9,8 @@ import java.net.UnknownHostException;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
-import com.mongodb.MongoClient;
+import com.mongodb.MongoException;
+import com.mongodb.MongoURI;
 import com.mongodb.util.JSON;
 
 import es.uniovi.asw.trivial.infraestructure.factories.FactoryService;
@@ -24,13 +25,13 @@ import es.uniovi.asw.trivial.infraestructure.log.impl.Logger;
  * 
  */
 public class MongoConnection {
-	private static MongoClient conn;
+//	private static MongoClient conn;
 
 	private static DB db;
 
 	private static DBCollection coll;
 
-	private static final String nombreBD = "trivial1B";
+//	private static final String nombreBD = "trivial1B";
 
 	private static final String fichero = "./preguntasTrivial.txt";
 	private static final String ficheroUsers = "./users.txt";
@@ -43,7 +44,7 @@ public class MongoConnection {
 	private static MongoConnection instance = null;
 
 	private MongoConnection() {
-		getConnection();
+		connection();
 		conectar();
 		loadBD();
 	}
@@ -55,17 +56,30 @@ public class MongoConnection {
 		return instance;
 	}
 
-	private MongoClient getConnection() {
+	@SuppressWarnings("deprecation")
+	private void connection() {
+
+		// conn = new MongoClient("localhost");
+
+		String uriString = "mongodb://adminTrivial1b:trivial1b@ds041177.mongolab.com:41177/trivial1b";
+		
+		MongoURI uri = new MongoURI(uriString);
 		try {
-			conn = new MongoClient("localhost");
+			db = uri.connectDB();
+			db.authenticate(uri.getUsername(), uri.getPassword());
+			//Set<String> colls = db.getCollectionNames();
+			
 		} catch (UnknownHostException e) {
-			log.error("Erro al obtener una conexiÃ³n");
+			log.error("Error al obtener una conexion");
+		} catch (MongoException me) {
+			log.error("Error al obtener una conexion");
+			
 		}
-		return conn;
+
 	}
 
 	private static DB conectar() {
-		db = conn.getDB(nombreBD);
+		
 		return db;
 	}
 
@@ -113,15 +127,16 @@ public class MongoConnection {
 		DBObject doc;
 
 		try {
+			if (coll.count() == 0) {
+				FileReader fr = new FileReader(fichero);
+				BufferedReader br = new BufferedReader(fr);
 
-			FileReader fr = new FileReader(fichero);
-			BufferedReader br = new BufferedReader(fr);
+				while ((s = br.readLine()) != null) {
 
-			while ((s = br.readLine()) != null) {
+					doc = (DBObject) JSON.parse(s);
 
-				doc = (DBObject) JSON.parse(s);
-
-				coll.insert(doc);
+					coll.insert(doc);
+				}
 			}
 
 		} catch (FileNotFoundException e) {
