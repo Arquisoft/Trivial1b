@@ -12,11 +12,13 @@ public class User {
 	private int nWonGames;
 	private int nLostGames;
 	private Celda celda;
+	private int quesitos;
 
 	public User(String name, String password) {
 		super();
 		this.name = name;
 		this.password = password;
+		this.quesitos = 0;
 	}
 		
 	public Celda getCelda() {
@@ -25,6 +27,14 @@ public class User {
 
 	public void setCelda(Celda celda) {
 		this.celda = celda;
+	}
+	
+	public int getQuesitos() {
+		return quesitos;
+	}
+
+	public void setQuesitos(int quesitos) {
+		this.quesitos = quesitos;
 	}
 
 	@Override

@@ -1973,11 +1973,17 @@ public class VentanaPrincipal extends JFrame {
 					if(dado != -1){
 						if(Integer.parseInt(coordenadas[0]) == 4 && Integer.parseInt(coordenadas[1]) == 0 ||
 								Integer.parseInt(coordenadas[0]) == 4 && Integer.parseInt(coordenadas[1]) == 8 ){
-							//TODO POSIBLES CAMINOS AQUI!!!
 							guardarPosicion(Integer.parseInt(coordenadas[0]), Integer.parseInt(coordenadas[1]));
 							inicilizarBotonesText();
 							pintarJugadorActual();
 							mostrarCaminos();
+						}
+						if(Integer.parseInt(coordenadas[0]) == 4 && Integer.parseInt(coordenadas[1]) == 4){
+							if(trivial.getUsuarios().get(trivial.getTurno()).getQuesitos() == 6){
+								//TODO RONDA FINAL
+							}else{
+								//TODO PREGUNTA ALEATORIA
+							}
 						}
 						else{
 							inicilizarBotonesText();
@@ -2354,6 +2360,8 @@ public class VentanaPrincipal extends JFrame {
 		Celda celdaActual = trivial.getUsuarios().get(trivial.getTurno()).getCelda();
 		if(trivial.getTablero9x9().getCeldaTablero(celdaActual.getFila(), celdaActual.getColumna()).getQuesito()){
 			conseguirQuesito();
+			int quesito = trivial.getUsuarios().get(trivial.getTurno()).getQuesitos();
+			trivial.getUsuarios().get(trivial.getTurno()).setQuesitos(quesito++);
 		}
 	}
 }
