@@ -484,23 +484,31 @@ public class PreguntaDb {
 	}
 
 	public Question lookup(String category) {
-		List<Question> preguntas = table.get(category);
+		List<Question> preguntas = comprobarPreguntas( table.get(category));
+		Question q = preguntas.get(0);
 		
-		for(Question q: preguntas){
-			
-			if(!q.isUsed())
-				//TODO ISUDEA A TRUE
-				return q;
+		while(q.isUsed()){
+			q = preguntas.get((int) (Math.random()*preguntas.size()));
 		}
-				
-		
-		resetearRespuestas(preguntas);
-		return lookup(category);
+
+		return q;
 	}
 	
-	public void resetearRespuestas(List<Question> preguntas) {
-		for(Question q: preguntas)
+	private List<Question> comprobarPreguntas(List<Question> lista) {
+		for(Question q : lista){
+			if(!q.isUsed()){
+				return lista;
+			}
+		}
+		
+		return resetearRespuestas(lista);
+	}
+
+	public List<Question> resetearRespuestas(List<Question> preguntas) {
+		for(Question q: preguntas){
 			q.setUsed(false);
+		}
+		return preguntas;
 	}
 
 }
