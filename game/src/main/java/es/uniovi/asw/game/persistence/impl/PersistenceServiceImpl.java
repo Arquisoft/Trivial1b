@@ -41,7 +41,7 @@ public class PersistenceServiceImpl implements PersistenceService {
 		Answer a = new Answer();
 		DBObject cursor;
 		Object obj;
-		Integer in = 0;
+		String respuestaFormat;
 
 		BasicDBObject filtro = new BasicDBObject();
 
@@ -58,10 +58,12 @@ public class PersistenceServiceImpl implements PersistenceService {
 			q.setQuestion(obj.toString());
 
 			obj = cursor.get("answersFalse");
-			// System.out.println(obj.toString());
 			String diaArray[] = obj.toString().split(",");
 
 			for (String s : diaArray) {
+				respuestaFormat=s.replace("\"", "");
+				s=respuestaFormat.replace("[", "");
+				respuestaFormat=s.replace("]","");
 				a.setResponse(s);
 				a.setCorrect(false);
 				q.addAnswer(a);
@@ -71,12 +73,15 @@ public class PersistenceServiceImpl implements PersistenceService {
 
 			diaArray = obj.toString().split(",");
 			for (String s : diaArray) {
+				respuestaFormat=s.replace("\"", "");
+				s=respuestaFormat.replace("[", "");
+				respuestaFormat=s.replace("]","");
 				a.setResponse(s);
 				a.setCorrect(true);
 				q.addAnswer(a);
 
 			}
-			in++;
+			
 
 			list.add(q);
 		}
