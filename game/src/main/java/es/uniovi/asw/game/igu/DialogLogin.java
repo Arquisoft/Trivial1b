@@ -147,6 +147,7 @@ public class DialogLogin extends JDialog {
 				public void actionPerformed(ActionEvent arg0) {
 					jugadores = (Integer) spJugadores.getValue();
 					cl.show(contentPanel, "pnLogin");
+					txUsuario.requestFocusInWindow();
 					vp.setJugadores(jugadores);
 				}
 			});
@@ -160,6 +161,7 @@ public class DialogLogin extends JDialog {
 			btnRegistrarse.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					cl.show(contentPanel, "pnRegistro");
+					txUsuarioRegistro.requestFocusInWindow();
 				}
 			});
 			btnRegistrarse.setBounds(101, 39, 153, 82);
