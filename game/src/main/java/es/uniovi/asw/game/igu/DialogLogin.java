@@ -21,8 +21,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import es.uniovi.asw.game.persistence.UserDb;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class DialogLogin extends JDialog {
 
@@ -141,7 +139,6 @@ public class DialogLogin extends JDialog {
 	private JButton getBtnConfirmar() {
 		if (btnConfirmar == null) {
 			btnConfirmar = new JButton("Iniciar Sesi\u00F3n");
-			btnConfirmar.setMnemonic('I');
 			btnConfirmar.setBounds(256, 116, 129, 31);
 			btnConfirmar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
@@ -156,7 +153,6 @@ public class DialogLogin extends JDialog {
 	private JButton getBtnRegistrarse() {
 		if (btnRegistrarse == null) {
 			btnRegistrarse = new JButton("Registrarse");
-			btnRegistrarse.setMnemonic('R');
 			btnRegistrarse.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					cl.show(contentPanel, "pnRegistro");
@@ -232,14 +228,6 @@ public class DialogLogin extends JDialog {
 	private JPasswordField getPfPassword() {
 		if (pfPassword == null) {
 			pfPassword = new JPasswordField();
-			pfPassword.addKeyListener(new KeyAdapter() {
-				@Override
-				public void keyPressed(KeyEvent arg0) {
-					if(arg0.getKeyCode()==KeyEvent.VK_ENTER){
-						iniciarSesion();
-					}
-				}
-			});
 			pfPassword.setBounds(10, 30, 147, 32);
 		}
 		return pfPassword;
@@ -247,14 +235,6 @@ public class DialogLogin extends JDialog {
 	private JTextField getTxUsuario() {
 		if (txUsuario == null) {
 			txUsuario = new JTextField();
-			txUsuario.addKeyListener(new KeyAdapter() {
-				@Override
-				public void keyPressed(KeyEvent e) {
-					if(e.getKeyCode()==KeyEvent.VK_ENTER){
-						iniciarSesion();
-					}
-				}
-			});
 			txUsuario.setBounds(10, 31, 147, 31);
 			txUsuario.setColumns(10);
 		}
@@ -263,41 +243,36 @@ public class DialogLogin extends JDialog {
 	private JButton getBtConfirmarLogin() {
 		if (btConfirmarLogin == null) {
 			btConfirmarLogin = new JButton("Confirmar");
-			btConfirmarLogin.setMnemonic('C');
 			btConfirmarLogin.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					
-					 iniciarSesion();
+					//Obtenemos el usuario y la password de los campos.
+					String name = txUsuario.getText();
+					String password = String.valueOf(pfPassword.getPassword());
+					
+					//Si existe en la tabla 
+					if(usuariodb.login(name, password)) {
+						vp.getPartida().getUsuarios().add(usuariodb.lookup(name));
+						contador++;
+						pnUsuario.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 1, true), "Usuario " + (contador+1), TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+
+						pnUsuario.revalidate();
+						pnUsuario.repaint();
+					}
+					
+					if(contador!=jugadores) {
+						limpiarLogin();
+						cl.show(contentPanel, "pnLogin");
+					} else {
+						vp.inicializarJugadores();
+						dispose();
+					}
 				
 				}
 			});
 			btConfirmarLogin.setBounds(287, 247, 107, 23);
 		}
 		return btConfirmarLogin;
-	}
-	
-	private void iniciarSesion(){
-		//Obtenemos el usuario y la password de los campos.
-		String name = txUsuario.getText();
-		String password = String.valueOf(pfPassword.getPassword());
-		
-		//Si existe en la tabla 
-		if(usuariodb.login(name, password)) {
-			vp.getPartida().getUsuarios().add(usuariodb.lookup(name));
-			contador++;
-			pnUsuario.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 1, true), "Usuario " + (contador+1), TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-
-			pnUsuario.revalidate();
-			pnUsuario.repaint();
-		}
-		
-		if(contador!=jugadores) {
-			limpiarLogin();
-			cl.show(contentPanel, "pnLogin");
-		} else {
-			vp.inicializarJugadores();
-			dispose();
-		}
 	}
 
 	protected void limpiarLogin() {
@@ -339,14 +314,6 @@ public class DialogLogin extends JDialog {
 	private JTextField getTxUsuarioRegistro() {
 		if (txUsuarioRegistro == null) {
 			txUsuarioRegistro = new JTextField();
-			txUsuarioRegistro.addKeyListener(new KeyAdapter() {
-				@Override
-				public void keyPressed(KeyEvent e) {
-					if(e.getKeyCode()==KeyEvent.VK_ENTER){
-						registrarse();
-					}
-				}
-			});
 			txUsuarioRegistro.setBounds(249, 68, 131, 20);
 			txUsuarioRegistro.setColumns(10);
 		}
@@ -362,14 +329,6 @@ public class DialogLogin extends JDialog {
 	private JPasswordField getPfContraseniaRegistro() {
 		if (pfContraseniaRegistro == null) {
 			pfContraseniaRegistro = new JPasswordField();
-			pfContraseniaRegistro.addKeyListener(new KeyAdapter() {
-				@Override
-				public void keyPressed(KeyEvent e) {
-					if(e.getKeyCode()==KeyEvent.VK_ENTER){
-						registrarse();
-					}
-				}
-			});
 			pfContraseniaRegistro.setBounds(249, 118, 131, 20);
 		}
 		return pfContraseniaRegistro;
@@ -384,14 +343,6 @@ public class DialogLogin extends JDialog {
 	private JPasswordField getPfContraseniaRegistro2() {
 		if (pfContraseniaRegistro2 == null) {
 			pfContraseniaRegistro2 = new JPasswordField();
-			pfContraseniaRegistro2.addKeyListener(new KeyAdapter() {
-				@Override
-				public void keyPressed(KeyEvent e) {
-					if(e.getKeyCode()==KeyEvent.VK_ENTER){
-						registrarse();
-					}
-				}
-			});
 			pfContraseniaRegistro2.setBounds(249, 163, 131, 20);
 		}
 		return pfContraseniaRegistro2;
@@ -399,10 +350,18 @@ public class DialogLogin extends JDialog {
 	private JButton getBtRegistrarse() {
 		if (btRegistrarse == null) {
 			btRegistrarse = new JButton("Registrarse");
-			btRegistrarse.setMnemonic('R');
 			btRegistrarse.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					registrarse();
+					String username = txUsuarioRegistro.getText();
+					String pass1 = String.valueOf(pfContraseniaRegistro.getPassword());
+					String pass2 = String.valueOf(pfContraseniaRegistro2.getPassword());
+					if(pass1.equals(pass2) && pass1.length()!=0) {
+						usuariodb.addUser(username, pass1);
+						limpiarRegistro();
+						cl.show(contentPanel, "pnPrincipal");
+					} else {
+						System.out.println("Las contraseñas no coinciden");
+					}
 					
 				}
 
@@ -412,18 +371,7 @@ public class DialogLogin extends JDialog {
 		return btRegistrarse;
 	}
 	
-	private void registrarse(){
-		String username = txUsuarioRegistro.getText();
-		String pass1 = String.valueOf(pfContraseniaRegistro.getPassword());
-		String pass2 = String.valueOf(pfContraseniaRegistro2.getPassword());
-		if(pass1.equals(pass2) && pass1.length()!=0) {
-			usuariodb.addUser(username, pass1);
-			limpiarRegistro();
-			cl.show(contentPanel, "pnPrincipal");
-		} else {
-			System.out.println("Las contraseñas no coinciden");
-		}
-	}
+	
 
 	private void limpiarRegistro() {
 		txUsuarioRegistro.setText("");
@@ -449,7 +397,6 @@ public class DialogLogin extends JDialog {
 	private JButton getBtCancelar() {
 		if (btCancelar == null) {
 			btCancelar = new JButton("Salir");
-			btCancelar.setMnemonic('S');
 			btCancelar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					System.exit(0);
@@ -462,7 +409,6 @@ public class DialogLogin extends JDialog {
 	private JButton getBtCancelarRegistro() {
 		if (btCancelarRegistro == null) {
 			btCancelarRegistro = new JButton("Volver Atr\u00E1s");
-			btCancelarRegistro.setMnemonic('V');
 			btCancelarRegistro.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					limpiarRegistro();
@@ -476,7 +422,6 @@ public class DialogLogin extends JDialog {
 	private JButton getBtCancelarLogin() {
 		if (btCancelarLogin == null) {
 			btCancelarLogin = new JButton("Volver Atr\u00E1s");
-			btCancelarLogin.setMnemonic('V');
 			btCancelarLogin.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					limpiarLogin();

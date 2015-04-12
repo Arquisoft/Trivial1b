@@ -1980,7 +1980,20 @@ public class VentanaPrincipal extends JFrame {
 						}
 						if(Integer.parseInt(coordenadas[0]) == 4 && Integer.parseInt(coordenadas[1]) == 4){
 							if(trivial.getUsuarios().get(trivial.getTurno()).getQuesitos() == 6){
-								//TODO RONDA FINAL
+								guardarPosicion(Integer.parseInt(coordenadas[0]), Integer.parseInt(coordenadas[1]));
+								int res = crearPreguntaFinal();
+								
+								if(res >= 4){
+									//TODO TERMINAR JUEGO
+								}
+								else{
+									cambiarLabelsDeTurno();
+									dado = -1;
+									btnDado.setEnabled(true);
+									inicilizarBotonesText();
+									pintarJugadorActual();
+								}
+								
 							}else{
 								guardarPosicion(Integer.parseInt(coordenadas[0]), Integer.parseInt(coordenadas[1]));
 								crearPregunta();
@@ -2210,6 +2223,15 @@ public class VentanaPrincipal extends JFrame {
 		dP.setLocationRelativeTo(this);
 		dP.sacarPreguntaAleatoria();
 		dP.setVisible(true);
+	}
+	
+	private int crearPreguntaFinal(){
+		DialogPregunta dP = new DialogPregunta(this);
+		dP.setLocationRelativeTo(this);
+		int res = dP.sacarTandaFinal();
+		dP.setVisible(true);
+		
+		return res;
 	}
 
 	public void cambiarLabelsDeTurno() {
