@@ -3,8 +3,8 @@ package es.uniovi.asw.game.model;
 
 public class Tablero9x9 {
 	Celda[][] tablero = new Celda[9][9];
-	String[] categorias = new String[] { "Geografia", "Entretenimiento",
-			"Historia", "Literatura", "Ciencia", "Deportes", "Dado", "Final" };
+	String[] categorias = new String[] { "Geografía", "Espectaculos",
+			"Historia", "Arte y Literatura", "Ciencia", "Deportes", "Dado", "Final" };
 
 	public Tablero9x9(int numeroJugadores) {
 		inicializarTablero(numeroJugadores);
