@@ -87,8 +87,6 @@ public class DialogLogin extends JDialog {
 	public DialogLogin(VentanaPrincipal vp) {
 
 		this.vp = vp;
-		usuariodb.addUser("aninabg", "seguridad");
-		usuariodb.addUser("samolo", "secure");
 		setBounds(100, 100, 581, 421);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -2,6 +2,7 @@ package es.uniovi.asw.game.persistence;
 
 import java.util.ArrayList;
 
+import es.uniovi.asw.game.model.User;
 import es.uniovi.asw.trivial.infraestructure.model.Question;
 
 /**
@@ -26,5 +27,7 @@ public interface PersistenceService {
 	public boolean updateUsuarioPartidasPerdidas(String login, int matchFailed);
 	
 	public boolean deleteUsuario(String login);
+
+	public User findUserByLogin(String login);
 
 }

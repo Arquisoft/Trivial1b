@@ -7,7 +7,9 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 
+import es.uniovi.asw.game.model.User;
 import es.uniovi.asw.game.persistence.PersistenceService;
+import es.uniovi.asw.trivial.infraestructure.log.impl.Log;
 import es.uniovi.asw.trivial.infraestructure.model.Answer;
 import es.uniovi.asw.trivial.infraestructure.model.Question;
 
@@ -107,9 +109,9 @@ public class PersistenceServiceImpl implements PersistenceService {
 		BasicDBObject filtro = new BasicDBObject();
 
 		filtro.put("login", login);
-		DBCursor cur = collUser.find(filtro);
-
-		if (cur.next().equals(null)) {
+		DBObject cur = collUser.findOne(filtro);
+		
+		if(cur!=null) {
 			return false;
 		}
 
@@ -124,11 +126,9 @@ public class PersistenceServiceImpl implements PersistenceService {
 		doc.put("matchFailed", matchFailed);
 
 		collUser.insert(doc);
-
-		cur = collUser.find(filtro);
-		if (!cur.next().equals(null)) {
+		
+		if(findByLogin(login)!=null)
 			return true;
-		}
 		return false;
 
 	}
@@ -276,6 +276,33 @@ public class PersistenceServiceImpl implements PersistenceService {
 			return true; //usuario a borrar no existe en BD
 		}
 		return false;
+	}
+	
+	
+	@Override
+	public User findUserByLogin(String login) {
+		
+		BasicDBObject filtro = new BasicDBObject();
+
+		filtro.put("login", login);
+		DBObject cur = collUser.findOne(filtro);
+		
+		if(cur==null) {
+			return null;
+		}
+		User user = new User(String.valueOf(cur.get("login")), String.valueOf(cur.get("passwd")));
+		if(cur.get("privilegio").equals(0)) {
+			user.setPrivileged(false);
+		}
+		else {
+			user.setPrivileged(true);
+		}
+		user.setnRightQuestions((int) cur.get("questionSuccess"));
+		user.setnWrongQuestions( (int) cur.get("questionsFailed"));
+		user.setnWonGames( (int) cur.get("matchSuccess"));
+		user.setnLostGames( (int) cur.get("matchFailed"));
+		
+		return user;
 	}
 
 }

@@ -10,13 +10,11 @@ public class UserDb {
 	private SortedMap<String, User> table = new TreeMap<String, User>();
 	
 	public UserDb() {
-		String[] nombres = { "aaa", "bbb", "ccc", "ddd" };
-		for(int i=0; i<nombres.length;i++)
-			addUser(nombres[i], i+"");
 	}
 
+
 	public void addUser(String name, String password) {
-		table.put(name, new User(name, password));
+		 FactoryService.getPersistenceService().saveUsuario(name, password, 0, 0, 0, 0, 0);
 	}
 
 	public Integer size() {
@@ -24,13 +22,13 @@ public class UserDb {
 	}
 
 	public User lookup(String name) {
-		return table.get(name);
+		return FactoryService.getPersistenceService().findUserByLogin(name);
 	}
 
 	public Boolean login(String name, String password) {
-		if (table.containsKey(name)) {
-			User u = lookup(name);
-			return u.getPassword().equals(password);
+		User usuario =  FactoryService.getPersistenceService().findUserByLogin(name);
+		if (usuario!=null) {
+			return usuario.getPassword().equals(password);
 		} else
 			return false;
 	}

@@ -1,0 +1,9 @@
+{'login':'UO232346', 'passwd':'UO232346', 'privilegio':0, 'questionSuccess':0,'questionsFailed':0, 'matchSuccess':0,'matchFailed':0}
+{'login':'UO227799', 'passwd':'UO227799', 'privilegio':0, 'questionSuccess':0,'questionsFailed':0, 'matchSuccess':0,'matchFailed':0}
+{'login':'UO227982', 'passwd':'UO227982', 'privilegio':0, 'questionSuccess':0,'questionsFailed':0, 'matchSuccess':0,'matchFailed':0}
+{'login':'UO227648', 'passwd':'UO227648', 'privilegio':0, 'questionSuccess':0,'questionsFailed':0, 'matchSuccess':0,'matchFailed':0}
+{'login':'UO191154', 'passwd':'UO191154', 'privilegio':0, 'questionSuccess':0,'questionsFailed':0, 'matchSuccess':0,'matchFailed':0}
+{'login':'UO229803', 'passwd':'UO229803', 'privilegio':0, 'questionSuccess':0,'questionsFailed':0, 'matchSuccess':0,'matchFailed':0}
+{'login':'UO232334', 'passwd':'UO232334', 'privilegio':0, 'questionSuccess':0,'questionsFailed':0, 'matchSuccess':0,'matchFailed':0}
+{'login':'UO224927', 'passwd':'UO224927', 'privilegio':0, 'questionSuccess':0,'questionsFailed':0, 'matchSuccess':0,'matchFailed':0}
+{'login':'UO212948', 'passwd':'UO212948', 'privilegio':0, 'questionSuccess':0,'questionsFailed':0, 'matchSuccess':0,'matchFailed':0}

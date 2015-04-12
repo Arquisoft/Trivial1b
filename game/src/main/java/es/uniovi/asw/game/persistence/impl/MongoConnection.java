@@ -32,7 +32,7 @@ public class MongoConnection {
 	private static final String nombreBD = "trivial1B";
 
 	private static final String fichero = "./preguntasTrivial.txt";
-	
+	private static final String ficheroUsers = "./users.txt";
 	 
 
 	public static final String nameCollectionQuestion = "QuestionsAnswers";
@@ -73,23 +73,58 @@ public class MongoConnection {
 		return db;
 	}
 
-	@SuppressWarnings("resource")
+	
 	private static void loadBD() {
-		String s = new String();
+		loadQuestions();
+		loadUsers();
 		
-		coll = db.getCollection(nameCollectionQuestion);
+	}
+	
+	@SuppressWarnings("resource")
+	private static void loadUsers() {
+		String s;
+		coll = db.getCollection(nameCollectionUser);
 		DBObject doc;
 
 		try {
 			
-			FileReader fr = new FileReader(fichero);
-			BufferedReader br = new BufferedReader(fr);
+			if(coll.count()==0) {
+				FileReader fr = new FileReader(ficheroUsers);
+				BufferedReader br = new BufferedReader(fr);
 
-			while ((s = br.readLine()) != null) {
-				
-				doc = (DBObject) JSON.parse(s);
-				
-				coll.insert(doc);
+				while ((s = br.readLine()) != null) {
+					
+					doc = (DBObject) JSON.parse(s);
+					coll.insert(doc);
+				}
+			}
+			
+		} catch (FileNotFoundException e) {
+			log.error("Ruta de fichero no encontrada");
+		} catch (IOException e) {
+			log.error("Error al leer el fichero, fichero vacio");
+		}
+		
+	}
+	
+	@SuppressWarnings("resource")
+	private static void loadQuestions() {
+		String s;
+		coll = db.getCollection(nameCollectionQuestion);
+		DBObject doc;
+
+		try {
+			if(coll.count()==0) {
+
+				FileReader fr = new FileReader(fichero);
+				BufferedReader br = new BufferedReader(fr);
+
+				while ((s = br.readLine()) != null) {
+					
+					doc = (DBObject) JSON.parse(s);
+					
+					coll.insert(doc);
+				}
 			}
 			
 		} catch (FileNotFoundException e) {
