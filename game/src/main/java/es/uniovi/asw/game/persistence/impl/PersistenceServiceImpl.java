@@ -53,7 +53,7 @@ public class PersistenceServiceImpl implements PersistenceService {
 			q.setQuestion(obj.toString());
 
 			obj = cursor.get("answersFalse");
-			System.out.println(obj.toString());
+//			System.out.println(obj.toString());
 			String diaArray[] = obj.toString().split(",");
 			
 			for (String s : diaArray) {

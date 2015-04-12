@@ -1982,7 +1982,14 @@ public class VentanaPrincipal extends JFrame {
 							if(trivial.getUsuarios().get(trivial.getTurno()).getQuesitos() == 6){
 								//TODO RONDA FINAL
 							}else{
-								//TODO PREGUNTA ALEATORIA
+								guardarPosicion(Integer.parseInt(coordenadas[0]), Integer.parseInt(coordenadas[1]));
+								crearPregunta();
+								
+								cambiarLabelsDeTurno();
+								dado = -1;
+								btnDado.setEnabled(true);
+								inicilizarBotonesText();
+								pintarJugadorActual();
 							}
 						}
 						else{
@@ -2194,7 +2201,14 @@ public class VentanaPrincipal extends JFrame {
 	private void crearPregunta(int i, int j) {
 		DialogPregunta dP = new DialogPregunta(this);
 		dP.setLocationRelativeTo(this);
-		dP.sacarPregunta(i, j);
+		dP.sacarPreguntaPorCelda(i, j);
+		dP.setVisible(true);
+	}
+	
+	private void crearPregunta(){
+		DialogPregunta dP = new DialogPregunta(this);
+		dP.setLocationRelativeTo(this);
+		dP.sacarPreguntaAleatoria();
 		dP.setVisible(true);
 	}
 

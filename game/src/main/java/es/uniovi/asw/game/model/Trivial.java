@@ -66,6 +66,10 @@ public class Trivial {
 		return preguntas.lookup(getTablero9x9().getCeldaTablero(i, j).getCategoria());
 	}
 	
+	public Question sacarPregunta(String categoria){
+		return preguntas.lookup(categoria);
+	}
+	
 	/**
 	 * M�todo que actualiza el tablero
 	 * @param tablero, nuevo tablero

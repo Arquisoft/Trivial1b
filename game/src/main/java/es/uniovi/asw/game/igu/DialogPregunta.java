@@ -28,6 +28,8 @@ import javax.swing.JTextArea;
 import java.awt.Color;
 
 public class DialogPregunta extends JDialog {
+	
+	private int contador;
 
 	private List<JButton> botones = new ArrayList<JButton>();
 
@@ -39,6 +41,9 @@ public class DialogPregunta extends JDialog {
 	private JLabel labelCategoria;
 	private JLabel labelTitulo;
 	private JTextArea textAreaQuestion;
+	
+	String[] categorias = new String[] { "Geografía", "Espectaculos",
+			"Historia", "Arte y Literatura", "Ciencia", "Deportes"};
 
 	/**
 	 * Launch the application.
@@ -60,6 +65,7 @@ public class DialogPregunta extends JDialog {
 	 * Create the frame.
 	 */
 	public DialogPregunta(VentanaPrincipal vp) {
+		this.contador = 0;
 		this.vp = vp;
 		setTitle("Pregunta");
 
@@ -83,9 +89,26 @@ public class DialogPregunta extends JDialog {
 		return panelCentral;
 	}
 
-	public void sacarPregunta(int i, int j) {
-		//TODO COMPROBAR QUE NO ES LA FINAL!!! category == final
+	public int sacarTandaFinal(){
+		for(String categoria: categorias){
+			Question q = vp.getPartida().sacarPregunta(categoria);
+			sacarPregunta(q);
+		}
+		return contador;
+	}
+	
+	public void sacarPreguntaAleatoria(){
+		int categoria = (int) ((Math.random()*6) + 1);
+		Question q = vp.getPartida().sacarPregunta(categorias[categoria]);
+		sacarPregunta(q);
+	}
+	
+	public void sacarPreguntaPorCelda(int i, int j) {
 		Question q = vp.getPartida().sacarPregunta(i, j);
+		sacarPregunta(q);
+	}
+
+	private void sacarPregunta(Question q) {
 		q.setUsed(true);
 		textAreaQuestion.setText(q.getQuestion());
 		labelCategoria.setText(q.getCategoria().toUpperCase());
@@ -154,6 +177,7 @@ public class DialogPregunta extends JDialog {
 			//sigue el mismo jugador, no cambia nada			
 			// JOptionPane.showMessageDialog(null, "Respuesta Correcta");
 			vp.comprobarQueSeaQuesito();
+			contador++;
 		} else {
 			// System.out.println("Respuesta incorrecta");
 			label.setIcon(new ImageIcon(getClass().getResource("/cross.png")));
