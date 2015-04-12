@@ -1,6 +1,7 @@
 package es.uniovi.asw.game.persistence.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
@@ -9,15 +10,15 @@ import com.mongodb.DBObject;
 
 import es.uniovi.asw.game.model.User;
 import es.uniovi.asw.game.persistence.PersistenceService;
-import es.uniovi.asw.trivial.infraestructure.log.impl.Log;
 import es.uniovi.asw.trivial.infraestructure.model.Answer;
 import es.uniovi.asw.trivial.infraestructure.model.Question;
 
 /**
- * Clase con las consultas posibles a las dos base de datos que maneja la aplicación
- * collQuestions y collUser
+ * Clase con las consultas posibles a las dos base de datos que maneja la
+ * aplicación collQuestions y collUser
+ * 
  * @author María José Sanchez Doria
- *
+ * 
  */
 public class PersistenceServiceImpl implements PersistenceService {
 
@@ -29,6 +30,7 @@ public class PersistenceServiceImpl implements PersistenceService {
 		collQuestions = MongoConnection.getInstance().getCollection();
 		collUser = (MongoConnection.getInstance().getDB())
 				.getCollection(MongoConnection.nameCollectionUser);
+
 	}
 
 	@Override
@@ -38,7 +40,7 @@ public class PersistenceServiceImpl implements PersistenceService {
 		Answer a = new Answer();
 		DBObject cursor;
 		Object obj;
-		Integer in=0;
+		Integer in = 0;
 
 		BasicDBObject filtro = new BasicDBObject();
 
@@ -55,25 +57,23 @@ public class PersistenceServiceImpl implements PersistenceService {
 			q.setQuestion(obj.toString());
 
 			obj = cursor.get("answersFalse");
-//			System.out.println(obj.toString());
+			// System.out.println(obj.toString());
 			String diaArray[] = obj.toString().split(",");
-			
+
 			for (String s : diaArray) {
 				a.setResponse(s);
-				a.setCorrect(false);				
+				a.setCorrect(false);
 				q.addAnswer(a);
 			}
-			
 
 			obj = cursor.get("answersTrue");
-			
+
 			diaArray = obj.toString().split(",");
 			for (String s : diaArray) {
 				a.setResponse(s);
 				a.setCorrect(true);
 				q.addAnswer(a);
-				
-				
+
 			}
 			in++;
 
@@ -110,8 +110,8 @@ public class PersistenceServiceImpl implements PersistenceService {
 
 		filtro.put("login", login);
 		DBObject cur = collUser.findOne(filtro);
-		
-		if(cur!=null) {
+
+		if (cur != null) {
 			return false;
 		}
 
@@ -126,8 +126,8 @@ public class PersistenceServiceImpl implements PersistenceService {
 		doc.put("matchFailed", matchFailed);
 
 		collUser.insert(doc);
-		
-		if(findByLogin(login)!=null)
+
+		if (findByLogin(login) != null)
 			return true;
 		return false;
 
@@ -261,48 +261,76 @@ public class PersistenceServiceImpl implements PersistenceService {
 
 	@Override
 	public boolean deleteUsuario(String login) {
-		
+
 		DBObject cursor = findByLogin(login);
-		if(cursor==null){
-			return false; //usuario a borrar no existe en BD
+		if (cursor == null) {
+			return false; // usuario a borrar no existe en BD
 		}
-		
+
 		BasicDBObject document = new BasicDBObject();
 		document.put("login", login);
 		collUser.remove(document);
-		
+
 		cursor = findByLogin(login);
-		if(cursor==null){
-			return true; //usuario a borrar no existe en BD
+		if (cursor == null) {
+			return true; // usuario a borrar no existe en BD
 		}
 		return false;
 	}
-	
-	
+
 	@Override
 	public User findUserByLogin(String login) {
-		
+
 		BasicDBObject filtro = new BasicDBObject();
 
 		filtro.put("login", login);
 		DBObject cur = collUser.findOne(filtro);
-		
-		if(cur==null) {
+
+		if (cur == null) {
 			return null;
 		}
-		User user = new User(String.valueOf(cur.get("login")), String.valueOf(cur.get("passwd")));
-		if(cur.get("privilegio").equals(0)) {
+		User user = new User(String.valueOf(cur.get("login")),
+				String.valueOf(cur.get("passwd")));
+		if (cur.get("privilegio").equals(0)) {
 			user.setPrivileged(false);
-		}
-		else {
+		} else {
 			user.setPrivileged(true);
 		}
 		user.setnRightQuestions((int) cur.get("questionSuccess"));
-		user.setnWrongQuestions( (int) cur.get("questionsFailed"));
-		user.setnWonGames( (int) cur.get("matchSuccess"));
-		user.setnLostGames( (int) cur.get("matchFailed"));
-		
+		user.setnWrongQuestions((int) cur.get("questionsFailed"));
+		user.setnWonGames((int) cur.get("matchSuccess"));
+		user.setnLostGames((int) cur.get("matchFailed"));
+
 		return user;
+	}
+
+	@Override
+	public List<User> getUsuarios() {
+
+		DBObject cursor;
+		DBCursor cur = collUser.find();
+		List<User> usuarios = new ArrayList<User>();
+		if (cur == null) {
+			return null;
+		}
+		while (cur.hasNext()) {
+			cursor = cur.next();
+			User user = new User(String.valueOf(cursor.get("login")),
+					String.valueOf(cursor.get("passwd")));
+			if (cursor.get("privilegio").equals(0)) {
+				user.setPrivileged(false);
+			} else {
+				user.setPrivileged(true);
+			}
+			user.setnRightQuestions((int) cursor.get("questionSuccess"));
+			user.setnWrongQuestions((int) cursor.get("questionsFailed"));
+			user.setnWonGames((int) cursor.get("matchSuccess"));
+			user.setnLostGames((int) cursor.get("matchFailed"));
+
+			usuarios.add(user);
+		}
+
+		return usuarios;
 	}
 
 }

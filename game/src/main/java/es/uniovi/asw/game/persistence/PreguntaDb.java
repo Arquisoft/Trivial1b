@@ -5,26 +5,115 @@ import java.util.List;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+import com.mongodb.MongoTimeoutException;
+
 import es.uniovi.asw.trivial.infraestructure.model.Answer;
 import es.uniovi.asw.trivial.infraestructure.model.Question;
 
 public class PreguntaDb {
 
 	private SortedMap<String, List<Question>> table = new TreeMap<String, List<Question>>();
-
+	private PersistenceService service;
 	public PreguntaDb() {
 
-		crearPreguntasCiencia();
-		crearPreguntasEntretenimiento();
-		crearPreguntasDeportes();
-		crearPreguntasGeografia();
-		crearPreguntasHistoria();
-		crearPreguntasLiteratura();
+		try {
+			service = FactoryService.getPersistenceService();
+			crearPreguntasCiencia();
+			crearPreguntasEntretenimiento();
+			crearPreguntasDeportes();
+			crearPreguntasGeografia();
+			crearPreguntasHistoria();
+			crearPreguntasLiteratura();
+		} catch (MongoTimeoutException e) {
+			crearPreguntasNoBD();
+		}
 	}
 
-	private void crearPreguntasLiteratura() {
-		ArrayList<Question> preguntas = FactoryService.getPersistenceService().getQuestionsCategory("Arte y Literatura");
-		/*Question q;
+	private void crearPreguntasNoBD() {
+
+		crearArteYLit();
+		crearHistoria();
+		crearGeografia();
+		crearDeportes();
+		crearEntretenimiento();
+		crearCiencia();
+
+	}
+
+	private void crearCiencia() {
+		// Ciencia
+		ArrayList<Question> preguntas = new ArrayList<Question>();
+		// Pregunta 1
+		Question q = new Question();
+		q.setCategoria("Ciencia");
+		q.setTitle("Aeronautica");
+		q.setQuestion("Enero de 1923, Madrid, Cuatro Vientos: ¿Qué aparato efectúa su primer vuelo?");
+		q.setUsed(false);
+		List<Answer> respuestas = new ArrayList<Answer>();
+		// Respuesta verdadera
+		Answer a = new Answer();
+		a.setCorrect(true);
+		a.setResponse("autogiro de juan de la cierva");
+		respuestas.add(a);
+
+		// Respuestas falsas
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("helicoptero");
+		respuestas.add(a);
+
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("zepelin");
+		respuestas.add(a);
+
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("avion");
+		respuestas.add(a);
+
+		q.setAnswers(respuestas);
+		preguntas.add(q);
+
+		// Pregunta 2
+		q = new Question();
+		q.setCategoria("Ciencia");
+		q.setTitle("Informatica");
+		q.setQuestion("Sacar datos de la pila (stack): ¿instrucción?");
+		q.setUsed(false);
+		respuestas = new ArrayList<Answer>();
+		// Respuesta verdadera
+		a = new Answer();
+		a.setCorrect(true);
+		a.setResponse("pop");
+		respuestas.add(a);
+
+		// Respuestas falsas
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("push");
+		respuestas.add(a);
+
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("call");
+		respuestas.add(a);
+
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("ret");
+		respuestas.add(a);
+
+		q.setAnswers(respuestas);
+
+		preguntas.add(q);
+		table.put("Ciencia", preguntas);
+	}
+
+	private void crearArteYLit() {
+		// Literatura
+		ArrayList<Question> preguntas = new ArrayList<Question>();
+		Question q;
 		List<Answer> respuestas;
 		Answer a;
 		// Pregunta
@@ -57,9 +146,9 @@ public class PreguntaDb {
 		respuestas.add(a);
 
 		q.setAnswers(respuestas);
-		
+
 		preguntas.add(q);
-		
+
 		// Pregunta
 		q = new Question();
 		q.setCategoria("Literatura");
@@ -92,17 +181,18 @@ public class PreguntaDb {
 		q.setAnswers(respuestas);
 
 		preguntas.add(q);
-		*/
-//		addQuestion(q, preguntas);
+
 		table.put("Arte y Literatura", preguntas);
 	}
 
-	private void crearPreguntasHistoria() {
-		ArrayList<Question> preguntas = FactoryService.getPersistenceService().getQuestionsCategory("Historia");
-		table.put("Historia", preguntas);
-		/*Question q;
+	private void crearHistoria() {
+		ArrayList<Question> preguntas;
+		Question q;
 		List<Answer> respuestas;
 		Answer a;
+		// Historia
+		preguntas = new ArrayList<Question>();
+		respuestas = new ArrayList<Answer>();
 		// Pregunta
 		q = new Question();
 		q.setCategoria("Historia");
@@ -135,8 +225,7 @@ public class PreguntaDb {
 		q.setAnswers(respuestas);
 
 		preguntas.add(q);
-		
-		
+
 		// Pregunta
 		q = new Question();
 		q.setCategoria("Historia");
@@ -165,315 +254,290 @@ public class PreguntaDb {
 		a.setCorrect(false);
 		a.setResponse("Egipto");
 		respuestas.add(a);
+		q.setAnswers(respuestas);
+		preguntas.add(q);
+
+		table.put("Historia", preguntas);
+	}
+
+	private void crearGeografia() {
+		ArrayList<Question> preguntas;
+		Question q;
+		List<Answer> respuestas;
+		Answer a;
+		// Geografia
+		preguntas = new ArrayList<Question>();
+		respuestas = new ArrayList<Answer>();
+		// Pregunta
+		q = new Question();
+		q.setCategoria("Geografia");
+		q.setTitle("Gentilicios");
+		q.setQuestion("¿¿Cómo se llaman los nacidos en Córcega?");
+		q.setUsed(false);
+		respuestas = new ArrayList<Answer>();
+		// Respuesta verdadera
+		a = new Answer();
+		a.setCorrect(true);
+		a.setResponse("corsos");
+		respuestas.add(a);
+
+		// Respuestas falsas
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("chichilindris ");
+		respuestas.add(a);
+
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("jienenses");
+		respuestas.add(a);
+
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("accitanos");
+		respuestas.add(a);
 
 		q.setAnswers(respuestas);
 
 		preguntas.add(q);
-		addQuestion(q, preguntas);*/
-		
-		
+
+		// Pregunta
+		q = new Question();
+		q.setCategoria("Geografia");
+		q.setTitle("España");
+		q.setQuestion("¿Con qué provincia limita al sur Valencia?");
+		q.setUsed(false);
+		respuestas = new ArrayList<Answer>();
+		// Respuesta verdadera
+		a = new Answer();
+		a.setCorrect(true);
+		a.setResponse("Alicante");
+		respuestas.add(a);
+
+		// Respuestas falsas
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("Madrid ");
+		respuestas.add(a);
+
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("Murcia");
+		respuestas.add(a);
+
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("Barcelona");
+		respuestas.add(a);
+
+		q.setAnswers(respuestas);
+
+		preguntas.add(q);
+
+		table.put("Geografia", preguntas);
+	}
+
+	private void crearDeportes() {
+		ArrayList<Question> preguntas;
+		Question q;
+		List<Answer> respuestas;
+		Answer a;
+		// Deportes
+		preguntas = new ArrayList<Question>();
+		respuestas = new ArrayList<Answer>();
+		// Pregunta
+		q = new Question();
+		q.setCategoria("Deportes");
+		q.setTitle("Hípica");
+		q.setQuestion("¿Cómo se llama el lugar destinado a las carreras de caballos?");
+		q.setUsed(false);
+		respuestas = new ArrayList<Answer>();
+		// Respuesta verdadera
+		a = new Answer();
+		a.setCorrect(true);
+		a.setResponse("hipodromo");
+		respuestas.add(a);
+
+		// Respuestas falsas
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("cuadrilatero");
+		respuestas.add(a);
+
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("pista finlandesa");
+		respuestas.add(a);
+
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("caballodromo");
+		respuestas.add(a);
+
+		q.setAnswers(respuestas);
+
+		preguntas.add(q);
+
+		// Pregunta
+		q = new Question();
+		q.setCategoria("Deportes");
+		q.setTitle("Futbol");
+		q.setQuestion("¿Dónde nació el guardameta Cañizares?");
+		q.setUsed(false);
+		respuestas = new ArrayList<Answer>();
+		// Respuesta verdadera
+		a = new Answer();
+		a.setCorrect(true);
+		a.setResponse("Puertollano");
+		respuestas.add(a);
+
+		// Respuestas falsas
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("Basauri");
+		respuestas.add(a);
+
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("Sabadell");
+		respuestas.add(a);
+
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("Monzon");
+		respuestas.add(a);
+
+		q.setAnswers(respuestas);
+
+		preguntas.add(q);
+
+		table.put("Deportes", preguntas);
+	}
+
+	private void crearEntretenimiento() {
+		ArrayList<Question> preguntas;
+		Question q;
+		List<Answer> respuestas;
+		Answer a;
+		// Entretenimiento
+		preguntas = new ArrayList<Question>();
+		respuestas = new ArrayList<Answer>();
+		// Pregunta
+		q = new Question();
+		q.setCategoria("Entretenimiento");
+		q.setTitle("Anuncios");
+		q.setQuestion("U-i-u-a-a, din, don, toma...");
+		q.setUsed(false);
+		respuestas = new ArrayList<Answer>();
+		// Respuesta verdadera
+		a = new Answer();
+		a.setCorrect(true);
+		a.setResponse("lacasitos");
+		respuestas.add(a);
+
+		// Respuestas falsas
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("agua");
+		respuestas.add(a);
+
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("sidra");
+		respuestas.add(a);
+
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("cachopo");
+		respuestas.add(a);
+
+		q.setAnswers(respuestas);
+
+		preguntas.add(q);
+
+		// Pregunta
+		q = new Question();
+		q.setCategoria("Entretenimiento");
+		q.setTitle("TV-Series");
+		q.setQuestion("¿Quién de estos personajes de Juego de Tronos no muere?");
+		q.setUsed(false);
+		respuestas = new ArrayList<Answer>();
+		// Respuesta verdadera
+		a = new Answer();
+		a.setCorrect(true);
+		a.setResponse("Margaery Tyrell");
+		respuestas.add(a);
+
+		// Respuestas falsas
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("Ned Stark");
+		respuestas.add(a);
+
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("Ygritte");
+		respuestas.add(a);
+
+		a = new Answer();
+		a.setCorrect(false);
+		a.setResponse("Khal Drogo");
+		respuestas.add(a);
+
+		q.setAnswers(respuestas);
+
+		preguntas.add(q);
+
+		table.put("Espectaculos", preguntas);
+	}
+
+	private void crearPreguntasLiteratura() {
+		ArrayList<Question> preguntas = service
+				.getQuestionsCategory("Arte y Literatura");
+
+		table.put("Arte y Literatura", preguntas);
+	}
+
+	private void crearPreguntasHistoria() {
+		ArrayList<Question> preguntas = service
+				.getQuestionsCategory("Historia");
+		table.put("Historia", preguntas);
+
 	}
 
 	private void crearPreguntasGeografia() {
-		ArrayList<Question> preguntas = FactoryService.getPersistenceService().getQuestionsCategory("Geografía");
+		ArrayList<Question> preguntas = service
+				.getQuestionsCategory("Geografía");
 		table.put("Geografía", preguntas);
-		//Question q;
-//		List<Answer> respuestas;
-//		Answer a;
-//		// Pregunta
-//		q = new Question();
-//		q.setCategoria("Geografia");
-//		q.setTitle("Gentilicios");
-//		q.setQuestion("¿¿Cómo se llaman los nacidos en Córcega?");
-//		q.setUsed(false);
-//		respuestas = new ArrayList<Answer>();
-//		// Respuesta verdadera
-//		a = new Answer();
-//		a.setCorrect(true);
-//		a.setResponse("corsos");
-//		respuestas.add(a);
-//
-//		// Respuestas falsas
-//		a = new Answer();
-//		a.setCorrect(false);
-//		a.setResponse("chichilindris ");
-//		respuestas.add(a);
-//
-//		a = new Answer();
-//		a.setCorrect(false);
-//		a.setResponse("jienenses");
-//		respuestas.add(a);
-//
-//		a = new Answer();
-//		a.setCorrect(false);
-//		a.setResponse("accitanos");
-//		respuestas.add(a);
-//
-//		q.setAnswers(respuestas);
-//
-//		preguntas.add(q);
-//		
-//		
-//		// Pregunta
-//		q = new Question();
-//		q.setCategoria("Geografia");
-//		q.setTitle("España");
-//		q.setQuestion("¿Con qué provincia limita al sur Valencia?");
-//		q.setUsed(false);
-//		respuestas = new ArrayList<Answer>();
-//		// Respuesta verdadera
-//		a = new Answer();
-//		a.setCorrect(true);
-//		a.setResponse("Alicante");
-//		respuestas.add(a);
-//
-//		// Respuestas falsas
-//		a = new Answer();
-//		a.setCorrect(false);
-//		a.setResponse("Madrid ");
-//		respuestas.add(a);
-//
-//		a = new Answer();
-//		a.setCorrect(false);
-//		a.setResponse("Murcia");
-//		respuestas.add(a);
-//
-//		a = new Answer();
-//		a.setCorrect(false);
-//		a.setResponse("Barcelona");
-//		respuestas.add(a);
-//
-//		q.setAnswers(respuestas);
-//
-//		preguntas.add(q);
-//		addQuestion(q, preguntas);
-	
+
 	}
 
 	private void crearPreguntasDeportes() {
-		ArrayList<Question> preguntas = FactoryService.getPersistenceService().getQuestionsCategory("Deportes");
+		ArrayList<Question> preguntas = service
+				.getQuestionsCategory("Deportes");
 		table.put("Deportes", preguntas);
-//		Question q;
-//		List<Answer> respuestas;
-//		Answer a;
-//		// Pregunta
-//		q = new Question();
-//		q.setCategoria("Deportes");
-//		q.setTitle("Hípica");
-//		q.setQuestion("¿Cómo se llama el lugar destinado a las carreras de caballos?");
-//		q.setUsed(false);
-//		respuestas = new ArrayList<Answer>();
-//		// Respuesta verdadera
-//		a = new Answer();
-//		a.setCorrect(true);
-//		a.setResponse("hipodromo");
-//		respuestas.add(a);
-//
-//		// Respuestas falsas
-//		a = new Answer();
-//		a.setCorrect(false);
-//		a.setResponse("cuadrilatero");
-//		respuestas.add(a);
-//
-//		a = new Answer();
-//		a.setCorrect(false);
-//		a.setResponse("pista finlandesa");
-//		respuestas.add(a);
-//
-//		a = new Answer();
-//		a.setCorrect(false);
-//		a.setResponse("caballodromo");
-//		respuestas.add(a);
-//
-//		q.setAnswers(respuestas);
-//
-//		preguntas.add(q);
-//
-//		// Pregunta
-//		q = new Question();
-//		q.setCategoria("Deportes");
-//		q.setTitle("Futbol");
-//		q.setQuestion("¿Dónde nació el guardameta Cañizares?");
-//		q.setUsed(false);
-//		respuestas = new ArrayList<Answer>();
-//		// Respuesta verdadera
-//		a = new Answer();
-//		a.setCorrect(true);
-//		a.setResponse("Puertollano");
-//		respuestas.add(a);
-//
-//		// Respuestas falsas
-//		a = new Answer();
-//		a.setCorrect(false);
-//		a.setResponse("Basauri");
-//		respuestas.add(a);
-//
-//		a = new Answer();
-//		a.setCorrect(false);
-//		a.setResponse("Sabadell");
-//		respuestas.add(a);
-//
-//		a = new Answer();
-//		a.setCorrect(false);
-//		a.setResponse("Monzon");
-//		respuestas.add(a);
-//
-//		q.setAnswers(respuestas);
-//
-//		preguntas.add(q);
-//		addQuestion(q, preguntas);
+
 	}
 
 	private void crearPreguntasEntretenimiento() {
-		
-		ArrayList<Question> preguntas = FactoryService.getPersistenceService().getQuestionsCategory("Espectaculos");
+
+		ArrayList<Question> preguntas = service
+				.getQuestionsCategory("Espectaculos");
 		table.put("Espectaculos", preguntas);
-//		Question q;
-//		List<Answer> respuestas;
-//		Answer a;
-//		// Pregunta
-//		q = new Question();
-//		q.setCategoria("Entretenimiento");
-//		q.setTitle("Anuncios");
-//		q.setQuestion("U-i-u-a-a, din, don, toma...");
-//		q.setUsed(false);
-//		respuestas = new ArrayList<Answer>();
-//		// Respuesta verdadera
-//		a = new Answer();
-//		a.setCorrect(true);
-//		a.setResponse("lacasitos");
-//		respuestas.add(a);
-//
-//		// Respuestas falsas
-//		a = new Answer();
-//		a.setCorrect(false);
-//		a.setResponse("agua");
-//		respuestas.add(a);
-//
-//		a = new Answer();
-//		a.setCorrect(false);
-//		a.setResponse("sidra");
-//		respuestas.add(a);
-//
-//		a = new Answer();
-//		a.setCorrect(false);
-//		a.setResponse("cachopo");
-//		respuestas.add(a);
-//
-//		q.setAnswers(respuestas);
-//
-//		preguntas.add(q);
-//
-//		// Pregunta
-//		q = new Question();
-//		q.setCategoria("Entretenimiento");
-//		q.setTitle("TV-Series");
-//		q.setQuestion("¿Quién de estos personajes de Juego de Tronos no muere?");
-//		q.setUsed(false);
-//		respuestas = new ArrayList<Answer>();
-//		// Respuesta verdadera
-//		a = new Answer();
-//		a.setCorrect(true);
-//		a.setResponse("Margaery Tyrell");
-//		respuestas.add(a);
-//
-//		// Respuestas falsas
-//		a = new Answer();
-//		a.setCorrect(false);
-//		a.setResponse("Ned Stark");
-//		respuestas.add(a);
-//
-//		a = new Answer();
-//		a.setCorrect(false);
-//		a.setResponse("Ygritte");
-//		respuestas.add(a);
-//
-//		a = new Answer();
-//		a.setCorrect(false);
-//		a.setResponse("Khal Drogo");
-//		respuestas.add(a);
-//
-//		q.setAnswers(respuestas);
-//		
-//		preguntas.add(q);
-//		addQuestion(q, preguntas);
-		
+
 	}
 
 	private void crearPreguntasCiencia() {
-		ArrayList<Question> preguntas = FactoryService.getPersistenceService()
+		ArrayList<Question> preguntas = service
 				.getQuestionsCategory("Ciencia");
 		table.put("Ciencia", preguntas);
-//		// Pregunta 1
-//		Question q = new Question();
-//		q.setCategoria("Ciencia");
-//		q.setTitle("Aeronautica");
-//		q.setQuestion("Enero de 1923, Madrid, Cuatro Vientos: ¿Qué aparato efectúa su primer vuelo?");
-//		q.setUsed(false);
-//		List<Answer> respuestas = new ArrayList<Answer>();
-//		// Respuesta verdadera
-//		Answer a = new Answer();
-//		a.setCorrect(true);
-//		a.setResponse("autogiro de juan de la cierva");
-//		respuestas.add(a);
-//
-//		// Respuestas falsas
-//		a = new Answer();
-//		a.setCorrect(false);
-//		a.setResponse("helicoptero");
-//		respuestas.add(a);
-//
-//		a = new Answer();
-//		a.setCorrect(false);
-//		a.setResponse("zepelin");
-//		respuestas.add(a);
-//
-//		a = new Answer();
-//		a.setCorrect(false);
-//		a.setResponse("avion");
-//		respuestas.add(a);
-//
-//		q.setAnswers(respuestas);
-//		preguntas.add(q);
-//
-//		// Pregunta 2
-//		q = new Question();
-//		q.setCategoria("Ciencia");
-//		q.setTitle("Informatica");
-//		q.setQuestion("Sacar datos de la pila (stack): ¿instrucción?");
-//		q.setUsed(false);
-//		respuestas = new ArrayList<Answer>();
-//		// Respuesta verdadera
-//		a = new Answer();
-//		a.setCorrect(true);
-//		a.setResponse("pop");
-//		respuestas.add(a);
-//
-//		// Respuestas falsas
-//		a = new Answer();
-//		a.setCorrect(false);
-//		a.setResponse("push");
-//		respuestas.add(a);
-//
-//		a = new Answer();
-//		a.setCorrect(false);
-//		a.setResponse("call");
-//		respuestas.add(a);
-//
-//		a = new Answer();
-//		a.setCorrect(false);
-//		a.setResponse("ret");
-//		respuestas.add(a);
-//
-//		q.setAnswers(respuestas);
-//		
-//		preguntas.add(q);
-//		addQuestion(q, preguntas);
+
 	}
 
-//	public void addQuestion(String title, String question, List<Answer> answers) {
-//		table.put(title, new Question(question, answers));
-//	}
+	// public void addQuestion(String title, String question, List<Answer>
+	// answers) {
+	// table.put(title, new Question(question, answers));
+	// }
 
 	private void addQuestion(Question q, ArrayList<Question> lista) {
 		table.put(q.getCategoria(), lista);
@@ -484,28 +548,28 @@ public class PreguntaDb {
 	}
 
 	public Question lookup(String category) {
-		List<Question> preguntas = comprobarPreguntas( table.get(category));
+		List<Question> preguntas = comprobarPreguntas(table.get(category));
 		Question q = preguntas.get(0);
-		
-		while(q.isUsed()){
-			q = preguntas.get((int) (Math.random()*preguntas.size()));
+
+		while (q.isUsed()) {
+			q = preguntas.get((int) (Math.random() * preguntas.size()));
 		}
 
 		return q;
 	}
-	
+
 	private List<Question> comprobarPreguntas(List<Question> lista) {
-		for(Question q : lista){
-			if(!q.isUsed()){
+		for (Question q : lista) {
+			if (!q.isUsed()) {
 				return lista;
 			}
 		}
-		
+
 		return resetearRespuestas(lista);
 	}
 
 	public List<Question> resetearRespuestas(List<Question> preguntas) {
-		for(Question q: preguntas){
+		for (Question q : preguntas) {
 			q.setUsed(false);
 		}
 		return preguntas;

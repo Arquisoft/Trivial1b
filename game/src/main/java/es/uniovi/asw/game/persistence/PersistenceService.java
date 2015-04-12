@@ -1,6 +1,7 @@
 package es.uniovi.asw.game.persistence;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import es.uniovi.asw.game.model.User;
 import es.uniovi.asw.trivial.infraestructure.model.Question;
@@ -29,5 +30,7 @@ public interface PersistenceService {
 	public boolean deleteUsuario(String login);
 
 	public User findUserByLogin(String login);
+
+	List<User> getUsuarios();
 
 }
