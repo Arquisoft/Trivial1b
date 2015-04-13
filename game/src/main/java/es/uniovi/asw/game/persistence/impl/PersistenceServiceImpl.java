@@ -48,6 +48,7 @@ public class PersistenceServiceImpl implements PersistenceService {
 		filtro.put("category", category);
 		DBCursor cur = collQuestions.find(filtro);
 		while (cur.hasNext()) {
+			q = new Question();
 			q.setCategoria(category);
 			cursor = cur.next();
 			obj = cursor.get("title");
@@ -64,8 +65,7 @@ public class PersistenceServiceImpl implements PersistenceService {
 				respuestaFormat=s.replace("\"", "");
 				s=respuestaFormat.replace("[", "");
 				respuestaFormat=s.replace("]","");
-				a.setResponse(s);
-				a.setCorrect(false);
+				a=new Answer(s, false);
 				q.addAnswer(a);
 			}
 
@@ -76,13 +76,11 @@ public class PersistenceServiceImpl implements PersistenceService {
 				respuestaFormat=s.replace("\"", "");
 				s=respuestaFormat.replace("[", "");
 				respuestaFormat=s.replace("]","");
-				a.setResponse(s);
-				a.setCorrect(true);
+				a=new Answer(s, true);
 				q.addAnswer(a);
 
 			}
 			
-
 			list.add(q);
 		}
 
