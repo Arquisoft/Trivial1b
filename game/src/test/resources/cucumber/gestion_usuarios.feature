@@ -5,7 +5,7 @@ Escenario: Crear el primer usuario
 
     Dada una lista vacía de usuarios
     Cuando creo un usuario de nombre "Pepe" y clave "Pepe12"
-    Entonces el número de usuarios es 5
+    Entonces el número de usuarios es 15
 
 Escenario: Entrar en el sistema
 	Dada la siguiente lista de usuarios:
