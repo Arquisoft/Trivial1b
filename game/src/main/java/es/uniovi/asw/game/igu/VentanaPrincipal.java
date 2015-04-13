@@ -221,7 +221,19 @@ public class VentanaPrincipal extends JFrame {
 	private int turnoVentana;
 	
 	private int numeroJugadores;
+	
+	String[] categorias = new String[] { "Geografía", "Espectaculos",
+			"Historia", "Arte y Literatura", "Ciencia", "Deportes"};
+	
+	private int res;
 
+	public void setRes(int res){
+		this.res = res;
+	}
+	
+	public int getRes(){
+		return res;
+	}
 
 	/**
 	 * Launch the application.
@@ -1981,9 +1993,14 @@ public class VentanaPrincipal extends JFrame {
 						if(Integer.parseInt(coordenadas[0]) == 4 && Integer.parseInt(coordenadas[1]) == 4){
 							if(trivial.getUsuarios().get(trivial.getTurno()).getQuesitos() == 6){
 								guardarPosicion(Integer.parseInt(coordenadas[0]), Integer.parseInt(coordenadas[1]));
-								int res = crearPreguntaFinal();
+
+								setRes(0);
 								
-								if(res >= 4){
+								for(String cat : categorias){
+									crearPreguntaFinal(cat);
+								}					
+								
+								if(getRes() >= 4){
 									//TODO TERMINAR JUEGO
 								}
 								else{
@@ -2225,13 +2242,11 @@ public class VentanaPrincipal extends JFrame {
 		dP.setVisible(true);
 	}
 	
-	private int crearPreguntaFinal(){
+	private void crearPreguntaFinal(String categoria){
 		DialogPregunta dP = new DialogPregunta(this);
 		dP.setLocationRelativeTo(this);
-		int res = dP.sacarTandaFinal();
+		dP.sacarPreguntaCategoria(categoria);
 		dP.setVisible(true);
-		
-		return res;
 	}
 
 	public void cambiarLabelsDeTurno() {

@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import es.uniovi.asw.game.model.User;
 import es.uniovi.asw.trivial.infraestructure.model.Answer;
 import es.uniovi.asw.trivial.infraestructure.model.Question;
 
@@ -29,8 +30,6 @@ import java.awt.Color;
 
 public class DialogPregunta extends JDialog {
 	
-	private int contador;
-
 	private List<JButton> botones = new ArrayList<JButton>();
 
 	private static final long serialVersionUID = 1L;
@@ -65,7 +64,6 @@ public class DialogPregunta extends JDialog {
 	 * Create the frame.
 	 */
 	public DialogPregunta(VentanaPrincipal vp) {
-		this.contador = 0;
 		this.vp = vp;
 		setTitle("Pregunta");
 
@@ -88,18 +86,15 @@ public class DialogPregunta extends JDialog {
 		}
 		return panelCentral;
 	}
-
-	public int sacarTandaFinal(){
-		for(String categoria: categorias){
-			Question q = vp.getPartida().sacarPregunta(categoria);
-			sacarPregunta(q);
-		}
-		return contador;
-	}
 	
 	public void sacarPreguntaAleatoria(){
 		int categoria = (int) ((Math.random()*6) + 1);
 		Question q = vp.getPartida().sacarPregunta(categorias[categoria]);
+		sacarPregunta(q);
+	}
+	
+	public void sacarPreguntaCategoria(String categoria){
+		Question q = vp.getPartida().sacarPregunta(categoria);
 		sacarPregunta(q);
 	}
 	
@@ -176,11 +171,21 @@ public class DialogPregunta extends JDialog {
 			label.setIcon(new ImageIcon(getClass().getResource("/tick.png")));
 			//sigue el mismo jugador, no cambia nada			
 			// JOptionPane.showMessageDialog(null, "Respuesta Correcta");
+			
+			//comprobamos si obtiene quesito
 			vp.comprobarQueSeaQuesito();
-			contador++;
+			
+			//actualizamos el contador de preguntas acertadas
+			vp.setRes(vp.getRes()+1);
+			User actual = vp.getPartida().getUsuarios().get(vp.getPartida().getTurno());
+			actual.setnRightQuestions(actual.getnRightQuestions()+1);
 		} else {
 			// System.out.println("Respuesta incorrecta");
 			label.setIcon(new ImageIcon(getClass().getResource("/cross.png")));
+			
+			//actualizamos el contador de preguntas falladas
+			User actual = vp.getPartida().getUsuarios().get(vp.getPartida().getTurno());
+			actual.setnWrongQuestions(actual.getnWrongQuestions()+1);
 			
 			//cambiamos el jugador cuando la respuesta es incorrecta
 			vp.getPartida().getSiguienteJugador();
