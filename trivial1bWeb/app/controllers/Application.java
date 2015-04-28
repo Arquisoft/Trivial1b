@@ -15,4 +15,7 @@ public class Application extends Controller {
     	return ok(login.render());
     }
 
+    public static Result tablero(){
+    	return ok("sin implementar");
+    }
 }

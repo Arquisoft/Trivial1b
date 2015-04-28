@@ -10,7 +10,8 @@ libraryDependencies ++= Seq(
   javaJdbc,
   javaEbean,
   cache,
-  javaWs
+  javaWs,
+  "org.mongodb" % "mongo-java-driver" % "2.13.0"
 )
 
 
