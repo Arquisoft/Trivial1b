@@ -1,0 +1,22 @@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>@title</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css ")">
+    </head>
+    <body>
+        @content
+		<script type="text/javascript">
+			window.onload = function() {
+			var usuario = document.getElementById('user');
+			document.writeln("<em>Partidas perdidas: </em>" + usuario.getnLostGames());
+			document.writeln("<em>Partidas ganadas: </em>" + usuario.getnWonGames());
+			document.writeln("<em>Respuestas acertadas: </em>" + usuario.getnRightQuestions());
+			document.writeln("<em>Respuestas falladas: </em>" + usuario.getnWrongQuestions());
+			};
+		</script>
+    </body>
+</html>
