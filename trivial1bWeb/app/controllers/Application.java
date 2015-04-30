@@ -16,6 +16,6 @@ public class Application extends Controller {
     }
 
     public static Result tablero(){
-    	return ok("sin implementar");
+    	return ok(tablero.render());
     }
 }

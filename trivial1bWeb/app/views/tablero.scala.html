@@ -13,7 +13,7 @@ Your browser does not support the canvas element.
 			alert('Cargada');
 			context.drawImage(img, 0, 0);
 		}
-        img.src = '../resources/trivia-board-game.jpg';
+        img.src = '@routes.Assets.at("images/trivia-board-game.jpg")';
     };
 
     function findPos(obj){
