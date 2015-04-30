@@ -17,5 +17,6 @@ public class Application extends Controller {
 
     public static Result tablero(){
     	return ok(tablero.render());
+    	
     }
 }
