@@ -19,4 +19,11 @@ public class Application extends Controller {
     	return ok(tablero.render());
     	
     }
+    
+    public static Result logout(){
+    	return ok(logout.render());
+    }
+    
+    
+    
 }
