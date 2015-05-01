@@ -1,65 +1,54 @@
 <html>
 
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script type="text/javascript"> 
 
-var theObj=""; 
-var data;
-
-function toolTip(me) { 
-theObj=me 
-theObj.onmousemove=updatePos; 
-document.getElementById('toolTipBox').innerHTML=window.event.offsetX +" - "+ window.event.offsetY; 
-document.getElementById('toolTipBox').style.display="block"; 
-window.onscroll=updatePos; 
-
-alert(this.data.data);
-
-
-} 
-
-function updatePos() { 
-var ev=arguments[0]?arguments[0]:event; 
-var x=ev.clientX; 
-var y=ev.clientY; 
-diffX=8; 
-diffY=8; 
-document.getElementById('toolTipBox').style.top = y-2+diffY+document.body.scrollTop+ "px"; 
-document.getElementById('toolTipBox').style.left = x-2+diffX+document.body.scrollLeft+"px"; 
-theObj.onmouseout=hideMe; 
-
-// Get a reference to the image you want the pixels of and its dimensions
-var myImage = document.getElementById('tablero');
-var w = myImage.width, h = myImage.height;
-
-// Create a Canvas element
-var canvas = document.createElement('canvas');
-
-// Size the canvas to the element
-canvas.width = w;
-canvas.height = h;
-
-// Draw image onto the canvas
-var ctx = canvas.getContext('2d');
-ctx.drawImage(myImage, 0, 0,w,h);
-
-// Finally, get the image data
-// ('data' is an array of RGBA pixel values for each pixel)
-this.data = ctx.getImageData(y-2+diffY+document.body.scrollTop, x-2+diffX+document.body.scrollLeft, w, h);
-
-
-} 
-function hideMe() { 
-document.getElementById('toolTipBox').style.display="none"; 
-} 
-</script> 
+<head>
+        <title>Trivial 1b</title>
+        <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap.css")'>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src='@routes.Assets.at("javascripts/tableroCoordenada.js")'> </script>
+        
+    </head>
 <body>
-<div align="center">
-	<span id="toolTipBox" width="200"></span> 
-	<img src='@routes.Assets.at("images/tablero-redondo.jpg")' width="200" id="tablero" height="200" border="0" style="cursor:crosshair" onclick="toolTip(this);return false"> 
-	<br><br>
-	<label id="data"></label>
-</div>
+
+<div class="container">
+<!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="">Trivial 1b</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="/index">Inicio</a></li>
+             
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a href="/logout">Finalizar partida <span class="sr-only">(current)</span></a></li>
+              <li><a href="/login">Cerrar sesión</a></li>
+              
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron" >
+        
+       	<span id="toolTipBox" width="200"></span> 
+       	<p align="center">
+	    <img src='@routes.Assets.at("images/tablero-redondo.jpg")'  id="tablero" weidht="70%" height="70%"  border="0" style="cursor:crosshair" onclick="toolTip(this);return false"> 
+	    </p>
+	  
+      </div>
+
+    </div>
+
 </body>
 </html>
