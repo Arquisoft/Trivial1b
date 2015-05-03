@@ -7,6 +7,10 @@ import persistence.PreguntaDb;
 
 public class Trivial {
 	
+	
+	private int coordenada1;
+	private int coordenada2;
+	
 	private int numDado;
 	private Tablero9x9 tablero9=null;
 	private int turno;
@@ -16,6 +20,10 @@ public class Trivial {
 	private List<String> mapa;
 	
 	private PreguntaDb preguntas = new PreguntaDb();
+	
+	public Trivial() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public ArrayList<User> getUsuarios() {
 		return usuarios;
@@ -304,5 +312,21 @@ public class Trivial {
 //		}
 //		return res;
 //	}
+	
+	public void setCoordenada1(int coordenada1) {
+		this.coordenada1 = coordenada1;
+	}
+	
+	public void setCoordenada2(int coordenada2) {
+		this.coordenada2 = coordenada2;
+	}
+	
+	public int getCoordenada1() {
+		return coordenada1;
+	}
+	
+	public int getCoordenada2() {
+		return coordenada2;
+	}
 	
 }

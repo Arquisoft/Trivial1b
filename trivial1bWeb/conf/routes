@@ -6,6 +6,9 @@
 GET     /                           controllers.Application.index()
 GET		/login						controllers.Application.login()
 GET 	/tablero					controllers.Application.tablero()
+GET 	/index  					controllers.Application.index()
+GET 	/logout                     controllers.Application.logout()
+
 
 
 # Map static resources from the /public folder to the /assets URL path

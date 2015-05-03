@@ -2,13 +2,18 @@ var theObj="";
 var data;
 
 function toolTip(me) { 
+
 theObj=me 
 theObj.onmousemove=updatePos; 
 document.getElementById('toolTipBox').innerHTML=window.event.offsetX +" - "+ window.event.offsetY; 
 document.getElementById('toolTipBox').style.display="block"; 
 window.onscroll=updatePos; 
 
-alert(this.data.data);
+var coorString=window.event.offsetX +"-"+ window.event.offsetY);
+
+jsRoutes.controllers.Application.pregunta(coorString);
+
+
 
 
 } 

@@ -8,10 +8,10 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.junit.Test;
+import model.ExtractorCoordenadas;
+import model.casillas.Figura;
 
-import es.uniovi.asw.play.model.ExtractorCoordenadas;
-import es.uniovi.asw.play.model.casillas.Figura;
+import org.junit.Test;
 
 public class ExtractorCoordenadasTest {
 
