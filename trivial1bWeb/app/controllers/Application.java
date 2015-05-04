@@ -65,8 +65,13 @@ public class Application extends Controller {
 	}
 
 	public static Result logout() {
-		return ok(logout.render());
+		session().clear();
+		flash("EXITO", "sesion cerrada");
+		System.out.println("Sesion cerrada");
+		return redirect("/index");
+		// return ok(logout.render());
 	}
+	
 
 	public static Result mostrarRegistro() {
 		return ok(registro.render(registerForm));
