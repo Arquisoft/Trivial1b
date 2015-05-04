@@ -37,9 +37,9 @@
 
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li class="active"><a href="/logout">Finalizar partida <span
+						<li class="active"><a href="/finpartida" onclick="return confirm('Estás a punto de finalizar la partida. \n¿Estás seguro?');">Finalizar partida <span
 								class="sr-only">(current)</span></a></li>
-					<li><a href="@routes.Application.logout()">Cerrar sesi�n</a></li>
+					<li><a href="@routes.Application.logout()" onclick="return confirm('Estás a punto de cerrar sesión. \n¿Estás seguro?');">Cerrar sesión</a></li>
 
 					</ul>
 				</div>

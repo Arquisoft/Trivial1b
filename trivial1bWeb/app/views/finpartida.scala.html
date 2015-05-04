@@ -1,0 +1,23 @@
+<html>
+
+<body>
+<div align="center">
+<img alt="Logo" src='@routes.Assets.at("images/logoTrivial.jpg")'>
+<h1 class="form-signin-heading">Has finalizado la partida</h1>
+
+<h2 class="form-signin-heading">¿Qué deseas hacer ahora?
+
+<br></br>
+
+<a href="@routes.Application.nuevaPartida()">
+<input type="button" value="Nueva partida" class="btn btn-lg btn-primary"/>
+</a>
+<br></br>
+<a href="@routes.Application.logout()" onclick="return confirm('Estás a punto de cerrar sesión. \n¿Estás seguro?');">
+<input type="button" value="Cerrar sesión" class="btn btn-lg btn-primary"/>
+</a>
+
+
+</div>
+</body>
+</html>

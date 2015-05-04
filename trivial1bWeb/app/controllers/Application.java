@@ -72,6 +72,15 @@ public class Application extends Controller {
 		// return ok(logout.render());
 	}
 	
+	public static Result finalizarPartida(){
+		System.out.println("partida finalizada");
+		return ok(finpartida.render());
+	}
+	
+	public static Result nuevaPartida(){
+		System.out.println("iniciada nueva partida");
+		return ok(tablero.render());
+	}
 
 	public static Result mostrarRegistro() {
 		return ok(registro.render(registerForm));
