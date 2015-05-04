@@ -8,7 +8,7 @@
 @helper.inputText(registerForm("username"))
 @helper.inputPassword(registerForm("password")) 
 @helper.inputPassword(registerForm("password2")) 
-<input type="submit" value="Registrarse"></button>
+<input type="submit" value="Registrarse">
 @if(registerForm.hasGlobalErrors){
 <p> @registerForm.globalError.message </p>									
 }
