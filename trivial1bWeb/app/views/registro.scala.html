@@ -1,15 +1,19 @@
-<html>
-<h1>Registro</h1>
+@(registerForm: Form[model.Registro])
 
-@helper.form(action = routes.Application.registro()) {
-    
-Usuario: <input type="text" name="username" placeholder="Usuario"/>
-<br>
-Password: <input type="password" name="password" placeholder="Contraseña"/>
-<br>
-Repita su password: <input type="password" name="password2" placeholder="Contraseña"/>
-<br>
-<input type="submit" value="Registro"/>
 
+@main("Login") {
+
+@helper.form(action = routes.Application.registro()) { 
+
+@helper.inputText(registerForm("username"))
+@helper.inputPassword(registerForm("password")) 
+@helper.inputPassword(registerForm("password2")) 
+<input type="submit" value="Registrarse"></button>
+@if(registerForm.hasGlobalErrors){
+<p> @registerForm.globalError.message </p>									
 }
-</html>
+<a href="/">
+<input type="button" value="Atrás"/>
+</a>
+}
+}

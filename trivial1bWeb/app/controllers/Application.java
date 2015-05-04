@@ -32,8 +32,8 @@ public class Application extends Controller {
 	    	
 			String username = filledForm.field("username").value();
 			String password = filledForm.field("password").value();
-			System.out.println(username);
-	    	System.out.println(password);
+//			System.out.println(username);
+//	    	System.out.println(password);
 			if(user.login(username, password)) {
 				ArrayList<User> usuarios = new ArrayList<User>();
 				usuarios.add(user.lookup(username));
@@ -74,16 +74,27 @@ public class Application extends Controller {
     }
     
 
+	public static Result mostrarRegistro() {
+		return ok(registro.render(registerForm));
+	}
     
-    public static Result mostrarRegistro() {
-	  return ok(registro.render());
-  }
+    
     public static Result registro() {
-    	String username = request().getQueryString("username");
-    	String password = request().getQueryString("password");
-    	user.addUser(username, password);
-		return ok(login.render(userForm));
-    	
-    }
+		Form<Registro> filledForm = registerForm.bindFromRequest();
+
+		if (filledForm.hasGlobalErrors())
+			return badRequest(registro.render(filledForm));
+		else {
+
+			String username = filledForm.field("username").value();
+			String password = filledForm.field("password").value();
+			System.out.println(username);
+			System.out.println(password);
+
+			user.addUser(username, password);
+			return ok(login.render(userForm));
+		}
+
+	}
     
 }
