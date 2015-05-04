@@ -9,7 +9,7 @@ document.getElementById('toolTipBox').innerHTML=window.event.offsetX +" - "+ win
 document.getElementById('toolTipBox').style.display="block"; 
 window.onscroll=updatePos; 
 
-var coorString=window.event.offsetX +"-"+ window.event.offsetY);
+var coorString=window.event.offsetX +"-"+ window.event.offsetY;
 
 jsRoutes.controllers.Application.pregunta(coorString);
 

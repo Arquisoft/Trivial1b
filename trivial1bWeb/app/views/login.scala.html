@@ -1,16 +1,21 @@
-@(userForm: Form[model.User])
+@(userForm: Form[model.User]) @main("Login") { @helper.form(action =
+routes.Application.login()) {
 
 
-@main("Login") {
 
-@helper.form(action = routes.Application.login()) { 
+	<div align="center">
+		<img alt="Logo" src='@routes.Assets.at("images/logoTrivial.jpg")'>
+		<h2 class="form-signin-heading">Please sign in</h2>
+		
+		@helper.inputText(userForm("username"))
+		@helper.inputPassword(userForm("password"))
 
-@helper.inputText(userForm("username"))
-@helper.inputPassword(userForm("password")) 
-<input type="submit" value="Login">
+		<input type="submit" value="Login" class="btn btn-lg btn-primary"> 
+		<br></br>
+		<a href="/mostrarRegistro">
+			<input type="button" class="btn btn-lg btn-primary" name="registro" value="Registro" />
+		</a>
+	</div>
 
-<a href="/mostrarRegistro">
-<input type="button" name= "registro" value="Registro"/>
-</a>
-}
-}
+
+} }
