@@ -4,7 +4,7 @@
 package model;
 
 public class User {
-	private final String name;
+	private String name;
 	private String password;
 	private boolean privileged;
 	private int nRightQuestions;
@@ -21,6 +21,9 @@ public class User {
 		this.quesitos = 0;
 	}
 		
+	
+	public User() {}
+	
 	public Celda getCelda() {
 		return celda;
 	}

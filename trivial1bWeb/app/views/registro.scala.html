@@ -1,0 +1,15 @@
+<html>
+<h1>Registro</h1>
+
+@helper.form(action = routes.Application.registro()) {
+    
+Usuario: <input type="text" name="username" placeholder="Usuario"/>
+<br>
+Password: <input type="password" name="password" placeholder="Contraseña"/>
+<br>
+Repita su password: <input type="password" name="password2" placeholder="Contraseña"/>
+<br>
+<input type="submit" value="Registro"/>
+
+}
+</html>

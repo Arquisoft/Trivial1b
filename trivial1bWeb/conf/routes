@@ -4,10 +4,12 @@
 
 # Home page
 GET     /                           controllers.Application.index()
-GET		/login						controllers.Application.login()
-GET 	/tablero					controllers.Application.tablero()
-GET 	/index  					controllers.Application.index()
-GET 	/logout                     controllers.Application.logout()
+POST    /login                      controllers.Application.login()
+GET     /tablero                    controllers.Application.tablero()
+GET     /index                      controllers.Application.index()
+GET     /logout                     controllers.Application.logout()
+GET     /mostrarRegistro            controllers.Application.mostrarRegistro()
+POST	/registro					controllers.Application.registro()
 
 
 

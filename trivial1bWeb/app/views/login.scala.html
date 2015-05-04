@@ -1,13 +1,16 @@
-<html>
-<h1>Sign in</h1>
+@(userForm: Form[model.User])
 
-   <p>
-       <input type="email" name="email" placeholder="Email" >
-   </p>
-   <p>
-       <input type="password" name="password" placeholder="Password">
-   </p>
-   <p>
-       <button type="submit">Login</button>
-   </p>
-   </html>
+
+@main("Login") {
+
+@helper.form(action = routes.Application.login()) { 
+
+@helper.inputText(userForm("username"))
+@helper.inputPassword(userForm("password")) 
+<input type="submit" value="Login"></button>
+
+<a href="/mostrarRegistro">
+<input type="button" name= "registro" value="Registro"/>
+</a>
+}
+}
