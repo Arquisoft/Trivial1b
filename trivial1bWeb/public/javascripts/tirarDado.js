@@ -16,4 +16,8 @@ function lanzar() {
 	document.images["dado"].src = eval("face" + randomdice + ".src");
 	
 	
+	
+	
+	
+	
 }
