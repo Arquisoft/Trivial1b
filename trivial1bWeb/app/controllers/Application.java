@@ -16,7 +16,8 @@ import views.html.*;
 public class Application extends Controller {
 	
 	private static Trivial juego = new Trivial();
-	private static ExtractorCoordenadas coordenadasImagen= new ExtractorCoordenadas();
+	@SuppressWarnings("unused")
+	private static ExtractorCoordenadas coordenadasImagen= new ExtractorCoordenadas(); // ¿?
 	static Form<User> userForm = Form.form(User.class);
 	private static UserDb user = new UserDb();
 	static Form<Registro> registerForm = Form.form(Registro.class);

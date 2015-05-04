@@ -539,6 +539,10 @@ public class PreguntaDb {
 	// table.put(title, new Question(question, answers));
 	// }
 
+	/*
+	 *  WARNING: no se usa
+	 */
+	@SuppressWarnings("unused")
 	private void addQuestion(Question q, ArrayList<Question> lista) {
 		table.put(q.getCategoria(), lista);
 	}
