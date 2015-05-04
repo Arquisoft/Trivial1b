@@ -1,14 +1,14 @@
-package model;
+package infraestructura.util;
+
+import infraestructura.util.casillas.Figura;
+import infraestructura.util.casillas.Hexagono;
+import infraestructura.util.casillas.Rectangulo;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
-
-import model.casillas.Figura;
-import model.casillas.Hexagono;
-import model.casillas.Rectangulo;
 
 /**
  * Clase que extrae las coordenadas de las casillas de un fichero con formato

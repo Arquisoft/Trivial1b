@@ -2,14 +2,13 @@
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import infraestructura.util.ExtractorCoordenadas;
+import infraestructura.util.casillas.Figura;
 
 import java.awt.Point;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import model.ExtractorCoordenadas;
-import model.casillas.Figura;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package model.casillas;
+package infraestructura.util.casillas;
 
 import java.awt.Point;
 

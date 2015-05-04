@@ -1,5 +1,6 @@
 package controllers;
 
+import infraestructura.util.ExtractorCoordenadas;
 import model.Trivial;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -11,6 +12,7 @@ import views.html.tablero;
 public class Application extends Controller {
 	
 	private static Trivial juego = new Trivial();
+	private static ExtractorCoordenadas coordenadasImagen= new ExtractorCoordenadas();
 
     public static Result index() {
         return ok(index.render("Your new application is ready."));
@@ -34,6 +36,8 @@ public class Application extends Controller {
     	
     	juego.setCoordenada1(coor1);
     	juego.setCoordenada2(coor2);
+    	
+    	
     	
     	return redirect("/pregunta");
     	

@@ -1,52 +1,82 @@
 <html>
 <head>
-        <title>Trivial 1b</title>
-        <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/bootstrap.css")'>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script type="text/javascript" src='@routes.Assets.at("javascripts/tableroCoordenada.js")'> </script>
-        
-    </head>
+<title>Trivial 1b</title>
+<link rel="stylesheet" media="screen"
+	href='@routes.Assets.at("stylesheets/bootstrap.css")'>
+
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript"
+	src='@routes.Assets.at("javascripts/tableroCoordenada.js")'></script>
+<script type="text/javascript"
+	src='@routes.Assets.at("javascripts/tirarDado.js")' /></script>
+
+
+
+
+</head>
 <body>
 
-<div class="container">
-<!-- Static navbar -->
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="">Trivial 1b</a>
-          </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="/index">Inicio</a></li>
-             
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li class="active"><a href="/logout">Finalizar partida <span class="sr-only">(current)</span></a></li>
-              <li><a href="/login">Cerrar sesión</a></li>
-              
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div><!--/.container-fluid -->
-      </nav>
+	<div class="container">
+		<!-- Static navbar -->
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+						aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="">Trivial 1b</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="/index">Inicio</a></li>
 
-      <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron" >
-        
-       	<span id="toolTipBox" width="200"></span> 
-       	<p align="center">
-	    <img src='@routes.Assets.at("images/tablero-redondo.jpg")'  id="tablero" weidht="70%" height="70%"  border="0" style="cursor:crosshair" onclick="toolTip(this);return false"> 
-	
-	    </p>
-	  
-      </div>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="active"><a href="/logout">Finalizar partida <span
+								class="sr-only">(current)</span></a></li>
+						<li><a href="/login">Cerrar sesión</a></li>
 
-    </div>
+					</ul>
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+			<!--/.container-fluid -->
+		</nav>
+
+		<!-- Main component for a primary marketing message or call to action -->
+		<div class="jumbotron">
+
+			<table>
+				<tr>
+					<td><img src='@routes.Assets.at("images/dado.gif")'
+						name="dado"></td>
+				
+				
+					<td>
+						<p align="center">
+							<img src='@routes.Assets.at("images/tablero-redondo.jpg")'
+								id="tablero" weidht="70%" height="70%" border="0"
+								style="cursor: crosshair" onclick="toolTip(this);return false">
+
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td><input type="button" value="Lanzar dado" onClick="lanzar()"></td>
+				</tr>
+			</table>
+
+			<!-- <span id="toolTipBox" width="200"></span>  -->
+
+
+		</div>
+
+	</div>
 
 </body>
 </html>
