@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Routes
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
@@ -18,26 +17,4 @@ POST	/registro					controllers.Application.registro()
 
 
 # Map static resources from the /public folder to the /assets URL path
-=======
-# Routes
-# This file defines all application routes (Higher priority routes first)
-# ~~~~
-
-# Home page
-GET     /                           controllers.Application.index()
-POST    /login                      controllers.Application.login()
-GET     /tablero                    controllers.Application.tablero()
-GET     /index                      controllers.Application.index()
-GET     /nuevaPartida               controllers.Application.nuevaPartida()
-GET     /logout                     controllers.Application.logout()
-GET     /finpartida                 controllers.Application.finalizarPartida()
-GET     /mostrarRegistro            controllers.Application.mostrarRegistro()
-GET     /iniciosesion               controllers.Application.iniciarSesion()
-POST	/registro					controllers.Application.registro()
-
-
-
-
-# Map static resources from the /public folder to the /assets URL path
->>>>>>> origin/master
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

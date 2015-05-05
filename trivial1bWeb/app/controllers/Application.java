@@ -50,7 +50,7 @@ public class Application extends Controller {
 	}
 
 	public static Result iniciarSesion(){
-		return ok(iniciosesion.render());
+		return ok(tablero.render(juego, coor));
 	}
 	public static Result tablero() {
 
