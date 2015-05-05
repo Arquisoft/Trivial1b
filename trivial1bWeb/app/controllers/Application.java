@@ -17,6 +17,8 @@ import views.html.login;
 import views.html.registro;
 import views.html.tablero;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 public class Application extends Controller {
 
 	private static Trivial juego = new Trivial();
@@ -53,18 +55,29 @@ public class Application extends Controller {
 		return ok(tablero.render(juego, coor));
 	}
 	public static Result tablero() {
-
-		if (coor != null) {
-			String[] coors = coor.split("-");// separo las dos coordenadas para
+    
+        JsonNode json = request().body().asJson();
+        if(json != null) {
+            
+         
+            String name = json.findPath("coor").textValue();
+            System.out.println(name);
+            if(name != null) {
+             
+              return ok("Hello " + name);
+            }
+          }
+		
+	/*		String[] coors = coor.split("-");// separo las dos coordenadas para
 			// tratarlas como numeros
 			int coor1 = Integer.valueOf(coors[0]);// primea coordenada
 			int coor2 = Integer.valueOf(coors[1]);// segunda coordenada
 
 			juego.setCoordenada1(coor1);
 			juego.setCoordenada2(coor2);
-			System.out.println(coor1+" "+coor2);
-		}
-
+			System.out.println(coor1+" "+coor2);*/
+		
+        System.out.println("tablero");
 		return ok(tablero.render(juego, coor));
 
 	}

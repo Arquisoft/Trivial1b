@@ -1,6 +1,7 @@
 @import model._ 
 @(juego: Trivial, coor: String)
-<html>
+<!DOCTYPE html>
+<html ng-app="index">
 <head>
 <title>Trivial 1b</title>
 <link rel="stylesheet" media="screen"
@@ -10,7 +11,7 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
 <script type="text/javascript"
-	src='@routes.Assets.at("javascripts/tirarDado.js")' /></script>
+	src='@routes.Assets.at("javascripts/tirarDado.js")' ></script>
 
 <script type="text/javascript">
 
@@ -18,20 +19,20 @@ var theObj="";
 var data;
 function toolTip(me) { 
 
-	theObj=me 
-	theObj.onmousemove=updatePos; 
-	document.getElementById('toolTipBox').value=window.event.offsetX +" - "+ window.event.offsetY; 
-	
-	window.onscroll=updatePos; 
+	theObj=me; 
+theObj.onmousemove=updatePos; 
+
+window.onscroll=updatePos; 
 
 	var coorString=window.event.offsetX +"-"+ window.event.offsetY;
+	
 	$("button").click(function(){
 	    $.ajax(
 	       { url:"@routes.Application.tablero()",
-	    	   data:{
-	    		   'coor='coorString
-	    	   },
-	    	 dataType: 'json',
+	       data: {
+                'coor': coorString
+            },
+	    	 dataType: 'text',
 	         success: function(data){
 	      	 		$('#divToFill').html(' ');
 	      	 		$('#divToFill').append('<ul>');
