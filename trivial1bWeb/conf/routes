@@ -5,9 +5,9 @@
 # Home page
 GET     /                           controllers.Application.index()
 POST    /login                      controllers.Application.login()
-GET     /tablero                    controllers.Application.tablero()
+POST    /tablero                    controllers.Application.tablero()
 GET     /index                      controllers.Application.index()
-GET     /nuevaPartida               controllers.Application.nuevaPartida()
+POST     /nuevaPartida               controllers.Application.nuevaPartida()
 GET     /logout                     controllers.Application.logout()
 GET     /finpartida                 controllers.Application.finalizarPartida()
 GET     /mostrarRegistro            controllers.Application.mostrarRegistro()

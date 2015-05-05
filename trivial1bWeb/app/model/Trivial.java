@@ -10,6 +10,7 @@ public class Trivial {
 	
 	private int coordenada1;
 	private int coordenada2;
+	private String coordenadas;
 	
 	private int numDado;
 	private Tablero9x9 tablero9=null;
@@ -43,6 +44,14 @@ public class Trivial {
 
 	public void setTurno(int turno) {
 		this.turno = turno;
+	}
+	
+	public String getCoordenadas() {
+		return coordenadas;
+	}
+	
+	public void setCoordenadas(String coordenadas) {
+		this.coordenadas = coordenadas;
 	}
 
 	/**
