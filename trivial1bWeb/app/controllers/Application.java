@@ -43,12 +43,15 @@ public class Application extends Controller {
 			ArrayList<User> usuarios = new ArrayList<User>();
 			usuarios.add(user.lookup(username));
 			juego.setUsuarios(usuarios);
-			return ok(tablero.render(juego, coor));
+			return redirect("/iniciosesion");
 		} else {
 			return ok(error.render());
 		}
 	}
 
+	public static Result iniciarSesion(){
+		return ok(iniciosesion.render());
+	}
 	public static Result tablero() {
 
 		if (coor != null) {

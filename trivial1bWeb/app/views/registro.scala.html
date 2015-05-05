@@ -4,7 +4,7 @@
 @main("Login") {
 
 @helper.form(action = routes.Application.registro()) { 
-
+<div align="center">
 @helper.inputText(registerForm("username"))
 @helper.inputPassword(registerForm("password")) 
 @helper.inputPassword(registerForm("password2")) 
@@ -15,5 +15,6 @@
 <a href="/">
 <input type="button" value="Atrás"/>
 </a>
+</div>
 }
 }
