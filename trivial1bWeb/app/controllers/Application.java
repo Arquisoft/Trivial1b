@@ -38,7 +38,8 @@ public class Application extends Controller {
 			ArrayList<User> usuarios = new ArrayList<User>();
 			usuarios.add(user.lookup(username));
 			juego.setUsuarios(usuarios);
-			return redirect("/tablero");
+			//return redirect("/tablero");
+			return redirect("/iniciosesion");
 		} else {
 			return ok(error.render());
 		}
@@ -50,6 +51,11 @@ public class Application extends Controller {
 
 	}
 
+	public static Result iniciarSesion() {
+
+		return ok(iniciosesion.render());
+
+	}
 	public static Result pregunta(String coor) {
 
 		String[] coors = coor.split("-");// separo las dos coordenadas para
