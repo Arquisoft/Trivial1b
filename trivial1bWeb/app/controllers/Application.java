@@ -4,6 +4,8 @@ import infraestructura.util.ExtractorCoordenadas;
 
 import java.util.ArrayList;
 
+import model.Answer;
+import model.Question;
 import model.Registro;
 import model.Trivial;
 import model.User;
@@ -49,6 +51,7 @@ public class Application extends Controller {
 			ArrayList<User> usuarios = new ArrayList<User>();
 			usuarios.add(user.lookup(username));
 			juego.setUsuarios(usuarios);
+			session("connected", username);
 			return redirect("/iniciosesion");
 		} else {
 			return ok(error.render());
@@ -69,23 +72,32 @@ public class Application extends Controller {
         if (coor != null) {
             
          
-            String name = coor; //json.findPath("coor").textValue();
+//            String name = coor; //json.findPath("coor").textValue();
             
-            ObjectNode respuesta = Json.newObject();
+            int coorX = Integer.valueOf(coor.split("-")[0]);
+            int coorY = Integer.valueOf(coor.split("-")[1]);
             
-            respuesta.put("enunciado", "Este es el enunciado de la pregunta");
-            
-            ArrayNode opciones = respuesta.arrayNode();
-            opciones.add("Primera opcion");
-            opciones.add("Segunda opcion");
-            opciones.add("Tercera opcion");
-            
-            respuesta.put("opciones", opciones);
-            
-            respuesta.put("correcta", 2);
-            
-            System.out.println(name);
+            Question q = juego.sacarPreguntaPorCoordenadas(coorX, coorY);
+            ObjectNode respuesta = null;
+            if(q!=null) {
+            	respuesta = Json.newObject();
+                
+                respuesta.put("enunciado", q.getQuestion());
+                System.out.println(q.getQuestion());
+                ArrayNode opciones = respuesta.arrayNode();
+                for(Answer a: q.getAnswers()) {
+                	opciones.add(a.getResponse());
+                }
+                
+                respuesta.put("opciones", opciones);
+                
+                respuesta.put("correcta", 2);
+                
+                System.out.println(coor);
+               
+            }
             return ok(respuesta);
+            
         }
         else {
     		return ok(tablero.render(juego, coor));

@@ -104,11 +104,10 @@ public class Trivial {
 		Map<Integer, Figura> mapa = e.getMapa();
 
 		Iterator<Entry<Integer, Figura>> it = mapa.entrySet().iterator();
-		Integer keyDeLaCasilla=null;
 		while (it.hasNext() ) {
 			Entry<Integer, Figura> entry = it.next();
 			if(entry.getValue().contains(punto)){
-				keyDeLaCasilla=entry.getKey();
+				return preguntas.lookup(entry.getValue().getCategoria());
 			}
 		}
 		
