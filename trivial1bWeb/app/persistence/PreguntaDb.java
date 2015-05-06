@@ -553,7 +553,7 @@ public class PreguntaDb {
 
 	public Question lookup(String category) {
 		List<Question> preguntas = comprobarPreguntas(table.get(category));
-		Question q = preguntas.get(0);
+		Question q = preguntas.get((int) (Math.random() * preguntas.size()));;
 
 		while (q.isUsed()) {
 			q = preguntas.get((int) (Math.random() * preguntas.size()));
