@@ -9,8 +9,47 @@ import java.awt.Point;
  */
 public abstract class Figura {
 
+
 	private Point[] pointList;
+	private String categoria;
+	private boolean quesito=false;
+	private boolean dado=false;
+	private boolean central=false;
 	
+	public boolean isCentral() {
+		return central;
+	}
+
+	public void setCentral(boolean central) {
+		this.central = central;
+	}
+
+	public boolean isDado() {
+		return dado;
+	}
+
+	public void setDado(boolean dado) {
+		this.dado = dado;
+	}
+
+
+	
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	public boolean isQuesito() {
+		return quesito;
+	}
+
+	public void setQuesito(boolean quesito) {
+		this.quesito = quesito;
+	}
+
 	public Point[] getPointList() {
 		return pointList;
 	}

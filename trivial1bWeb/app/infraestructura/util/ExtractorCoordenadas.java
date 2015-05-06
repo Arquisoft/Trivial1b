@@ -70,15 +70,32 @@ public class ExtractorCoordenadas {
 	private void tratarLinea(String linea) {
 		String[] l = linea.split(":");
 		// Separamos las coordenadas.
-		String[] coord = l[1].split("/");
+		String[] datos = l[1].split("-"); //Separamos la categoría de las coordenadas.
+		String[] coord = datos[0].split("/"); //Separamos las coordenadas.
+		
 		if (coord.length == 4) { // Celda normal
 			Rectangulo r = new Rectangulo(coord);
+			setTipo(l, datos, r);
 			mapa.put(Integer.valueOf(l[0]), r);
 		} else if (coord.length == 6) { // Celda central
 			Hexagono h = new Hexagono(coord);
+			h.setCentral(true);
 			mapa.put(Integer.valueOf(l[0]), h);
 		}
 
+	}
+
+	private void setTipo(String[] l, String[] datos, Rectangulo r) {
+		if(Integer.valueOf(l[0])==4 || Integer.valueOf(l[0])==11 || Integer.valueOf(l[0])==18 ||
+				Integer.valueOf(l[0])==25|| Integer.valueOf(l[0])==32|| Integer.valueOf(l[0])==39){
+			r.setQuesito(true);
+			r.setCategoria(datos[1]);
+		} else if(datos[1].equals("Dado")) {
+			r.setDado(true);
+			
+		} else {
+			r.setCategoria(datos[1]);
+		}
 	}
 
 	public Map<Integer, Figura> getMapa() {

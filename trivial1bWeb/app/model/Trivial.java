@@ -1,7 +1,6 @@
 package model;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+
 import infraestructura.util.ExtractorCoordenadas;
 import infraestructura.util.casillas.Figura;
 
