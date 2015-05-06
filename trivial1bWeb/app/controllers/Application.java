@@ -9,15 +9,19 @@ import model.Trivial;
 import model.User;
 import persistence.UserDb;
 import play.data.Form;
+import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.error;
+import views.html.estadisticas;
+import views.html.iniciosesion;
 import views.html.finpartida;
 import views.html.login;
 import views.html.registro;
 import views.html.tablero;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class Application extends Controller {
 
@@ -50,23 +54,42 @@ public class Application extends Controller {
 			return ok(error.render());
 		}
 	}
+	
+	public static Result mostrarEstadisticas(){
+		return ok(estadisticas.render((juego.getUsuarios().get(0))));
+	}
 
 	public static Result iniciarSesion(){
-		return ok(tablero.render(juego, coor));
+		return ok(iniciosesion.render());
 	}
 	public static Result tablero() {
     
-        JsonNode json = request().body().asJson();
-        if(json != null) {
+		String coor = request().getQueryString("coor");
+        //JsonNode json = request().body().asJson();
+        if (coor != null) {
             
          
-            String name = json.findPath("coor").textValue();
+            String name = coor; //json.findPath("coor").textValue();
+            
+            ObjectNode respuesta = Json.newObject();
+            
+            respuesta.put("enunciado", "Este es el enunciado de la pregunta");
+            
+            ArrayNode opciones = respuesta.arrayNode();
+            opciones.add("Primera opcion");
+            opciones.add("Segunda opcion");
+            opciones.add("Tercera opcion");
+            
+            respuesta.put("opciones", opciones);
+            
+            respuesta.put("correcta", 2);
+            
             System.out.println(name);
-            if(name != null) {
-             
-              return ok("Hello " + name);
-            }
-          }
+            return ok(respuesta);
+        }
+        else {
+    		return ok(tablero.render(juego, coor));
+        }
 		
 	/*		String[] coors = coor.split("-");// separo las dos coordenadas para
 			// tratarlas como numeros
@@ -77,8 +100,6 @@ public class Application extends Controller {
 			juego.setCoordenada2(coor2);
 			System.out.println(coor1+" "+coor2);*/
 		
-        System.out.println("tablero");
-		return ok(tablero.render(juego, coor));
 
 	}
 
