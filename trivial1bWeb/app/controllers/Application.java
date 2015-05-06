@@ -12,7 +12,9 @@ import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.error;
+import views.html.estadisticas;
 import views.html.finpartida;
+import views.html.iniciosesion;
 import views.html.login;
 import views.html.registro;
 import views.html.tablero;
@@ -50,9 +52,13 @@ public class Application extends Controller {
 			return ok(error.render());
 		}
 	}
+	
+	public static Result mostrarEstadisticas(){
+		return ok(estadisticas.render(juego.getUsuarios().get(0)));
+	}
 
 	public static Result iniciarSesion(){
-		return ok(tablero.render(juego, coor));
+		return ok(iniciosesion.render());
 	}
 	public static Result tablero() {
     
