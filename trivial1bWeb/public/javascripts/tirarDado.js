@@ -16,7 +16,16 @@ function lanzar() {
 	document.images["dado"].src = eval("face" + randomdice + ".src");
 	
 	
-	
+	$.ajax(
+	       { url:"@routes.Application.dado()",
+	       data: {
+                'dado': randomdice
+            },
+            dataType: 'json',
+	         success: function(data){
+	      	 	console.log(data);
+	      	 }
+		   });
 	
 	
 	

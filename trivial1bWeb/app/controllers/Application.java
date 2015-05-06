@@ -34,6 +34,7 @@ public class Application extends Controller {
 	@SuppressWarnings("unused")
 	private static ExtractorCoordenadas coordenadasImagen = new ExtractorCoordenadas(); // ¿?
 	private static String coor;
+	private static String dado;
 	static Form<User> userForm = Form.form(User.class);
 	private static UserDb user = new UserDb();
 	static Form<Registro> registerForm = Form.form(Registro.class);
@@ -68,6 +69,19 @@ public class Application extends Controller {
 	public static Result iniciarSesion(){
 		return ok(iniciosesion.render());
 	}
+	
+	public static Result dado(){
+		String dado =  request().getQueryString("dado");
+		
+		if(dado!=null){
+			System.out.println(dado);
+			return ok(dado);
+		}else{
+			return ok(tablero.render(juego, coor, dado));
+		}
+			
+	}
+	
 	public static Result tablero() {
     
 		String coor = request().getQueryString("coor");
@@ -104,7 +118,7 @@ public class Application extends Controller {
             
         }
         else {
-    		return ok(tablero.render(juego, coor));
+    		return ok(tablero.render(juego, coor,dado));
         }
 		
 	/*		String[] coors = coor.split("-");// separo las dos coordenadas para
@@ -140,7 +154,7 @@ public class Application extends Controller {
 
 	public static Result nuevaPartida() {
 		System.out.println("iniciada nueva partida");
-		return ok(tablero.render(juego, coor));
+		return ok(tablero.render(juego, coor,dado));
 	}
 
 	public static Result mostrarRegistro() {
