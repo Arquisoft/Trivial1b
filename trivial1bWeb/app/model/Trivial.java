@@ -1,7 +1,19 @@
 package model;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import infraestructura.util.ExtractorCoordenadas;
+import infraestructura.util.casillas.Figura;
+
+import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+
+
 
 import persistence.PreguntaDb;
 
@@ -85,6 +97,25 @@ public class Trivial {
 		return preguntas.lookup(categoria);
 	}
 	
+	public Question sacarPreguntaPorCoordenadas(int coorX,int coorY){
+		Question pregunta = null;
+		ExtractorCoordenadas e=new ExtractorCoordenadas();
+		Point punto=new Point(coorX, coorY);
+		
+		Map<Integer, Figura> mapa = e.getMapa();
+
+		Iterator<Entry<Integer, Figura>> it = mapa.entrySet().iterator();
+		Integer keyDeLaCasilla=null;
+		while (it.hasNext() ) {
+			Entry<Integer, Figura> entry = it.next();
+			if(entry.getValue().contains(punto)){
+				keyDeLaCasilla=entry.getKey();
+			}
+		}
+		
+		return pregunta;
+		
+	}
 	/**
 	 * M�todo que actualiza el tablero
 	 * @param tablero, nuevo tablero
