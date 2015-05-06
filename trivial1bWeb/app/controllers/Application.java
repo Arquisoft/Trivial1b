@@ -2,7 +2,7 @@ package controllers;
 
 import infraestructura.util.ExtractorCoordenadas;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import model.Answer;
 import model.Question;
@@ -12,8 +12,11 @@ import model.User;
 import persistence.UserDb;
 import play.data.Form;
 import play.libs.Json;
+import play.libs.F.Callback;
+import play.libs.F.Callback0;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.WebSocket;
 import views.html.error;
 import views.html.estadisticas;
 import views.html.iniciosesion;
@@ -78,9 +81,10 @@ public class Application extends Controller {
             int coorY = Integer.valueOf(coor.split("-")[1]);
             
             Question q = juego.sacarPreguntaPorCoordenadas(coorX, coorY);
-            ObjectNode respuesta = null;
+            System.out.println(q);
+            ObjectNode respuesta = Json.newObject();
+            respuesta.put("encontrada", q != null);
             if(q!=null) {
-            	respuesta = Json.newObject();
                 
                 respuesta.put("enunciado", q.getQuestion());
                 System.out.println(q.getQuestion());
@@ -159,6 +163,39 @@ public class Application extends Controller {
 			return ok(login.render(userForm));
 		}
 
+	}
+	
+	private static Set<play.mvc.WebSocket.Out<String>> outs = new HashSet<play.mvc.WebSocket.Out<String>>();
+	
+	public static WebSocket<String> socket() {
+		return new WebSocket<String>() {
+			
+			@Override
+			public void onReady(play.mvc.WebSocket.In<String> in,
+					play.mvc.WebSocket.Out<String> out) {
+					    
+			    outs.add(out);
+				
+				in.onMessage(new Callback<String>() {
+					
+					@Override
+					public void invoke(String mensaje) throws Throwable {
+						for (play.mvc.WebSocket.Out<String> out: outs) {
+						    out.write(mensaje);
+						}
+					}
+				});
+				
+				in.onClose(new Callback0() {
+				    
+					@Override
+					public void invoke() throws Throwable {
+						outs.remove(out);
+					}
+				});
+			}
+			
+		};
 	}
 
 }
