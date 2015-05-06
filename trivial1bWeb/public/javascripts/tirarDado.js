@@ -10,11 +10,16 @@ var face4 = new Image()
 face4.src = '/assets/images/dado5.png'
 var face5 = new Image()
 face5.src = '/assets/images/dado6.png'
+
+var ws = new WebSocket('ws://localhost:9000/socket');
+var theObj=""; 
+var data;
 	
 function lanzar() {
 	var randomdice = Math.round(Math.random() * 5);
 	document.images["dado"].src = eval("face" + randomdice + ".src");
 	
+	ws.send(randomdice);
 	
 	$.ajax(
 	       { url:"@routes.Application.dado()",

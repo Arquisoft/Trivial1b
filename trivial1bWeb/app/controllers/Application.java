@@ -70,8 +70,8 @@ public class Application extends Controller {
 		return ok(iniciosesion.render());
 	}
 	
-	public static Result dado(){
-		String dado =  request().getQueryString("dado");
+	/*public static Result dado(){
+		String dado =  request().getQueryString("ndado");
 		
 		if(dado!=null){
 			System.out.println(dado);
@@ -80,14 +80,16 @@ public class Application extends Controller {
 			return ok(tablero.render(juego, coor, dado));
 		}
 			
-	}
+	}*/
 	
 	public static Result tablero() {
     
 		String coor = request().getQueryString("coor");
+		String dado =  request().getQueryString("ndado");
+		
         //JsonNode json = request().body().asJson();
-        if (coor != null) {
-            
+        if (coor != null || dado!=null) {
+        	System.out.println(dado);
          
 //            String name = coor; //json.findPath("coor").textValue();
             
