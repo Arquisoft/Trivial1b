@@ -1,22 +1,38 @@
-@(title: String)(content: Html)
+@import model._ 
+
+@(user: User)
 
 <!DOCTYPE html>
 
 <html>
     <head>
-        <title>@title</title>
+        <title>Estadisticas</title>
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css ")">
-    </head>
-    <body>
-        @content
+        
 		<script type="text/javascript">
 			window.onload = function() {
 			var usuario = document.getElementById('user');
-			document.writeln("<em>Partidas perdidas: </em>" + usuario.getnLostGames());
-			document.writeln("<em>Partidas ganadas: </em>" + usuario.getnWonGames());
-			document.writeln("<em>Respuestas acertadas: </em>" + usuario.getnRightQuestions());
-			document.writeln("<em>Respuestas falladas: </em>" + usuario.getnWrongQuestions());
+			
 			};
 		</script>
+		
+    </head>
+    <body>
+    	<div align="center">
+<img alt="Logo" src='@routes.Assets.at("images/logoTrivial.jpg")'>
+<h1>Estad&iacute;sticas</h1>
+		<ul>
+       		<li type="circle"> Partidas perdidas: @user.getnLostGames()</li>
+			<li type="circle"> Partidas ganadas:  @user.getnWonGames()</li>
+			<li type="circle"> Respuestas acertadas:  @user.getnRightQuestions()</li>
+			<li type="circle"> Respuestas falladas:  @user.getnWrongQuestions()</li>
+        
+       </ul> 
+        
+        <br></br>
+<a href="@routes.Application.logout()" onclick="return confirm('Estás a punto de cerrar sesión. \n¿Estás seguro?');">
+<input type="button" value="Cerrar sesi&oacute;n" class="btn btn-lg btn-primary"/>
+</a>
+		</div>
     </body>
 </html>
