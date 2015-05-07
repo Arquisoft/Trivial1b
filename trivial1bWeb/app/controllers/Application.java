@@ -93,6 +93,7 @@ public class Application extends Controller {
 			respuesta.put("dado", casilla.isDado());
 			respuesta.put("centro", casilla.isCentral());
 
+
 			if (casilla.isDado())
 				return ok(respuesta);
 
@@ -108,6 +109,7 @@ public class Application extends Controller {
 			}
 
 			if (casilla.getCategoria() != null) {
+				respuesta.put("categoria", casilla.getCategoria());
 				Question q = juego.getQuestion(coorX, coorY);
 				respuesta.put("enunciado", q.getQuestion());
 

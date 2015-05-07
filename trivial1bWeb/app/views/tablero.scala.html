@@ -89,8 +89,7 @@ window.onscroll=updatePos;
 	      	 		alert('Casilla no valida');
 	      	 		return;
 	      	 	} else if(data.quesito) {
-	      	 		alert('Quesito!');
-	      	 		return;
+	      	 		alert('Quesito de ' + data.categoria + '!!');
 	      	 	} else if(data.dado) {
 	      	 		lanzar();
 	      	 	} else if(data.centro) {
@@ -112,6 +111,11 @@ window.onscroll=updatePos;
 	      	 		console.log(this);
 	      	 		if ($(this).val() == 'true') {
 	      	 			alert('Correcta');
+	      	 			if(data.quesito) {
+	      	 				
+	      	 				cambiaQuesito(data.categoria);
+	      	 				
+	      	 			}
 	      	 			/*
 	      	 		    $.ajax(
 	      	 			       { url:"@routes.Application.tablero()",
@@ -132,6 +136,26 @@ window.onscroll=updatePos;
 	} 
 
 
+
+function cambiaQuesito(categoria) {
+	
+	if(categoria=='Espectaculos') {
+		$('#rosa').css({opacity: 1.0});
+		
+	} else if(categoria=='Geografía') {
+		$('#azul').css({opacity: 1.0});
+	} else if(categoria=='Deportes') {
+		$('#naranja').css({opacity: 1.0});
+	} else if(categoria=='Historia') {
+		$('#amarillo').css({opacity: 1.0});
+	} else if(categoria=='Arte y Literatura') {
+		$('#marron').css({opacity: 1.0});
+	} else {
+		$('#verde').css({opacity: 1.0});
+	}
+	
+	
+}
 
 
 function updatePos() { 
@@ -224,17 +248,23 @@ document.getElementById('toolTipBox').style.display="none";
 				</div>
 				<div class="panel panel-default" id="panel_quesitos">
 						<img src='@routes.Assets.at("images/amarillo.png")'
-						id="amarillo" class="quesito" width="60px" height="60px" border="0">
+						id="amarillo" class="quesito" width="60px" height="60px" border="0"
+						style="opacity: 0.0;">
 						<img src='@routes.Assets.at("images/azul.png")'
-						id="azul" class="quesito" width="60px" height="60px" border="0">
+						id="azul" class="quesito" width="60px" height="60px" border="0"
+						style="opacity: 0.0;">
 						<img src='@routes.Assets.at("images/rosa.png")'
-						id="rosa" class="quesito" width="60px" height="60px" border="0">
+						id="rosa" class="quesito" width="60px" height="60px" border="0"
+						style="opacity: 0.0;">
 						<img src='@routes.Assets.at("images/marron.png")'
-						id="marron" class="quesito" width="60px" height="60px" border="0">
+						id="marron" class="quesito" width="60px" height="60px" border="0"
+						style="opacity: 0.0;">
 						<img src='@routes.Assets.at("images/naranja.png")'
-						id="naranja" class="quesito" width="60px" height="60px" border="0">
+						id="naranja" class="quesito" width="60px" height="60px" border="0"
+						style="opacity: 0.0;">
 						<img src='@routes.Assets.at("images/verde.png")'
-						id="verde" class="quesito" width="60px" height="60px" border="0">
+						id="verde" class="quesito" width="60px" height="60px" border="0"
+						style="opacity: 0.0;">
 				</div>
 				<br></br>
 
