@@ -14,6 +14,10 @@ GET     /finpartida                 controllers.Application.finalizarPartida()
 GET     /mostrarRegistro            controllers.Application.mostrarRegistro()
 GET     /iniciosesion                controllers.Application.iniciarSesion()
 POST	/registro					controllers.Application.registro()
+GET    /sumarAcertadas              controllers.Application.sumarAcertadas()
+GET    /sumarFalladas               controllers.Application.sumarFalladas()
+GET    /sumarGanadas              controllers.Application.sumarGanadas()
+GET    /sumarPerdidas               controllers.Application.sumarPerdidas()
 
 
 

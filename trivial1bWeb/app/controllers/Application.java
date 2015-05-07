@@ -40,6 +40,11 @@ public class Application extends Controller {
 	static Form<User> userForm = Form.form(User.class);
 	private static UserDb user = new UserDb();
 	static Form<Registro> registerForm = Form.form(Registro.class);
+	
+	private static int sumarAcertadas;
+	private static int sumarFalladas;
+	private static int sumarGanadas;
+	private static int sumarPerdidas;
 
 	public static Result index() {
 
@@ -69,6 +74,42 @@ public class Application extends Controller {
 
 	public static Result iniciarSesion() {
 		return ok(iniciosesion.render());
+	}
+	
+	
+	public static Result sumarAcertadas() {
+		juego.getUsuarios().get(0).setnRightQuestions(juego.getUsuarios().get(0).getnRightQuestions() + 1);
+		sumarAcertadas = juego.getUsuarios().get(0).getnRightQuestions();
+		return ok();
+		/*
+		Integer numAcertadas = request().getQueryInteger("numAcertadas");
+		
+		if (numAcertadas != null) {
+			user.setnRightQuestions(user.getnRightQuestions() + 1);
+			return ok();
+		}
+		else {
+			return ok();
+		}
+		*/
+	}
+	
+	public static Result sumarFalladas() {
+		juego.getUsuarios().get(0).setnWrongQuestions(juego.getUsuarios().get(0).getnWrongQuestions() + 1);
+		sumarFalladas = juego.getUsuarios().get(0).getnWrongQuestions();
+		return ok();
+	}
+	
+	public static Result sumarGanadas() {
+		juego.getUsuarios().get(0).setnWonGames(juego.getUsuarios().get(0).getnWonGames() + 1);
+		sumarGanadas = juego.getUsuarios().get(0).getnWonGames();
+		return ok();
+	}
+	
+	public static Result sumarPerdidas() {
+		juego.getUsuarios().get(0).setnLostGames(juego.getUsuarios().get(0).getnLostGames() + 1);
+		sumarPerdidas = juego.getUsuarios().get(0).getnLostGames();
+		return ok();
 	}
 
 	public static Result tablero() {
@@ -129,7 +170,7 @@ public class Application extends Controller {
 			return ok(respuesta);
 
 		} else {
-			return ok(tablero.render(juego, coor, dado));
+			return ok(tablero.render(juego, coor, dado, sumarAcertadas, sumarFalladas));
 		}
 
 	}
@@ -152,7 +193,7 @@ public class Application extends Controller {
 	}
 
 	public static Result nuevaPartida() {
-		return ok(tablero.render(juego, coor, dado));
+		return ok(tablero.render(juego, coor, dado, sumarAcertadas, sumarFalladas));
 	}
 
 	public static Result mostrarRegistro() {

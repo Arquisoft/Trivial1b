@@ -1,5 +1,5 @@
 @import es.uniovi.asw.model._;
-@(juego: Trivial, coor: String, ndado: String);
+@(juego: Trivial, coor: String, ndado: String, nacertadas: Int, nfalladas: Int);
 <!DOCTYPE html>
 <html ng-app="index">
 <head>
@@ -115,6 +115,10 @@ window.onscroll=updatePos;
 	      	 				cambiaQuesito(data.categoria);
 	      	 				
 	      	 			}
+	      	 			
+		      	 		$.ajax(
+	      	 			       { url:"@routes.Application.sumarAcertadas()"}
+	      	 			       );
 	      	 			/*
 	      	 		    $.ajax(
 	      	 			       { url:"@routes.Application.tablero()",
@@ -126,6 +130,9 @@ window.onscroll=updatePos;
 	      	 		}
 	      	 		else {
 	      	 			alert('Incorrecta');
+	      	 		    $.ajax(
+	      	 			       { url:"@routes.Application.sumarFalladas()"}
+	      	 			       );
 	      	 		}
 	      	 	});
 	      	 }
@@ -235,6 +242,12 @@ document.getElementById('toolTipBox').style.display="none";
 		<!-- Main component for a primary marketing message or call to action -->
 		<div class="row">
 			<div class="col-md-6">
+				<div>
+				<ul>
+					<li type="circle"> Preguntas acertadas: @nacertadas</li>
+					<li type="circle"> Preguntas falladas: @nfalladas</li>
+				</ul> 
+				</div>
 
 				<button onClick="lanzar()">
 					<img src='@routes.Assets.at("images/dado.gif")' name="dado">
