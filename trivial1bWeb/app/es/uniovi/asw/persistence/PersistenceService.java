@@ -3,8 +3,8 @@ package es.uniovi.asw.persistence;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.uniovi.asw.model.Question;
-import es.uniovi.asw.model.User;
+import es.uniovi.asw.infraestructura.model.Question;
+import es.uniovi.asw.infraestructura.model.User;
 
 /**
  * Interfaz para definir los metodos disponibles de la base de datos

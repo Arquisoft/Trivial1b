@@ -6,7 +6,7 @@ import java.util.TreeMap;
 
 import com.mongodb.MongoTimeoutException;
 
-import es.uniovi.asw.model.User;
+import es.uniovi.asw.infraestructura.model.User;
 
 public class UserDb {
 

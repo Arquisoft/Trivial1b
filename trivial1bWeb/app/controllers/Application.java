@@ -25,11 +25,11 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import es.uniovi.asw.infraestructura.util.casillas.Figura;
-import es.uniovi.asw.model.Answer;
-import es.uniovi.asw.model.Question;
-import es.uniovi.asw.model.Registro;
-import es.uniovi.asw.model.Trivial;
-import es.uniovi.asw.model.User;
+import es.uniovi.asw.infraestructura.model.Answer;
+import es.uniovi.asw.infraestructura.model.Question;
+import es.uniovi.asw.infraestructura.model.Registro;
+import es.uniovi.asw.infraestructura.model.Trivial;
+import es.uniovi.asw.infraestructura.model.User;
 import es.uniovi.asw.persistence.UserDb;
 
 public class Application extends Controller {

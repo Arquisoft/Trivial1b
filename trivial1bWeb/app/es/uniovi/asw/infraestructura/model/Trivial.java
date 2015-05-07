@@ -1,4 +1,4 @@
-package es.uniovi.asw.model;
+package es.uniovi.asw.infraestructura.model;
 
 
 import java.awt.Point;

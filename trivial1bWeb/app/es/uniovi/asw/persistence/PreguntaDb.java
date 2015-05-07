@@ -8,8 +8,8 @@ import java.util.TreeMap;
 import com.mongodb.MongoTimeoutException;
 
 import es.uniovi.asw.infraestructura.impl.Log;
-import es.uniovi.asw.model.Answer;
-import es.uniovi.asw.model.Question;
+import es.uniovi.asw.infraestructura.model.Answer;
+import es.uniovi.asw.infraestructura.model.Question;
 
 public class PreguntaDb {
 

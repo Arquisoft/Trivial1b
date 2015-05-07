@@ -8,9 +8,9 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 
-import es.uniovi.asw.model.Answer;
-import es.uniovi.asw.model.Question;
-import es.uniovi.asw.model.User;
+import es.uniovi.asw.infraestructura.model.Answer;
+import es.uniovi.asw.infraestructura.model.Question;
+import es.uniovi.asw.infraestructura.model.User;
 import es.uniovi.asw.persistence.PersistenceService;
 
 /**
