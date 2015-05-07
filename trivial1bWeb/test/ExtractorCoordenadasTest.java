@@ -22,14 +22,21 @@ public class ExtractorCoordenadasTest {
 		Point puntoFuera1 = new Point(342,146);
 		Point puntoFuera2 = new Point(26,22);
 		Map<Integer, Figura> mapa = e.getMapa();
-		Point pt = new Point(303,252);
+		
+		Point pt = new Point(235,139);
+		Point pt2 = new Point(261,64);
+		
 		
 		Iterator<Entry<Integer, Figura>> it = mapa.entrySet().iterator();
 		while (it.hasNext()) {
 			Entry<Integer, Figura> entry = it.next();
 			
 			Figura f = entry.getValue();
+			if(f.contains(pt2))
+				assertEquals(entry.getKey(), Integer.valueOf(40));
 			
+			if(f.contains(pt))
+				assertEquals(entry.getKey(), Integer.valueOf(42));
 			if (entry.getKey() == 72) {
 				assertTrue(f.contains(p1));
 				assertFalse(f.contains(p2));
@@ -40,6 +47,7 @@ public class ExtractorCoordenadasTest {
 			}
 			assertFalse(f.contains(puntoFuera1));
 			assertFalse(f.contains(puntoFuera2));
+			
 		}
 
 		

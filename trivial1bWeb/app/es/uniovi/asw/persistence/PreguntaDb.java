@@ -7,6 +7,7 @@ import java.util.TreeMap;
 
 import com.mongodb.MongoTimeoutException;
 
+import es.uniovi.asw.infraestructura.impl.Log;
 import es.uniovi.asw.model.Answer;
 import es.uniovi.asw.model.Question;
 
@@ -552,6 +553,7 @@ public class PreguntaDb {
 	}
 
 	public Question lookup(String category) {
+		Log.debug(category);
 		List<Question> preguntas = comprobarPreguntas(table.get(category));
 		Question q = preguntas.get((int) (Math.random() * preguntas.size()));;
 

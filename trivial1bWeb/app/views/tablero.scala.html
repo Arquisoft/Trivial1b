@@ -38,14 +38,14 @@ face5.src = '/assets/images/dado6.png';
 
 function lanzar() {
 	var randomdice = Math.round(Math.random() * 5);
-	document.images["dado"].src = eval("face" + randomdice + ".src");
+	document.images["dado"].src = eval("face" + randomdice  + ".src");
 	
 	ws.send(randomdice);
 	
 	$.ajax(
 	       { url:"@routes.Application.tablero()",
 	       data: {
-                ndado : randomdice
+                'ndado' : randomdice
             },
             dataType: 'json',
 	         success: function(data){
@@ -86,13 +86,20 @@ window.onscroll=updatePos;
 	      	 	console.log(data);
 	      	 	
 	      	 	if (!data.encontrada) {
-	      	 		alert('Casilla no válida');
+	      	 		alert('Casilla no valida');
 	      	 		return;
+	      	 	} else if(data.quesito) {
+	      	 		alert('Quesito!');
+	      	 		return;
+	      	 	} else if(data.dado) {
+	      	 		lanzar();
+	      	 	} else if(data.centro) {
+	      	 		
+	      	 		//TODO
 	      	 	}
+	  
 	      	 	
 	      	 	
-	      	 
-	   
 	      	 	$('#campo-enunciado').text(data.enunciado);
 	      	 	
       	 		$('#campo-opciones').empty()

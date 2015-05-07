@@ -80,7 +80,7 @@ public class Trivial {
 		return preguntas.lookup(categoria);
 	}
 	
-	public Question sacarPreguntaPorCoordenadas(int coorX,int coorY){
+	public Question getQuestion(int coorX,int coorY){
 		Question pregunta = null;
 		ExtractorCoordenadas e=new ExtractorCoordenadas();
 		Point punto=new Point(coorX, coorY);
