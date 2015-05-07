@@ -79,8 +79,9 @@ public class Application extends Controller {
 	
 	public static Result sumarAcertadas() {
 		juego.getUsuarios().get(0).setnRightQuestions(juego.getUsuarios().get(0).getnRightQuestions() + 1);
-		sumarAcertadas = juego.getUsuarios().get(0).getnRightQuestions();
-		return ok();
+		//sumarAcertadas = juego.getUsuarios().get(0).getnRightQuestions();
+		sumarAcertadas+=1;
+		return ok(tablero.render(juego, coor, dado, sumarAcertadas, sumarFalladas));
 		/*
 		Integer numAcertadas = request().getQueryInteger("numAcertadas");
 		
@@ -96,8 +97,9 @@ public class Application extends Controller {
 	
 	public static Result sumarFalladas() {
 		juego.getUsuarios().get(0).setnWrongQuestions(juego.getUsuarios().get(0).getnWrongQuestions() + 1);
-		sumarFalladas = juego.getUsuarios().get(0).getnWrongQuestions();
-		return ok();
+		//sumarFalladas = juego.getUsuarios().get(0).getnWrongQuestions();
+		sumarFalladas+=1;
+		return ok(tablero.render(juego, coor, dado, sumarAcertadas, sumarFalladas));
 	}
 	
 	public static Result sumarGanadas() {
