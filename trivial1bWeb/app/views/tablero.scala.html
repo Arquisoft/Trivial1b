@@ -61,20 +61,19 @@ function lanzar() {
 
 function toolTip(me) { 
 
-	theObj=me; 
+theObj=me; 
 theObj.onmousemove=updatePos; 
 
 window.onscroll=updatePos; 
 
 	var coorString=window.event.offsetX +"-"+ window.event.offsetY;
-		
-			$('#pieza').css({
-				top: window.event.offsetY -20 + 'px',
-				left: window.event.offsetX -20 + 'px'
-				});
-		
+
 	ws.send(coorString);
 	
+	$('#pieza').css({
+		top: window.event.offsetY -20 + 'px',
+		left: window.event.offsetX -20 + 'px'
+		});
 	
 	    $.ajax(
 	       { url:"@routes.Application.tablero()",
@@ -96,7 +95,7 @@ window.onscroll=updatePos;
 	      	 		
 	      	 		//TODO
 	      	 	}
-	  
+	  			
 	      	 	
 	      	 	
 	      	 	$('#campo-enunciado').text(data.enunciado);
@@ -134,7 +133,6 @@ window.onscroll=updatePos;
 	 
 
 	} 
-
 
 
 function cambiaQuesito(categoria) {

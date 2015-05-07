@@ -59,7 +59,7 @@ public class Application extends Controller {
 			session("connected", username);
 			return redirect("/iniciosesion");
 		} else {
-			return ok(error.render());
+			return ok(error.render("El usuario o la contraseña no son correctos."));
 		}
 	}
 

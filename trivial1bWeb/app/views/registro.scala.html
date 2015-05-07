@@ -5,16 +5,18 @@
 
 @helper.form(action = routes.Application.registro()) { 
 <div align="center">
+<img alt="Logo" src='@routes.Assets.at("images/logoTrivial.jpg")'>
 @helper.inputText(registerForm("username"))
 @helper.inputPassword(registerForm("password")) 
 @helper.inputPassword(registerForm("password2")) 
-<input type="submit" value="Registrarse">
+<input type="submit" class="btn btn-lg btn-primary" value="Registrarse">
 @if(registerForm.hasGlobalErrors){
 <p> @registerForm.globalError.message </p>									
 }
 <a href="/">
-<input type="button" value="Atrás"/>
+<input type="button"class="btn btn-lg btn-primary"  value="Atras"/>
 </a>
 </div>
+
 }
 }

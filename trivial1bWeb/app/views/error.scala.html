@@ -1,20 +1,19 @@
+@(message: String)
+@main("Error") {
 
-<html>
-<body>
 <div align="center">
 <img alt="Logo" src='@routes.Assets.at("images/logoTrivial.jpg")'>
-<h1>El usuario o contraseña introducidos no son correctas</h1>
 
+<div align="center"  class="alert alert-danger" role="alert">
+<h1>@message</h1>
+<p>Intentelo de nuevo</p>
+</div>
 
-<span>Inténtelo de nuevo</span>
-<br></br>
 	<a href="/index">
-		<input type="button" value="Atrás" />
+		<input type="button" class="btn btn-lg btn-primary"  value="Atrás" />
 	</a>
 	<br></br>
 
-
-
 </div>
-</body>
-</html>
+
+}
