@@ -1,8 +1,6 @@
 
 
 import static org.junit.Assert.*;
-import infraestructura.util.ExtractorCoordenadas;
-import infraestructura.util.casillas.Figura;
 
 import java.awt.Point;
 import java.util.Iterator;
@@ -10,6 +8,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.junit.Test;
+
+import es.uniovi.asw.infraestructura.util.ExtractorCoordenadas;
+import es.uniovi.asw.infraestructura.util.casillas.Figura;
 
 public class ExtractorCoordenadasTest {
 

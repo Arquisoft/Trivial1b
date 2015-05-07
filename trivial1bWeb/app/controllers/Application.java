@@ -1,18 +1,10 @@
 package controllers;
 
-import infraestructura.util.casillas.Figura;
-
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import model.Answer;
-import model.Question;
-import model.Registro;
-import model.Trivial;
-import model.User;
-import persistence.UserDb;
 import play.data.Form;
 import play.libs.F.Callback;
 import play.libs.F.Callback0;
@@ -20,16 +12,18 @@ import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.WebSocket;
-import views.html.error;
-import views.html.estadisticas;
-import views.html.finpartida;
-import views.html.iniciosesion;
-import views.html.login;
-import views.html.registro;
-import views.html.tablero;
+import views.html.*;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import es.uniovi.asw.infraestructura.util.casillas.Figura;
+import es.uniovi.asw.model.Answer;
+import es.uniovi.asw.model.Question;
+import es.uniovi.asw.model.Registro;
+import es.uniovi.asw.model.Trivial;
+import es.uniovi.asw.model.User;
+import es.uniovi.asw.persistence.UserDb;
 
 public class Application extends Controller {
 
@@ -50,8 +44,7 @@ public class Application extends Controller {
 
 		String username = filledForm.field("username").value();
 		String password = filledForm.field("password").value();
-		// System.out.println(username);
-		// System.out.println(password);
+
 		if (user.login(username, password)) {
 			ArrayList<User> usuarios = new ArrayList<User>();
 			usuarios.add(user.lookup(username));
@@ -71,28 +64,17 @@ public class Application extends Controller {
 		return ok(iniciosesion.render());
 	}
 	
-	/*public static Result dado(){
-		String dado =  request().getQueryString("ndado");
-		
-		if(dado!=null){
-			System.out.println(dado);
-			return ok(dado);
-		}else{
-			return ok(tablero.render(juego, coor, dado));
-		}
-			
-	}*/
+
 	
 	public static Result tablero() {
     
 		String coor = request().getQueryString("coor");
 		String dado =  request().getQueryString("ndado");
 		
-        //JsonNode json = request().body().asJson();
+       
         if (coor != null || dado!=null) {
-        	System.out.println(dado);
-         
-//            String name = coor; //json.findPath("coor").textValue();
+              
+
             
             int coorX = Integer.valueOf(coor.split("-")[0]);
             int coorY = Integer.valueOf(coor.split("-")[1]);
@@ -109,17 +91,15 @@ public class Application extends Controller {
             if(casilla.getCategoria()!=null) {
             	Question q = juego.sacarPreguntaPorCoordenadas(coorX, coorY);                
                 respuesta.put("enunciado", q.getQuestion());
-                System.out.println(q.getQuestion());
+
                 ArrayNode opciones = respuesta.arrayNode();
                 for(Answer a: q.getAnswers()) {
                 	opciones.add(a.getResponse());
                 }
                 
                 respuesta.put("opciones", opciones);
-                
                 respuesta.put("correcta", 2);
-                
-                System.out.println(coor);
+               
                
             }
             return ok(respuesta);
@@ -129,16 +109,6 @@ public class Application extends Controller {
     		return ok(tablero.render(juego, coor,dado));
         }
 		
-	/*		String[] coors = coor.split("-");// separo las dos coordenadas para
-			// tratarlas como numeros
-			int coor1 = Integer.valueOf(coors[0]);// primea coordenada
-			int coor2 = Integer.valueOf(coors[1]);// segunda coordenada
-
-			juego.setCoordenada1(coor1);
-			juego.setCoordenada2(coor2);
-			System.out.println(coor1+" "+coor2);*/
-		
-
 	}
 
 	public static Result pregunta(String coor) {
@@ -150,18 +120,15 @@ public class Application extends Controller {
 	public static Result logout() {
 		session().clear();
 		flash("EXITO", "sesion cerrada");
-		System.out.println("Sesion cerrada");
 		return redirect("/index");
 
 	}
 
 	public static Result finalizarPartida() {
-		System.out.println("partida finalizada");
 		return ok(finpartida.render());
 	}
 
 	public static Result nuevaPartida() {
-		System.out.println("iniciada nueva partida");
 		return ok(tablero.render(juego, coor,dado));
 	}
 
@@ -178,9 +145,7 @@ public class Application extends Controller {
 
 			String username = filledForm.field("username").value();
 			String password = filledForm.field("password").value();
-			// System.out.println(username);
-			// System.out.println(password);
-
+		
 			user.addUser(username, password);
 			return ok(login.render(userForm));
 		}

@@ -1,4 +1,4 @@
-@import model._;
+@import es.uniovi.asw.model._;
 @(juego: Trivial, coor: String, ndado: String);
 <!DOCTYPE html>
 <html ng-app="index">
@@ -214,6 +214,20 @@ document.getElementById('toolTipBox').style.display="none";
 				<div class="panel panel-default">
 					<div class="panel-heading" id="campo-enunciado"></div>
 					<div class="panel-body" id="campo-opciones"></div>
+				</div>
+				<div class="panel panel-default" id="panel_quesitos">
+						<img src='@routes.Assets.at("images/amarillo.png")'
+						id="amarillo" class="quesito" width="60px" height="60px" border="0">
+						<img src='@routes.Assets.at("images/azul.png")'
+						id="azul" class="quesito" width="60px" height="60px" border="0">
+						<img src='@routes.Assets.at("images/rosa.png")'
+						id="rosa" class="quesito" width="60px" height="60px" border="0">
+						<img src='@routes.Assets.at("images/marron.png")'
+						id="marron" class="quesito" width="60px" height="60px" border="0">
+						<img src='@routes.Assets.at("images/naranja.png")'
+						id="naranja" class="quesito" width="60px" height="60px" border="0">
+						<img src='@routes.Assets.at("images/verde.png")'
+						id="verde" class="quesito" width="60px" height="60px" border="0">
 				</div>
 				<br></br>
 
