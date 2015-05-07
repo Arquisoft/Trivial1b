@@ -1,6 +1,5 @@
 package controllers;
 
-import infraestructura.util.ExtractorCoordenadas;
 import infraestructura.util.casillas.Figura;
 
 import java.awt.Point;
@@ -35,8 +34,6 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 public class Application extends Controller {
 
 	private static Trivial juego = new Trivial();
-	@SuppressWarnings("unused")
-	private static ExtractorCoordenadas coordenadasImagen = new ExtractorCoordenadas(); // ¿?
 	private static String coor;
 	private static String dado;
 	static Form<User> userForm = Form.form(User.class);

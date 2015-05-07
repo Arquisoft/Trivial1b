@@ -9,7 +9,6 @@ import java.awt.Point;
  */
 public abstract class Figura {
 
-
 	private Point[] pointList;
 	private String categoria;
 	private boolean quesito=false;
@@ -66,14 +65,13 @@ public abstract class Figura {
 	public boolean contains(Point p) {
 
 		int counter = 0;
-		int i;
 		int xinters;
 		Point p1 = new Point(0, 0);
 		Point p2 = new Point(0, 0);
 		int n = pointList.length;
 
 		p1 = pointList[0];
-		for (i = 1; i <= n; i++) {
+		for (int i = 1; i < n; i++) {
 			p2 = pointList[i % n];
 			if (p.y > Math.min(p1.y, p2.y)) {
 				if (p.y <= Math.max(p1.y, p2.y)) {

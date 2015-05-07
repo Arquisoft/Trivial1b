@@ -381,4 +381,20 @@ public class Trivial {
 		return null;
 	}
 	
+	public int buscarIdCasilla(Point p) {
+		ExtractorCoordenadas e=new ExtractorCoordenadas();
+		Map<Integer, Figura> mapa = e.getMapa();
+		Iterator<Entry<Integer, Figura>> it = mapa.entrySet().iterator();
+		while (it.hasNext()) {
+			Entry<Integer, Figura> entry = it.next();
+			if (entry.getValue().contains(p)) {
+				return entry.getKey();
+			}
+		}
+		
+		return -1;
+	}
+	
 }
+
+
