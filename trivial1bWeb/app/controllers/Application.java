@@ -1,8 +1,12 @@
 package controllers;
 
 import infraestructura.util.ExtractorCoordenadas;
+import infraestructura.util.casillas.Figura;
 
-import java.util.*;
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import model.Answer;
 import model.Question;
@@ -11,16 +15,16 @@ import model.Trivial;
 import model.User;
 import persistence.UserDb;
 import play.data.Form;
-import play.libs.Json;
 import play.libs.F.Callback;
 import play.libs.F.Callback0;
+import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.WebSocket;
 import views.html.error;
 import views.html.estadisticas;
-import views.html.iniciosesion;
 import views.html.finpartida;
+import views.html.iniciosesion;
 import views.html.login;
 import views.html.registro;
 import views.html.tablero;
@@ -96,12 +100,17 @@ public class Application extends Controller {
             int coorX = Integer.valueOf(coor.split("-")[0]);
             int coorY = Integer.valueOf(coor.split("-")[1]);
             
-            Question q = juego.sacarPreguntaPorCoordenadas(coorX, coorY);
-            System.out.println(q);
+            Figura casilla = juego.buscarCasilla(new Point(coorX,coorY));
             ObjectNode respuesta = Json.newObject();
-            respuesta.put("encontrada", q != null);
-            if(q!=null) {
-                
+           
+            
+			respuesta.put("quesito", casilla.isQuesito());
+            respuesta.put("dado", casilla.isDado());
+            respuesta.put("centro", casilla.isCentral());
+          
+            respuesta.put("encontrada", casilla != null);
+            if(casilla.getCategoria()!=null) {
+            	Question q = juego.sacarPreguntaPorCoordenadas(coorX, coorY);                
                 respuesta.put("enunciado", q.getQuestion());
                 System.out.println(q.getQuestion());
                 ArrayNode opciones = respuesta.arrayNode();
@@ -188,7 +197,7 @@ public class Application extends Controller {
 			
 			@Override
 			public void onReady(play.mvc.WebSocket.In<String> in,
-					play.mvc.WebSocket.Out<String> out) {
+					final play.mvc.WebSocket.Out<String> out) {
 					    
 			    outs.add(out);
 				

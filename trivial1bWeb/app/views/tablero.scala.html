@@ -67,14 +67,12 @@ theObj.onmousemove=updatePos;
 window.onscroll=updatePos; 
 
 	var coorString=window.event.offsetX +"-"+ window.event.offsetY;
+	var coorX = window.event.offsetX;
+	var coorY = window.event.oofSetY; 
 	
 	ws.send(coorString);
 	
-	$('#pieza').css({
-		top: window.event.offsetY -20 + 'px',
-		left: window.event.offsetX -20 + 'px'
-	});
-	
+
 	
 	    $.ajax(
 	       { url:"@routes.Application.tablero()",
@@ -89,6 +87,13 @@ window.onscroll=updatePos;
 	      	 		alert('Casilla no v�lida');
 	      	 		return;
 	      	 	}
+	      	 	
+	      	 	$('#pieza').css({
+				top: coorX -20 + 'px',
+				left: coorY -20 + 'px'
+				});
+	
+	
 	   
 	      	 	$('#campo-enunciado').text(data.enunciado);
 	      	 	

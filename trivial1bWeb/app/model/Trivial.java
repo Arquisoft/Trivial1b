@@ -366,5 +366,19 @@ public class Trivial {
 	public int getCoordenada2() {
 		return coordenada2;
 	}
+
+	public Figura buscarCasilla(Point p) {
+		ExtractorCoordenadas e=new ExtractorCoordenadas();
+		Map<Integer, Figura> mapa = e.getMapa();
+		Iterator<Entry<Integer, Figura>> it = mapa.entrySet().iterator();
+		while (it.hasNext()) {
+			Entry<Integer, Figura> entry = it.next();
+			if (entry.getValue().contains(p)) {
+				return entry.getValue();
+			}
+		}
+		
+		return null;
+	}
 	
 }
