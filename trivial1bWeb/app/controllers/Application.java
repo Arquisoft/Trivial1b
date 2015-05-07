@@ -31,14 +31,20 @@ import es.uniovi.asw.infraestructura.model.Registro;
 import es.uniovi.asw.infraestructura.model.Trivial;
 import es.uniovi.asw.infraestructura.model.User;
 import es.uniovi.asw.persistence.UserDb;
+import es.uniovi.asw.infraestructura.util.ExtractorCoordenadas;
+import es.uniovi.asw.infraestructura.util.Graph;
 
 public class Application extends Controller {
 
 	private static Trivial juego = new Trivial();
 	private static String coor;
-	private static String dado;
+	private static String ndado;
 	static Form<User> userForm = Form.form(User.class);
+	private static ExtractorCoordenadas coordenadasImagen = new ExtractorCoordenadas();
 	private static UserDb user = new UserDb();
+	private static Graph<Integer> grafo = new Graph<Integer>(coordenadasImagen
+			.getMapa().size());
+	
 	static Form<Registro> registerForm = Form.form(Registro.class);
 	
 	private static int sumarAcertadas;
@@ -81,7 +87,7 @@ public class Application extends Controller {
 		juego.getUsuarios().get(0).setnRightQuestions(juego.getUsuarios().get(0).getnRightQuestions() + 1);
 		//sumarAcertadas = juego.getUsuarios().get(0).getnRightQuestions();
 		sumarAcertadas+=1;
-		return ok(tablero.render(juego, coor, dado, sumarAcertadas, sumarFalladas));
+		return ok(tablero.render(juego, coor, ndado, sumarAcertadas, sumarFalladas));
 		/*
 		Integer numAcertadas = request().getQueryInteger("numAcertadas");
 		
@@ -99,7 +105,7 @@ public class Application extends Controller {
 		juego.getUsuarios().get(0).setnWrongQuestions(juego.getUsuarios().get(0).getnWrongQuestions() + 1);
 		//sumarFalladas = juego.getUsuarios().get(0).getnWrongQuestions();
 		sumarFalladas+=1;
-		return ok(tablero.render(juego, coor, dado, sumarAcertadas, sumarFalladas));
+		return ok(tablero.render(juego, coor, ndado, sumarAcertadas, sumarFalladas));
 	}
 	
 	public static Result sumarGanadas() {
@@ -115,66 +121,70 @@ public class Application extends Controller {
 	}
 
 	public static Result tablero() {
-
+	    
 		String coor = request().getQueryString("coor");
-		String dado = request().getQueryString("ndado");
-
-		if (coor != null || dado != null) {
-
-			int coorX = Integer.valueOf(coor.split("-")[0]);
-			int coorY = Integer.valueOf(coor.split("-")[1]);
-
-			Figura casilla = juego.buscarCasilla(new Point(coorX, coorY));
-			ObjectNode respuesta = Json.newObject();
-			if(casilla==null) {
-				respuesta.put("encontrada", false);
-				return ok(respuesta);
-			} 
-			
-			respuesta.put("encontrada", true);
+		String dado =  request().getQueryString("ndado");
+		 System.out.println("dado: " + dado);
+		 System.out.println("coor" + coor);
+        if (coor != null || ndado!=null) {
+        	
+           
+            int coorX = Integer.valueOf(coor.split("-")[0]);
+            int coorY = Integer.valueOf(coor.split("-")[1]);
+            ObjectNode respuesta = null;
+			//if (isCaminoValido(coorX, coorY)) {            
+            Figura casilla = juego.buscarCasilla(new Point(coorX,coorY));
+            respuesta = Json.newObject();
+           
+            
 			respuesta.put("quesito", casilla.isQuesito());
-			respuesta.put("dado", casilla.isDado());
-			respuesta.put("centro", casilla.isCentral());
+            respuesta.put("dado", casilla.isDado());
+            respuesta.put("centro", casilla.isCentral());
+          
+            respuesta.put("encontrada", casilla != null);
+            if(casilla.getCategoria()!=null) {
+            	Question q = juego.getQuestion(coorX, coorY);                
+                respuesta.put("enunciado", q.getQuestion());
 
-
-			if (casilla.isDado())
-				return ok(respuesta);
-
-			if (casilla.isCentral()) {
-				User u = juego.getUsuarios().get(juego.getTurno());
-				if (u.getQuesitos() == 6) {
-					// TODO hacer lo de las 4 preguntas.
-
-					return ok(respuesta);
-				} else {
-					// TODO hacer que pasa cuando no se acabo.
-				}
-			}
-
-			if (casilla.getCategoria() != null) {
-				respuesta.put("categoria", casilla.getCategoria());
-				Question q = juego.getQuestion(coorX, coorY);
-				respuesta.put("enunciado", q.getQuestion());
-
-				ArrayNode opciones = respuesta.arrayNode();
-				List<Answer> ans = q.getAnswers();
-				for (int i = 0; i < ans.size(); i++) {
-					Answer a = ans.get(i);
-					opciones.add(a.getResponse());
-					if (a.isCorrect()) {
-						respuesta.put("correcta", i);
-					}
-				}
-
-				respuesta.put("opciones", opciones);
-
-			}
-			return ok(respuesta);
-
-		} else {
-			return ok(tablero.render(juego, coor, dado, sumarAcertadas, sumarFalladas));
-		}
-
+                ArrayNode opciones = respuesta.arrayNode();
+                for(Answer a: q.getAnswers()) {
+                	opciones.add(a.getResponse());
+                }
+                
+                respuesta.put("opciones", opciones);
+                respuesta.put("correcta", 2);
+               
+          //  }
+            }
+            return ok(respuesta);
+            
+        }
+        else if(coor == null && dado!=null)
+        {ndado = dado;    
+   	 System.out.println("ndado: " + ndado);
+			return ok(tablero.render(juego, coor, ndado, sumarAcertadas,
+					sumarFalladas));
+        	
+        }
+        else {
+        	return ok(tablero.render(juego, coor, ndado, sumarAcertadas,
+					sumarFalladas));
+        }
+		
+	}
+	
+	private static boolean isCaminoValido(int coorX, int coorY) {
+		grafo = grafo.NodoCircular();
+		Point pto = new Point();
+		pto.x = coorX;
+		pto.y = coorY;
+		System.out.println("return dijstra:" + grafo.dijkstra(juego.buscarIdCasilla(pto)).length);
+		grafo.dijkstra(juego.buscarIdCasilla(pto));
+		System.out.println(grafo.getNumElementos());
+		if (grafo.getNumElementos() == Integer
+				.parseInt(ndado))
+			return true;
+		return false;
 	}
 
 	public static Result pregunta(String coor) {
@@ -195,7 +205,7 @@ public class Application extends Controller {
 	}
 
 	public static Result nuevaPartida() {
-		return ok(tablero.render(juego, coor, dado, sumarAcertadas, sumarFalladas));
+		return ok(tablero.render(juego, coor, ndado, sumarAcertadas, sumarFalladas));
 	}
 
 	public static Result mostrarRegistro() {
