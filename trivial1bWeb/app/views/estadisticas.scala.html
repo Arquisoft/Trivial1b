@@ -8,7 +8,9 @@
     <head>
         <title>Estadisticas</title>
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css ")">
-        
+        <link rel="stylesheet" media="screen"
+	href='@routes.Assets.at("stylesheets/bootstrap.css")'>
+	
 		<script type="text/javascript">
 			window.onload = function() {
 			var usuario = document.getElementById('user');
@@ -28,6 +30,10 @@
 			<li type="circle"> Respuestas falladas:  @user.getnWrongQuestions()</li>
        </ul> 
         <br></br>
+        
+<a href="/iniciosesion">
+<input type="button"class="btn btn-lg btn-primary"  value="Atras"/>
+</a>
 <a href="@routes.Application.logout()" onclick="return confirm('Estás a punto de cerrar sesión. \n¿Estás seguro?');">
 <input type="button" value="Cerrar sesi&oacute;n" class="btn btn-lg btn-primary"/>
 </a>

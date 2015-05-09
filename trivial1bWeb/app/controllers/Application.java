@@ -3,7 +3,6 @@ package controllers;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import play.data.Form;
@@ -24,15 +23,13 @@ import views.html.tablero;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import es.uniovi.asw.infraestructura.util.casillas.Figura;
 import es.uniovi.asw.infraestructura.model.Answer;
 import es.uniovi.asw.infraestructura.model.Question;
 import es.uniovi.asw.infraestructura.model.Registro;
 import es.uniovi.asw.infraestructura.model.Trivial;
 import es.uniovi.asw.infraestructura.model.User;
+import es.uniovi.asw.infraestructura.util.casillas.Figura;
 import es.uniovi.asw.persistence.UserDb;
-import es.uniovi.asw.infraestructura.util.ExtractorCoordenadas;
-import es.uniovi.asw.infraestructura.util.Graph;
 
 public class Application extends Controller {
 
@@ -40,17 +37,14 @@ public class Application extends Controller {
 	private static String coor;
 	private static String ndado;
 	static Form<User> userForm = Form.form(User.class);
-	private static ExtractorCoordenadas coordenadasImagen = new ExtractorCoordenadas();
 	private static UserDb user = new UserDb();
-	private static Graph<Integer> grafo = new Graph<Integer>(coordenadasImagen
-			.getMapa().size());
 	
 	static Form<Registro> registerForm = Form.form(Registro.class);
 	
-	private static int sumarAcertadas;
-	private static int sumarFalladas;
-	private static int sumarGanadas;
-	private static int sumarPerdidas;
+	private static int nacertadas;
+	private static int nfalladas;
+//	private static int sumarGanadas;
+//	private static int sumarPerdidas;
 
 	public static Result index() {
 
@@ -86,8 +80,8 @@ public class Application extends Controller {
 	public static Result sumarAcertadas() {
 		juego.getUsuarios().get(0).setnRightQuestions(juego.getUsuarios().get(0).getnRightQuestions() + 1);
 		//sumarAcertadas = juego.getUsuarios().get(0).getnRightQuestions();
-		sumarAcertadas+=1;
-		return ok(tablero.render(juego, coor, ndado, sumarAcertadas, sumarFalladas));
+		nacertadas+=1;
+		return ok(tablero.render(juego, coor, ndado, nacertadas, nfalladas));
 		/*
 		Integer numAcertadas = request().getQueryInteger("numAcertadas");
 		
@@ -103,20 +97,19 @@ public class Application extends Controller {
 	
 	public static Result sumarFalladas() {
 		juego.getUsuarios().get(0).setnWrongQuestions(juego.getUsuarios().get(0).getnWrongQuestions() + 1);
-		//sumarFalladas = juego.getUsuarios().get(0).getnWrongQuestions();
-		sumarFalladas+=1;
-		return ok(tablero.render(juego, coor, ndado, sumarAcertadas, sumarFalladas));
+		nfalladas+=1;
+		return ok(tablero.render(juego, coor, ndado, nacertadas, nfalladas));
 	}
 	
 	public static Result sumarGanadas() {
 		juego.getUsuarios().get(0).setnWonGames(juego.getUsuarios().get(0).getnWonGames() + 1);
-		sumarGanadas = juego.getUsuarios().get(0).getnWonGames();
+	//	sumarGanadas = juego.getUsuarios().get(0).getnWonGames();
 		return ok();
 	}
 	
 	public static Result sumarPerdidas() {
 		juego.getUsuarios().get(0).setnLostGames(juego.getUsuarios().get(0).getnLostGames() + 1);
-		sumarPerdidas = juego.getUsuarios().get(0).getnLostGames();
+	//	sumarPerdidas = juego.getUsuarios().get(0).getnLostGames();
 		return ok();
 	}
 
@@ -124,15 +117,14 @@ public class Application extends Controller {
 	    
 		String coor = request().getQueryString("coor");
 		String dado =  request().getQueryString("ndado");
-		 System.out.println("dado: " + dado);
-		 System.out.println("coor" + coor);
+		
         if (coor != null || ndado!=null) {
         	
            
             int coorX = Integer.valueOf(coor.split("-")[0]);
             int coorY = Integer.valueOf(coor.split("-")[1]);
             ObjectNode respuesta = null;
-			//if (isCaminoValido(coorX, coorY)) {            
+			         
             Figura casilla = juego.buscarCasilla(new Point(coorX,coorY));
             respuesta = Json.newObject();
            
@@ -154,45 +146,25 @@ public class Application extends Controller {
                 respuesta.put("opciones", opciones);
                 respuesta.put("correcta", 2);
                
-          //  }
+         
             }
             return ok(respuesta);
             
         }
         else if(coor == null && dado!=null)
         {ndado = dado;    
-   	 System.out.println("ndado: " + ndado);
-			return ok(tablero.render(juego, coor, ndado, sumarAcertadas,
-					sumarFalladas));
+   	
+			return ok(tablero.render(juego, coor, ndado, nacertadas,
+					nfalladas));
         	
         }
         else {
-        	return ok(tablero.render(juego, coor, ndado, sumarAcertadas,
-					sumarFalladas));
+        	return ok(tablero.render(juego, coor, ndado, nacertadas,
+					nfalladas));
         }
 		
 	}
 	
-	private static boolean isCaminoValido(int coorX, int coorY) {
-		grafo = grafo.NodoCircular();
-		Point pto = new Point();
-		pto.x = coorX;
-		pto.y = coorY;
-		System.out.println("return dijstra:" + grafo.dijkstra(juego.buscarIdCasilla(pto)).length);
-		grafo.dijkstra(juego.buscarIdCasilla(pto));
-		System.out.println(grafo.getNumElementos());
-		if (grafo.getNumElementos() == Integer
-				.parseInt(ndado))
-			return true;
-		return false;
-	}
-
-	public static Result pregunta(String coor) {
-
-		return redirect("/pregunta");
-
-	}
-
 	public static Result logout() {
 		session().clear();
 		flash("EXITO", "sesion cerrada");
@@ -205,7 +177,7 @@ public class Application extends Controller {
 	}
 
 	public static Result nuevaPartida() {
-		return ok(tablero.render(juego, coor, ndado, sumarAcertadas, sumarFalladas));
+		return ok(tablero.render(juego, coor, ndado, nacertadas, nfalladas));
 	}
 
 	public static Result mostrarRegistro() {
