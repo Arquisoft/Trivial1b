@@ -3,6 +3,7 @@ package controllers;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import play.data.Form;
@@ -23,6 +24,7 @@ import views.html.tablero;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+import es.uniovi.asw.infraestructura.impl.Log;
 import es.uniovi.asw.infraestructura.model.Answer;
 import es.uniovi.asw.infraestructura.model.Question;
 import es.uniovi.asw.infraestructura.model.Registro;
@@ -114,7 +116,14 @@ public class Application extends Controller {
 	}
 
 	public static Result tablero() {
-	    
+		if(juego.getUsuarios().size()==0) {
+			return redirect("/index");
+			}
+		if (request().getQueryString("respondida")!=null) {
+			actualizarQuesitos();
+		}
+		
+		
 		String coor = request().getQueryString("coor");
 		String dado =  request().getQueryString("ndado");
 		
@@ -134,17 +143,38 @@ public class Application extends Controller {
             respuesta.put("centro", casilla.isCentral());
           
             respuesta.put("encontrada", casilla != null);
+        	User u = juego.getUsuarios().get(juego.getTurno());
+        	
+        	if (casilla.isDado())
+				return ok(respuesta);
+
+			if (casilla.isCentral()) {
+				if (juego.isRondaFinal(u)) {
+					// TODO hacer lo de las 4 preguntas.
+
+					return ok(respuesta);
+				} else {
+					// TODO hacer que pasa cuando no se acabo.
+				}
+			}
+            
             if(casilla.getCategoria()!=null) {
+            	respuesta.put("categoria", casilla.getCategoria());
             	Question q = juego.getQuestion(coorX, coorY);                
                 respuesta.put("enunciado", q.getQuestion());
 
                 ArrayNode opciones = respuesta.arrayNode();
-                for(Answer a: q.getAnswers()) {
-                	opciones.add(a.getResponse());
-                }
+                List<Answer> ans = q.getAnswers();
+				for (int i = 0; i < ans.size(); i++) {
+					Answer a = ans.get(i);
+					opciones.add(a.getResponse());
+					if (a.isCorrect()) {
+						respuesta.put("correcta", i);
+					}
+				}
                 
                 respuesta.put("opciones", opciones);
-                respuesta.put("correcta", 2);
+
                
          
             }
@@ -165,6 +195,17 @@ public class Application extends Controller {
 		
 	}
 	
+	
+	private static void actualizarQuesitos() {
+		User u = juego.getUsuarios().get(juego.getTurno());
+		String categoria = request().getQueryString("categoria");
+		u.incrementarQuesitos(categoria);
+		Log.info("Actualizados el quesito de " + categoria + "para el usuario "
+				+ u.getName());
+
+	}
+	
+	
 	public static Result logout() {
 		session().clear();
 		flash("EXITO", "sesion cerrada");
@@ -177,6 +218,9 @@ public class Application extends Controller {
 	}
 
 	public static Result nuevaPartida() {
+		if(juego.getUsuarios().size()==0) {
+			return redirect("/index");
+			}
 		return ok(tablero.render(juego, coor, ndado, nacertadas, nfalladas));
 	}
 

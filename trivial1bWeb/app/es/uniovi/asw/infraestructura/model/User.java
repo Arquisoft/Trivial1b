@@ -3,6 +3,9 @@
  */
 package es.uniovi.asw.infraestructura.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import es.uniovi.asw.infraestructura.util.casillas.Figura;
 
 public class User {
@@ -14,17 +17,24 @@ public class User {
 	private int nWonGames;
 	private int nLostGames;
 	private Figura figura;
-	private int quesitos;
+	private Map<String,Boolean> quesitos = new HashMap<String,Boolean>();
+
 
 	public User(String name, String password) {
 		super();
 		this.name = name;
 		this.password = password;
-		this.quesitos = 0;
+
 	}
 		
 	
 	public User() {}
+	
+	public void incrementarQuesitos(String categoria) {
+		quesitos.put(categoria, true);
+		
+	}
+	
 	
 	public Figura getFigura() {
 		return figura;
@@ -34,13 +44,16 @@ public class User {
 		this.figura = figura;
 	}
 	
-	public int getQuesitos() {
+	public Map<String, Boolean> getQuesitos() {
 		return quesitos;
 	}
 
-	public void setQuesitos(int quesitos) {
+
+
+	public void setQuesitos(Map<String, Boolean> quesitos) {
 		this.quesitos = quesitos;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {

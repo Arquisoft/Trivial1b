@@ -347,6 +347,11 @@ public class Trivial {
 		return -1;
 	}
 	
+	
+	public boolean isRondaFinal(User usuario) {
+		return usuario.getQuesitos().size()==6;
+	}
+	
 }
 
 

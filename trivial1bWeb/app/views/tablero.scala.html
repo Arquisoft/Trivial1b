@@ -22,7 +22,7 @@ ws.onmessage = function (e) {
 
 var theObj=""; 
 var data;
-
+var dado;
 var face0 = new Image();
 face0.src = "/assets/images/dado1.png";
 var face1 = new Image();
@@ -39,7 +39,7 @@ face5.src = '/assets/images/dado6.png';
 function lanzar() {
 	var randomdice = Math.round(Math.random() * 5);
 	document.images["dado"].src = eval("face" + randomdice  + ".src");
-	
+	dado = randomdice;
 	ws.send(randomdice+1);
 	
 	$.ajax(
@@ -119,13 +119,25 @@ window.onscroll=updatePos;
 		      	 		$.ajax(
 	      	 			       { url:"@routes.Application.sumarAcertadas()"}
 	      	 			       );
-	      	 			
+	      	 			$.ajax(
+	      	 			       { url:"@routes.Application.tablero()",
+	      	 			       data: {
+	      	 		                'categoria': data.categoria,
+	      	 		                'respondida': true
+	      	 		            }
+	      	 			       });
 	      	 		}
+	      	 		
+	      	 		  
+	      	 		
 	      	 		else {
 	      	 			alert('Incorrecta');
 	      	 		    $.ajax(
 	      	 			       { url:"@routes.Application.sumarFalladas()"}
 	      	 			       );
+	      	 			$('#campo-enunciado').empty()
+	      	 	
+      	 				$('#campo-opciones').empty()
 	      	 		}
 	      	 	});
 	      	 }
