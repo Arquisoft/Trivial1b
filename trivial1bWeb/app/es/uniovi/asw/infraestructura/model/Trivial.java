@@ -23,13 +23,13 @@ public class Trivial {
 	private int turno;
 	private ArrayList<User> usuarios = new ArrayList<User>();
 
-	private boolean[][] boleans;
+	
 	private List<String> mapa;
 	
 	private PreguntaDb preguntas = new PreguntaDb();
 	
 	public Trivial() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public ArrayList<User> getUsuarios() {
@@ -99,18 +99,6 @@ public class Trivial {
 		
 	}
 
-	
-	public void iniciarMatriz(){
-		this.boleans = new boolean[][]{{false, false, false, false, false, false, false, false, false},
-										{false, true, true, true, false, true, true, true, false},
-										{false, true, true, true, false, true, true, true, false},
-										{false, true, true, true, false, true, true, true, false},
-										{false, false, false, false, false, false, false, false, false},
-										{false, true, true, true, false, true, true, true, false},
-										{false, true, true, true, false, true, true, true, false},
-										{false, true, true, true, false, true, true, true, false},
-										{false, false, false, false, false, false, false, false, false}};
-	}
 	
 	public void iniciarHash(){
 		this.mapa = new ArrayList<String>();

@@ -103,13 +103,13 @@ public class Application extends Controller {
 	
 	public static Result sumarGanadas() {
 		juego.getUsuarios().get(0).setnWonGames(juego.getUsuarios().get(0).getnWonGames() + 1);
-	//	sumarGanadas = juego.getUsuarios().get(0).getnWonGames();
+//		sumarGanadas = juego.getUsuarios().get(0).getnWonGames();
 		return ok();
 	}
 	
 	public static Result sumarPerdidas() {
 		juego.getUsuarios().get(0).setnLostGames(juego.getUsuarios().get(0).getnLostGames() + 1);
-	//	sumarPerdidas = juego.getUsuarios().get(0).getnLostGames();
+//		sumarPerdidas = juego.getUsuarios().get(0).getnLostGames();
 		return ok();
 	}
 
