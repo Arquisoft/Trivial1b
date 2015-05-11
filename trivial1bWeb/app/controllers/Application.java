@@ -13,12 +13,18 @@ import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.WebSocket;
-import views.html.*;
+import views.html.error;
+import views.html.estadisticas;
+import views.html.finpartida;
+import views.html.iniciosesion;
+import views.html.login;
+import views.html.partidaganada;
+import views.html.registro;
+import views.html.tablero;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import es.uniovi.asw.infraestructura.impl.Log;
 import es.uniovi.asw.infraestructura.model.Answer;
 import es.uniovi.asw.infraestructura.model.Question;
 import es.uniovi.asw.infraestructura.model.Registro;
@@ -182,8 +188,6 @@ public class Application extends Controller {
 	}
 
 	public static Result mostrarGanada() {
-		User u = juego.getUsuarios().get(juego.getTurno());
-
 		return ok(partidaganada.render());
 	}
 

@@ -7,7 +7,6 @@ import java.util.TreeMap;
 
 import com.mongodb.MongoTimeoutException;
 
-import es.uniovi.asw.infraestructura.impl.Log;
 import es.uniovi.asw.infraestructura.model.Answer;
 import es.uniovi.asw.infraestructura.model.Question;
 
@@ -22,8 +21,7 @@ public class PreguntaDb {
 			crearPreguntasCiencia();
 			crearPreguntasEntretenimiento();
 			crearPreguntasDeportes();
-			crearGeografia();
-//			crearPreguntasGeografia();
+			crearPreguntasGeografia();
 			crearPreguntasHistoria();
 			crearPreguntasLiteratura();
 		} catch (MongoTimeoutException e) {
