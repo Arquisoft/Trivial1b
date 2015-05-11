@@ -22,7 +22,8 @@ public class PreguntaDb {
 			crearPreguntasCiencia();
 			crearPreguntasEntretenimiento();
 			crearPreguntasDeportes();
-			crearPreguntasGeografia();
+			crearGeografia();
+//			crearPreguntasGeografia();
 			crearPreguntasHistoria();
 			crearPreguntasLiteratura();
 		} catch (MongoTimeoutException e) {
@@ -508,8 +509,8 @@ public class PreguntaDb {
 
 	private void crearPreguntasGeografia() {
 		ArrayList<Question> preguntas = service
-				.getQuestionsCategory("Geografía");
-		table.put("Geografía", preguntas);
+				.getQuestionsCategory("Geografia");
+		table.put("Geografia", preguntas);
 
 	}
 
@@ -553,7 +554,6 @@ public class PreguntaDb {
 	}
 
 	public Question lookup(String category) {
-		Log.debug(category);
 		List<Question> preguntas = comprobarPreguntas(table.get(category));
 		Question q = preguntas.get((int) (Math.random() * preguntas.size()));;
 

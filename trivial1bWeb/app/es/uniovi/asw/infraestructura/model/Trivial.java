@@ -22,8 +22,9 @@ public class Trivial {
 	private int numDado;
 	private int turno;
 	private ArrayList<User> usuarios = new ArrayList<User>();
-
-	
+	private String[] categorias = {"Ciencia", "Arte y Literatura", "Ciencia",
+			"Historia", "Deportes", "Espectaculos"};
+ 	
 	private List<String> mapa;
 	
 	private PreguntaDb preguntas = new PreguntaDb();
@@ -91,7 +92,12 @@ public class Trivial {
 		while (it.hasNext() ) {
 			Entry<Integer, Figura> entry = it.next();
 			if(entry.getValue().contains(punto)){
-				return preguntas.lookup(entry.getValue().getCategoria());
+				if(entry.getValue().isCentral()) {
+					return sacarPreguntaRandom();
+				}
+				else {
+					return preguntas.lookup(entry.getValue().getCategoria());
+				}
 			}
 		}
 		
@@ -100,6 +106,11 @@ public class Trivial {
 	}
 
 	
+	private Question sacarPreguntaRandom() {
+		int random = (int) (Math.random() * categorias.length);
+		return preguntas.lookup(categorias[random]);
+	}
+
 	public void iniciarHash(){
 		this.mapa = new ArrayList<String>();
 	}

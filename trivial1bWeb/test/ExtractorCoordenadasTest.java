@@ -27,14 +27,20 @@ public class ExtractorCoordenadasTest {
 		Point pt2 = new Point(261,64);
 		Point pt3 = new Point(508,637);
 		Point pt4 = new Point(497,71);
-		
+		Point pt5 = new Point(692,346);
+		Point pt6 = new Point(517,617);
+		Point pt7 = new Point(532,614);
+		Point pt8 = new Point(503,623);
 		
 		Iterator<Entry<Integer, Figura>> it = mapa.entrySet().iterator();
 		while (it.hasNext()) {
 			Entry<Integer, Figura> entry = it.next();
 			
 			Figura f = entry.getValue();
-			
+		if(f.contains(pt6) && f.contains(pt7) && f.contains(pt8) && f.getCategoria().equals("Geografia"))
+			assertEquals(entry.getKey(),Integer.valueOf(18));
+		if(f.contains(pt5))
+			assertEquals(entry.getKey(),Integer.valueOf(11));
 			
 		if(f.contains(pt4))
 			assertEquals(entry.getKey(), Integer.valueOf(4));

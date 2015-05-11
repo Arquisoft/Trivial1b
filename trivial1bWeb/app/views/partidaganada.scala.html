@@ -1,0 +1,25 @@
+<script  type="text/javascript">
+
+var audio = new Audio('./music/win.wav');
+audio.play();
+
+</script>
+@main("¡¡Has ganado!!") {
+
+<div align="center">
+<img alt="Logo" src='@routes.Assets.at("images/logoTrivial.jpg")'>
+
+<div align="center"  class="alert alert-success" role="alert">
+<h1>¡¡¡Has ganado!!!</h1>
+<p>¿Ahora que quieres hacer?</p>
+</div>
+
+	<a href="/nuevaPartida">
+		<input type="button" class="btn btn-lg btn-primary"  value="Inicio" />
+	</a>
+	<a href="/tablero">
+		<input type="button" class="btn btn-lg btn-primary"  value="Nueva partida" />
+	</a>
+</div>
+
+}

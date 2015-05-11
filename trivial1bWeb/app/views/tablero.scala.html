@@ -23,6 +23,7 @@ ws.onmessage = function (e) {
 var theObj=""; 
 var data;
 var dado;
+var quesito;
 var face0 = new Image();
 face0.src = "/assets/images/dado1.png";
 var face1 = new Image();
@@ -111,10 +112,13 @@ window.onscroll=updatePos;
 	      	 		if ($(this).val() == 'true') {
 	      	 			alert('Correcta');
 	      	 			if(data.quesito) {
-	      	 				
+	      	 				quesito = 'true';
 	      	 				cambiaQuesito(data.categoria);
 	      	 				
-	      	 			}
+	      	 			} else {
+	      	 				quesito = 'false';
+	      	 				}
+	      	 			
 	      	 			
 		      	 		$.ajax(
 	      	 			       { url:"@routes.Application.sumarAcertadas()"}
@@ -123,7 +127,8 @@ window.onscroll=updatePos;
 	      	 			       { url:"@routes.Application.tablero()",
 	      	 			       data: {
 	      	 		                'categoria': data.categoria,
-	      	 		                'respondida': true
+	      	 		                'respondida': true,
+	      	 		                'quesito': quesito
 	      	 		            }
 	      	 			       });
 	      	 		}
@@ -152,8 +157,8 @@ function cambiaQuesito(categoria) {
 	if(categoria=='Espectaculos') {
 		$('#rosa').css({opacity: 1.0});
 		
-	} else if(categoria=='Geograf�a') {
-		$('#azul').css({opacity: 1.0});
+	} else if(categoria=='Ciencia') {
+		$('#verde').css({opacity: 1.0});
 	} else if(categoria=='Deportes') {
 		$('#naranja').css({opacity: 1.0});
 	} else if(categoria=='Historia') {
@@ -161,7 +166,8 @@ function cambiaQuesito(categoria) {
 	} else if(categoria=='Arte y Literatura') {
 		$('#marron').css({opacity: 1.0});
 	} else {
-		$('#verde').css({opacity: 1.0});
+		$('#azul').css({opacity: 1.0});
+		
 	}
 	
 	
